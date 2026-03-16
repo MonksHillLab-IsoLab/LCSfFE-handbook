@@ -1,0 +1,143 @@
+<?php
+// /esp32/dashboard/dashboard.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+// This is a simple standalone dashboard page that reads from the sensor_data table directly.
+// In many deployments you may prefer to use site.php instead of this file.
+
+// Basic database connection settings for this standalone example.
+// TODO: Replace the placeholders below with your own database credentials.
+$servername = 'YOUR_DB_HOST_HERE';        // e.g. 'localhost'
+$username   = 'YOUR_DB_USER_HERE';        // TODO: set DB user
+$password   = 'YOUR_DB_PASSWORD_HERE';    // TODO: set DB password
+$dbname     = 'YOUR_DB_NAME_HERE';        // TODO: set DB name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die('Database connection failed: ' . $conn->connect_error);
+}
+
+// Fetch the most recent 100 records.
+$sql = "
+  SELECT timestamp, device_id, sht_temp, humidity, bmp_temp, pressure, par, battery
+  FROM sensor_data
+  ORDER BY timestamp DESC
+  LIMIT 100
+";
+$result = $conn->query($sql);
+
+$data = [];
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+}
+
+$conn->close();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simple ESP32 Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 1rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ddd; padding: 0.35rem 0.5rem; font-size: 0.85rem; }
+    th { background: #f3f4f6; text-align: left; }
+    canvas { max-width: 100%; height: 260px; margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>Simple ESP32 Dashboard</h1>
+
+  <h2>Recent measurements</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Device</th>
+        <th>SHT Temp (°C)</th>
+        <th>Humidity (%)</th>
+        <th>BMP Temp (°C)</th>
+        <th>Pressure (hPa)</th>
+        <th>PAR</th>
+        <th>Battery (V)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($data as $row): ?>
+        <tr>
+          <td><?= htmlspecialchars($row['timestamp']) ?></td>
+          <td><?= htmlspecialchars($row['device_id']) ?></td>
+          <td><?= htmlspecialchars($row['sht_temp']) ?></td>
+          <td><?= htmlspecialchars($row['humidity']) ?></td>
+          <td><?= htmlspecialchars($row['bmp_temp']) ?></td>
+          <td><?= htmlspecialchars($row['pressure']) ?></td>
+          <td><?= htmlspecialchars($row['par']) ?></td>
+          <td><?= htmlspecialchars($row['battery']) ?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+
+  <h2>Sensor charts</h2>
+  <canvas id="tempChart"></canvas>
+  <canvas id="envChart"></canvas>
+  <canvas id="miscChart"></canvas>
+
+  <script>
+    const data = <?= json_encode(array_reverse($data)) ?>;
+
+    const labels     = data.map(d => d.timestamp);
+    const shtTemps   = data.map(d => parseFloat(d.sht_temp));
+    const bmpTemps   = data.map(d => parseFloat(d.bmp_temp));
+    const humidities = data.map(d => parseFloat(d.humidity));
+    const pressures  = data.map(d => parseFloat(d.pressure));
+    const par        = data.map(d => parseFloat(d.par));
+    const battery    = data.map(d => parseFloat(d.battery));
+
+    function createChart(canvasId, title, datasets) {
+      const ctx = document.getElementById(canvasId).getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: title }
+          },
+          scales: {
+            x: { display: true, title: { display: false } },
+            y: { display: true, beginAtZero: false }
+          }
+        }
+      });
+    }
+
+    createChart('tempChart', 'Temperature', [
+      { label: 'SHT Temp (°C)', data: shtTemps, borderColor: 'red',   borderWidth: 1, pointRadius: 0 },
+      { label: 'BMP Temp (°C)', data: bmpTemps, borderColor: 'orange', borderWidth: 1, pointRadius: 0 },
+    ]);
+
+    createChart('envChart', 'Humidity & Pressure', [
+      { label: 'Humidity (%)', data: humidities, borderColor: 'blue',  borderWidth: 1, pointRadius: 0 },
+      { label: 'Pressure (hPa)', data: pressures, borderColor: 'green', borderWidth: 1, pointRadius: 0 },
+    ]);
+
+    createChart('miscChart', 'PAR & Battery', [
+      { label: 'PAR', data: par, borderColor: 'purple', borderWidth: 1, pointRadius: 0 },
+      { label: 'Battery (V)', data: battery, borderColor: 'black',  borderWidth: 1, pointRadius: 0 },
+    ]);
+  </script>
+</body>
+</html>

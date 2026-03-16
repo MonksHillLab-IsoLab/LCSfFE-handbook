@@ -1,0 +1,69 @@
+project:
+  type: book
+
+book:
+  title: "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems"
+  author:
+  - name: Mathias Hoffmann
+    affiliations: 
+      - id: ZALF
+        name: Leibniz Centre for Agricultural Landscape Research (ZALF)
+        department: Innovation Centre for Agricultural Transformation (IAT)
+        address: Eberswalder Strasse 84
+        city: Müncheberg
+        postal-code: 15374
+        country: Germany
+  - name: Milan Shay Kretzschmar
+    affiliations:
+      - ref: ZALF
+  - name: Reena Macagga
+    affiliations:
+      - ref: ZALF
+  - name: Wael Al Hamwi
+    affiliations:
+      - ref: ZALF
+  - name: Adrian Dahlmann
+    affiliations:
+      - ref: ZALF
+  - name: Maren Dubbert
+    affiliations:
+      - ref: ZALF
+  - name: David Dubbert
+    affiliations:
+      - ref: ZALF
+  - name: John Marshall
+    affiliations:
+      - ref: ZALF
+  - name: Michael Asante
+    affiliations:
+      - ref: ZALF
+  - name: Geoffrey Sossa
+    affiliations:
+      - ref: ZALF
+  date: last-modified
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - hardware-solutions.qmd
+    - software-solutions.qmd
+    - real-world-use.qmd
+    - references.qmd
+  page-footer: "License: Creative Commons Attribution 4.0 (CC-BY 4.0)" 
+
+bibliography: references.bib
+number-depth: 4
+glossary:
+  path: glossary.yml
+  popup: hover
+  show: true
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+

@@ -1,0 +1,30 @@
+<?php
+// /esp32/dashboard/db.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+
+require_once __DIR__ . '/config.php';
+
+/**
+ * Obtain a shared PDO connection using the configuration from config.php.
+ *
+ * @return PDO
+ */
+function pdo(): PDO
+{
+    static $pdo = null;
+
+    if ($pdo instanceof PDO) {
+        return $pdo;
+    }
+
+    $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+
+    $pdo = new PDO($dsn, DB_USER, DB_PASS, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+
+    return $pdo;
+}

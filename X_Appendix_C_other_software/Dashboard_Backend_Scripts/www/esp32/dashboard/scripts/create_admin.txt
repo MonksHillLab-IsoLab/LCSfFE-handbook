@@ -1,0 +1,47 @@
+<?php
+// /esp32/dashboard/scripts/create_admin.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+// Helper script to create an initial administrator account.
+// Run this from the command line (php create_admin.php) and delete the file afterwards.
+
+// Database connection for this helper script.
+// TODO: Replace the placeholders below with your own database configuration.
+$dsn  = 'mysql:host=YOUR_DB_HOST_HERE;dbname=YOUR_DB_NAME_HERE;charset=utf8mb4';
+$user = 'YOUR_DB_USER_HERE';
+$pass = 'YOUR_DB_PASSWORD_HERE';
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    ]);
+
+    // TODO: Set the credentials for the new admin user.
+    $email = 'admin@example.org';
+    $plaintextPassword = 'change-me';
+
+    $hash = password_hash($plaintextPassword, PASSWORD_DEFAULT);
+
+    // Check if a user with this email already exists.
+    $stmt = $pdo->prepare('SELECT id FROM users WHERE email = ?');
+    $stmt->execute([$email]);
+
+    if ($stmt->fetch()) {
+        echo "⚠ A user with this email already exists.
+";
+    } else {
+        $insert = $pdo->prepare('INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?)');
+        $insert->execute([$email, $hash, 'admin']);
+
+        echo "✅ Admin user created successfully.
+";
+        echo "   Email:    {$email}
+";
+        echo "   Password: {$plaintextPassword}
+";
+    }
+} catch (Exception $e) {
+    echo "❌ Error: " . $e->getMessage() . "
+";
+}

@@ -1,0 +1,64 @@
+<?php
+// /esp32/dashboard/login.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+
+require_once __DIR__ . '/auth.php';
+
+// If already logged in, go straight to the main page.
+if (current_user()) {
+    header('Location: ' . BASE_URL . '/');
+    exit;
+}
+
+$error = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!csrf_check($_POST['csrf'] ?? '')) {
+        http_response_code(400);
+        exit('Invalid CSRF token');
+    }
+
+    $email = trim($_POST['email'] ?? '');
+    $pass  = $_POST['password'] ?? '';
+
+    if ($email !== '' && $pass !== '' && login_user($email, $pass)) {
+        $target = $_SESSION['redirect_after_login'] ?? (BASE_URL . '/');
+        unset($_SESSION['redirect_after_login']);
+        header('Location: ' . $target);
+        exit;
+    }
+
+    $error = 'Invalid email or password';
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login · ESP32 Dashboard</title>
+  <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/app.css?v=3">
+</head>
+<body class="login-page">
+  <main class="page page--centered">
+    <div class="login-card glass">
+      <h1>ESP32 Dashboard</h1>
+      <p class="muted">Sign in to continue</p>
+      <?php if ($error): ?>
+        <p class="error"><?= htmlspecialchars($error) ?></p>
+      <?php endif; ?>
+      <form method="post" class="login-form">
+        <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrf_token()) ?>">
+        <label>Email</label>
+        <input required type="email" name="email" placeholder="you@example.com" autocomplete="username">
+        <label>Password</label>
+        <input required type="password" name="password" placeholder="••••••••" autocomplete="current-password">
+        <button class="btn primary" type="submit">Sign in</button>
+      </form>
+      <p class="tiny muted">If you forget your password, ask an administrator to reset it.</p>
+    </div>
+  </main>
+</body>
+</html>
