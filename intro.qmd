@@ -1,5 +1,5 @@
-# Introduction
+---
+title: "Introduction"
+---
 
-This is a book created from markdown and executable code.
-
-{{< glossary PAR >}}
+This handbook provides open-source, low-cost designs for field-based ecophysiological measurement systems in agricultural research. It is intended to support researchers, practitioners, and students in building and deploying affordable monitoring tools that can be adapted to a wide range of field conditions. To provide structure and clarity, the handbook is organized around three key domains of ecophysiological monitoring: (1) environmental variables (e.g., air temperature, humidity, radiation, soil moisture), (2) plant health and development (e.g., leaf temperature, chlorophyll status, canopy reflectance), and (3) biogeochemical cycles (e.g., evapotranspiration (ET), CO₂ and CH₄ fluxes, nutrient dynamics). These categories reflect increasing system complexity—from relatively simple measurements of ambient conditions to more integrated assessments of ecosystem processes. Each chapter follows the same practical structure—covering use cases, required materials, wiring diagrams, step-by-step assembly, calibration, and code—making it easy to adapt and implement these systems regardless of technical background.

@@ -1,0 +1,82 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
+    "section": "",
+    "text": "Preface\nThis handbook is part of the MonksHillLab initiative (integral part of the Working Group Ecophysiology of Water and Matter Cycling of the Leibniz Centre for Agricultural Landscape Research) which aims to democratize science by enabling low-cost, DIY sensor development for environmental monitoring. It provides step-by-step guidance on building and calibrating sensor systems using open hardware and widely available components.\nThe project supports ecophysiological research and the discovery of sustainable agricultural management practices, particularly in under-resourced regions and the Global South. By focusing on reproducibility, accessibility, and practical application, it seeks to close the gap between research/development and field implementation/adoption.\nThis is a living document: users are encouraged to build upon the existing designs, share adaptations, and contribute new chapters, see the Contributing section for more details. Future versions will include additional low-cost DIY systems and their integration with the MonksHillLab Logger App. Thus, together, we aim to grow with that handbook a practical, evolving resource for scientists, students, and practitioners.\nWe are currently exploring the idea of organizing a low-cost sensor summer school and/or online workshop to provide hands-on training, exchange ideas, and build a global community around DIY environmental monitoring. If you are interested in participating or helping shape the format, feel free to get in touch or respond to the feedback link",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#structure-of-the-handbook",
+    "href": "index.html#structure-of-the-handbook",
+    "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
+    "section": "Structure of the handbook",
+    "text": "Structure of the handbook\nThis handbook provides open-source, low-cost designs for field-based ecophysiological measurement systems in agricultural research. It is intended to support researchers, practitioners, and students in building and deploying affordable monitoring tools that can be adapted to a wide range of field conditions. To provide structure and clarity, the handbook is organized around three key domains of ecophysiological monitoring: (1) environmental variables (e.g., air temperature, humidity, radiation, soil moisture), (2) plant health and development (e.g., leaf temperature, chlorophyll status, canopy reflectance), and (3) biogeochemical cycles (e.g., evapotranspiration (ET), CO₂ and CH₄ fluxes, nutrient dynamics). These categories reflect increasing system complexity—from relatively simple measurements of ambient conditions to more integrated assessments of ecosystem processes. Each chapter follows the same practical structure—covering use cases, required materials, wiring diagrams, step-by-step assembly, calibration, and code—making it easy to adapt and implement these systems regardless of technical background.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#sec-contributing",
+    "href": "index.html#sec-contributing",
+    "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
+    "section": "Contributing",
+    "text": "Contributing\nYou’re very welcome to share your improvements/chapters. Just email the author (mathias.hoffmann@zalf.de) and submit an update.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
+    "section": "Citation",
+    "text": "Citation\nThis handbook is available under a CC-BY 4.0 licence.\nPlease cite the hanbook through the project’s Zenodo archive using DOI: 10.5281/zenodo.15562591. This DOI represents all versions, and will always resolve to the latest one.\nThe citation will look something like:\n\nHoffmann, M. (2025). Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems (2.1). Zenodo. https://doi.org/10.5281/zenodo.15562591.\n\nPlease visit the Zenodo archive DOI link to get the most recent version - the one above is not automatically generated and may be out of date if we release an updated version.\n\n Openscapes is licensed under a Creative Commons Attribution 4.0 International License.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "hardware-solutions.html",
+    "href": "hardware-solutions.html",
+    "title": "1  Hardware Solutions",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Hardware Solutions</span>"
+    ]
+  },
+  {
+    "objectID": "software-solutions.html",
+    "href": "software-solutions.html",
+    "title": "2  Software Solutions",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Software Solutions</span>"
+    ]
+  },
+  {
+    "objectID": "real-world-use.html",
+    "href": "real-world-use.html",
+    "title": "3  Real World Use & Regional Hubs",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Real World Use & Regional Hubs</span>"
+    ]
+  },
+  {
+    "objectID": "abbreviations.html",
+    "href": "abbreviations.html",
+    "title": "Abbreviations",
+    "section": "",
+    "text": "PTFE: Polytetrafluoroethylene\nPAR: Photosynthetic Active Radiation\nBWP34: Photodiode\nGND: Grounding line\n5V: 5V power line\nA2: Analog signal line\nET: Evapotranspiration\nCO2: Carbon dioxide\nCH4: Methane\nNDVI: Normalized Difference Vegetation index\nPRI: Photochemical Reflectance Index\nNiMH: Nickel-Metal Hydride\nmAh: Milliampere hour",
+    "crumbs": [
+      "Abbreviations"
+    ]
+  }
+]

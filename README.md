@@ -1,13 +1,39 @@
-This the repository for the living document: 'Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems'
+This the repository for the living document: **Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems**
 
-This handbook is part of the MonksHillLab initiative (integral part of the Working Group Ecophysiology of Water and Matter Cycling of the Leibniz Centre for Agricultural Landscape Research) which aims to democratize science by enabling low-cost, DIY sensor development for environmental monitoring. It provides step-by-step guidance on building and calibrating sensor systems using open hardware and widely available components.
+This handbook is part of the MonksHillLab initiative (integral part of the [Working Group Ecophysiology of Water and Matter Cycling](https://www.zalf.de/en/struktur/pb1/ibg/Pages/default.aspx) of the [Leibniz Centre for Agricultural Landscape Research](https://www.zalf.de/en/Pages/ZALF.aspx)) which aims to democratize science by enabling low-cost, DIY sensor development for environmental monitoring. It provides step-by-step guidance on building and calibrating sensor systems using open hardware and widely available components.
 
 The project supports ecophysiological research and the discovery of sustainable agricultural management practices, particularly in under-resourced regions and the Global South. By focusing on reproducibility, accessibility, and practical application, it seeks to close the gap between research/development and field implementation/adoption.
 
-This is a living document: users are encouraged to build upon the existing designs, share adaptations, and contribute new chapters. You’re very welcome to share your improvements/chapters. Just email the author (mathias.hoffmann@zalf.de) and submit an update. Future versions will include additional low-cost DIY systems and their integration with the MonksHillLab Logger App. Thus, together, we aim to grow with that handbook a practical, evolving resource for scientists, students, and practitioners.
+This is a living document: users are encouraged to build upon the existing designs, share adaptations, and contribute new chapters, see the contributing section below for more details. Future versions will include additional low-cost DIY systems and their integration with the MonksHillLab Logger App. Thus, together, we aim to grow with that handbook a practical, evolving resource for scientists, students, and practitioners.
 
-We are currently exploring the idea of organizing a low-cost sensor summer school and/or online workshop to provide hands-on training, exchange ideas, and build a global community around DIY environmental monitoring. If you are interested in participating or helping shape the format, feel free to get in touch or respond to the feedback link: https://docs.google.com/forms/d/e/1FAIpQLSd-lZMnjAK-ll1-eMoKwWdKpjrdHeFioPDRd5Fp-lMQW38EWg/viewform?usp=header
+We are currently exploring the idea of organizing a low-cost sensor summer school and/or online workshop to provide hands-on training, exchange ideas, and build a global community around DIY environmental monitoring. If you are interested in participating or helping shape the format, feel free to get in touch or respond to the [feedback link](https://docs.google.com/forms/d/e/1FAIpQLSd-lZMnjAK-ll1-eMoKwWdKpjrdHeFioPDRd5Fp-lMQW38EWg/viewform?usp=header)
 
-Whats New? Version 2.1 introduces the EVE-Offline and EVE-Online worklfows including a backend infrastructure and dashboard setup for real-time data transfer and visualization (EVE-Online). In addtion Appendix D was added, now contiang supporting data (starting with data for the PAR sensor validation as well as the proof of concept of EVE-Offline and EVE-Online.
+## Contributing {#sec-contributing}
 
-Whats Next? Version 2.2 will add a new chapter presenting a low cost system for flush-sampling of chamber headspace air for lateron analyses at a GCMS, as well as the introduction of a new regional hub located in Germany.
+You’re very welcome to share your improvements/chapters. Just email the author (mathias.hoffmann\@zalf.de) and submit an update.
+
+## Whats New?
+
+**Version 2.1** introduces the EVE-Offline and EVE-Online worklfows including a backend infrastructure and dashboard setup for real-time data transfer and visualization (EVE-Online). In addtion Appendix D was added, now contiang supporting data (starting with data for the PAR sensor validation as well as the proof of concept of EVE-Offline and EVE-Online.
+
+## Whats Next?
+
+**Version 2.2** will add a new chapter presenting a low cost system for flush-sampling of chamber headspace air for lateron analyses at a GCMS, as well as the introduction of a new regional hub located in Germany.
+
+## Citation
+
+This handbook is available under a [CC-BY 4.0 licence](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/LICENSE.md).
+
+Please cite the hanbook through the project's Zenodo archive using DOI: [10.5281/zenodo.15562591](https://doi.org/10.5281/zenodo.15562591). This DOI represents all versions, and will always resolve to the latest one.
+
+The citation will look something like:
+
+> Hoffmann, M. (2025). Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems (2.1). Zenodo. https://doi.org/10.5281/zenodo.15562591.
+
+Please visit the Zenodo archive [DOI link](https://doi.org/10.5281/zenodo.15562591) to get the most recent version - the one above is not automatically generated and may be out of date if we release an updated version.
+
+------------------------------------------------------------------------
+
+<a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png){alt="Creative Commons License" style="border-width:0"}</a> Licensed under a <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.
+
+##

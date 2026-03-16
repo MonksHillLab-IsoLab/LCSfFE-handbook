@@ -1,3 +1,5 @@
-# Summary
+---
+title: "Software Solutions"
+---
 
 In summary, this book has no content whatsoever.
