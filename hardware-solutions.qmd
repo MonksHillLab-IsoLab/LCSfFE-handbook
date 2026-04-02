@@ -461,3 +461,16 @@ h.  Digital pin 13 (white) to RX of K30 FR (white)
 
 19. Seal solder connections using e.g. transparent nail polish;
 20. Upload program code to microcontroller and check if all system components deliver values in expected range via Bluetooth using the MonksHillLab Logger App
+
+#### Calibration:
+Although the CO₂ and RH sensors used in this system provide direct readings in parts per million (ppm) and relative humidity (%) respectively—eliminating the need for conversion from raw signal to physical units—performing a simple calibration or check-up remains good practice to ensure sensor accuracy over time. For the CO₂ sensor, this can be done in a low-cost and straightforward way using commercially available CO₂ cartridges (e.g., for carbonated water), which contain 100% CO₂. When used with a pressure regulator, a known amount of CO₂ can be injected into a sealed calibration vessel containing the sensor unit. The resulting increase in CO₂ concentration can then be compared to the sensor’s readings of the measured increase in CO₂ concentration due to injection, providing a quick and effective way to verify sensor performance. This method is especially useful in field conditions, where access to laboratory calibration equipment may be limited. While relative humidity sensors are more difficult to calibrate directly in the field, cross-checking with a trusted reference device under stable environmental conditions can help confirm their reliability.
+
+#### Code:
+Please see Arduino IDE code example given in Appendix A to implement the manual low-cost DIY CO2 and ET flux measurement system.
+
+### Mesocosm System for Automatic CO2 and ET flux measurements
+#### Purpose & Use Case:
+This system is a further development of the manual closed-chamber setup described earlier and is specifically designed for controlled greenhouse and mesocosm experiments. Its primary goal is to precisely and automatically measure CO₂ exchange and ET dynamics in a semi-controlled environment, minimizing interference with the natural physiological processes of plants. By automating chamber opening and closing via a motorized sliding door and continuously recording environmental variables - such as CO₂ concentration, relative humidity, and air temperature - the system enables detailed investigations into plant responses to varying experimental conditions, such as drought stress and fertilization treatments. The system is compatible with additional sensors (e.g. NDVI, soil moisture, or leaf temperature) to broaden its analytical scope. Building on the modular and flexible design of the manual system, the system’s automation and high-resolution data collection support advanced analyses, making it a valuable tool for plant ecophysiology research in greenhouse and mesocosm settings.
+
+#### Bill of Materials:
+A comprehensive overview of all components required to build the mesocosm system for automatic CO2 and ET flux measurements (including the closed-chamber), needed quantities, recommended suppliers and approximate prices (in €) is provided in Table 2.3.2.2.
