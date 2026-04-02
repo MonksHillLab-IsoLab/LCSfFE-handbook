@@ -139,7 +139,7 @@ EVE-Offline (Environmental Variable Explorer), configurated as a compact, low-co
 A comprehensive overview of all components required to build the automatic weather station, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-aws_bom.
 
 | **Component** | **Amount** | **Supplier** | **Price (approx.)** |
-|----------------------|-----------------|-----------------|-----------------|
+|--------------------|------------------|------------------|------------------|
 | PAR sensor | 1 | DIY (see handbook) | 2.00 € |
 | HC-05 / HC-06 Bluetooth Wireless RF Transceiver Module (RS232 TTL) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 3.50 € |
 | Microcontroller (e.g., Pro Mini) | 1 | AZ-Delivery, Amazon | 3.50 € |
@@ -197,7 +197,7 @@ The handheld spectral measurement system presented here enables low-cost, in-sit
 A comprehensive overview of all components required to build the handheld measurement system for spectral plant indices, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-spectral_indices_bom.
 
 | **Component** | **Amount** | **Supplier** | **Price (approx.)** |
-|---------------------------|---------------|---------------|---------------|
+|----------------------|-----------------|-----------------|-----------------|
 | Microcontroller (e.g., UNO) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 9.00 € |
 | HC-05 / HC-06 Bluetooth Wireless RF Transceiver Module (RS232 TTL) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 9.00 € |
 | AS7262/AS7263 6-channel spectral sensor | 2 | Aliexpress, Antratek, BerryBase | 60.00 € |
@@ -311,4 +311,153 @@ Wire.endTransmission();
 ### Automatic System to measure Spectral Plant Indices (e.g., NDVI, PRI)
 
 #### Purpose & Use Case:
+
 The automatic system presented here enables automated monitoring of spectral plant indices such as the NDVI and PRI, which are indicators of plant health and photosynthetic activity. Unlike the handheld version **(chapter 3)**, this system is designed for permanent installation in the field and operates autonomously, recording data at regular intervals—typically once per hour for e.g., 30 seconds—over extended periods (weeks). This makes the system a valuable component for long-term ecological studies, crop monitoring, or integration into automated infrastructure such as stationary gas flux chambers or field phenotyping platforms, where continuous, high-temporal-resolution NDVI and PRI measurements are critical for analyzing plant responses to environmental conditions.
+
+##### Bill of Materials:
+
+A comprehensive overview of all components required to build the automatic measurement system for spectral plant indices, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-automatic_spectral_indices_bom.
+
+| Component | Qty | Supplier | Price |
+|--------------------------|---------------|----------------|---------------|
+| Microcontroller (e.g., Pro Mini) | 1 | AZ-Delivery, Amazon | 8.00 € |
+| TPL5110 Nano Power Timer | 1 | Antratek, BerryBase | 8.00 € |
+| AS7262/AS7263 6-channel spectral sensor | 2 | Aliexpress, Antratek, BerryBase | 60.00 € |
+| RTC module (I2C; DS3231; 3.3V) | 1 | Amazon, BerryBase | 5.00 € |
+| TF Micro-SD-card module (3.3V) | 1 | Amazon | 2.00 € |
+| DC-DC step-down converter | 1 | Amazon | 0.60 € |
+| Micro-SD-card (16 GB) | 1 | Amazon | 6.00 € |
+| TCA9548A I2C Multiplexer | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 3.00 € |
+| PTFE diffusor disk (⌀ 40mm) | 1 | Amazon | 0.50 € |
+| 3D-printed AS7263/AS7262 sensor case | 2 | \- | 1.00 € |
+| 3D-printed system case | 1 | \- | 2.50 € |
+| TFA Dostmann protective case | 1 | Amazon | 13.00 € |
+| 4AA Battery holder | 1 | Amazon | 2.00 € |
+| NiMH Battery (2300 mAh; rechargeable) | 4 | Amazon, Reichelt, Conrad | 10.00 € |
+| 9V battery clip | 1 | Amazon | 0.50 € |
+| Dupont connector (female) / luster clamps | 4 | Amazon | 1.00 € |
+| Perfboard / MonksHillLab PCB board (5x7cm) | 1 | Amazon | 1.00 € |
+| Wires (black, red, yellow, green, blue, brown) | \- | Amazon | 0.50 € |
+| Aluminum, steel rods, wood or PVC pipe (4m) | 1 | Hardware store | 20.00 € |
+| **Total** |  |  | **144.60 €** |
+
+: Components required for assembly of the automatic system to measure spectral plant indices; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-automatic_spectral_indices_bom}
+
+#### Wiring Diagram:
+
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in @fig-automatic_spectral_indices_wiring.
+
+![wiring scheme for the automatic system to measure spectral plant indices, illustrating the electrical connections between the spectral sensors, I2C multiplexer, TPL5110, DC-DC step down converter, RTC module, Micro-SD-card module and microcontroller. The schematic focuses solely on the wiring layout required for system assembly, not placement of additional, non-electronical components within the sensor and/or battery case.](assets\automatic-spectral-plant-indices-wiring.png){#fig-automatic_spectral_indices_wiring fig-align="center"}
+
+#### Assembly Instructions:
+
+The following section provides a step-by-step assembly guide for constructing the automatic system to measure spectral plant indices, detailing the integration of all components: 1. 3D-print cases (black) using UV-resistant material; 2. Solder 15cm long wires to 3.3V (red), GND (black), SCL (green) and SDA (yellow) of each of the AS7262/3 and fix (glue or double sided tape) both to the 3D-printed AS7262/3 cases; fit loose ends through its back and solder them to the top/bottom of the PCB/perfboard; 3. Solder TPL5110 and microcontroller (e.g., Pro Mini) to PCB/perfboard by connecting DRV (red; TPL5110) with RAW (red; Pro Mini), Done (blue; TPL5110) with digital pin 9 (blue; Pro Mini) and GND (black; TPL5110) with GND(black; Pro Mini) through wires and predrilled holes; 4. Solder DC-DC step down converter to PCB/perfboard by connecting VIN (red; DC-DC) with VCC (red; Pro Mini), GND (black; DC-DC) with GND (black; Pro Mini) and OUT (red; DC-DC) with 3.3V (red; AS7262/3) at the top and bottom of PCB/perfboard through wires and predrilled holes; 5. Connect GND (black) wireline with GND (black) coming from AS7262/3 at the top and bottom of PCB/perfboard through wires; 6. Solder TCA9548A I2C multiplexer to PCB/perfboard by connecting VIN (red; TCA9548A) with 3.3V (red; DC-DC), GND (black; TCA9548A) with GND (black; DC-DC), SDA (yellow; TCA9548A) with A4 (yellow; Pro Mini) and SCL (green; TCA9548A) with A5 (green; Pro Mini) through wires and predrilled holes; 7. Solder RTC module to PCB/perfboard by connecting + (red; RTC) with 3.3V (red; DC-DC), GND (black; RTC) with GND (black; DC-DC), SDA (yellow; RTC) with A4 (yellow; Pro Mini) and SCL (green; RTC) with A5 (green; Pro Mini) through wires and predrilled holes; 8. Solder Micro-SD-card module to PCB/perfboard by connecting + (red; Micro-SD) with 3.3V (red; DC-DC), GND (black; Micro-SD) with GND (black; DC-DC), CLK (blue; Micro-SD) with digital pin 10 (blue; Pro Mini), MISO (blue; Micro-SD) with digital pin 11 (blue; Pro Mini), MOSI (blue; Micro-SD) with digital pin 12 (blue; Pro Mini), CS (blue; Micro-SD) with digital pin 13 (blue; Pro Mini) through wires and predrilled holes; 9. Connect SDA (yellow) and SCL (green) from upward AS7262/3 to SD0 (yellow; TCA9548A) and SC0 (green; TCA9548A) 10. Connect SDA (yellow) and SCL (green) from downward AS7262/3 to SD1 (yellow; TCA9548A) and SC1 (green; TCA9548A) 11. Solder 4.8V (red) and GND (black) wire of the 9V battery clip to the TPL5110 VDD (red) and GND (black) ; 12. Fit PCB/perfboard and 4AA battery holder with NiMh rechargeable batteries inside the system case and close case with upward/downward sensor case; 13. Drill a Ø40mm hole into the middle of the top and bottom of the TFA Dostmann climate station case; 14. Fix (glue) the PTFE diffusor over the upward directed AS7262/3 on top of the TFA Dostmann climate station case 15. Seal 3D-printed sensor head where necessary using e.g., silicon. 16. Upload program code to microcontroller and check if the sensor is storing e.g., NDVI values in expected range on the micro-SD-card; 17. Construct a 1.8-meter high pole with a 1-meter long reinforced cantilever arm and fix sensor head on arm using e.g., cable tie (make sure sensors are directed up- and downwards as intended);
+
+#### Calibration:
+
+Since the sensor provides direct NDVI measurements based on reflectance in selected spectral bands, measurement values does not need to be converted prior to use. However, calibration is essential to ensure accuracy and comparability across different setups and conditions. NDVI values can be easily calibrated against reference surfaces with known NDVI values to derive a correction function. A practical and low-cost approach involves using colored reference targets, such as cardboards with defined reflectance properties (e.g. white, black, green, yellow), as demonstrated by @macagga2025.
+
+#### Code:
+
+Please see Arduino IDE code example given in Appendix A to implement the automatic low-cost DIY NDVI measurement system.
+
+## Biogeochemical Cycling
+
+### Manual System to measure CO2 and ET fluxes
+
+#### Purpose & Use Case:
+
+The sensor unit and data logger presented here can be used to determine CO₂ and ET fluxes using the manual closed-chamber method—two key fluxes in the C and water cycles, respectively. While this chapter focuses on the construction, calibration, and deployment of the manual version of the system, the setup is designed with flexibility in mind and can be readily adapted for automated operation. This modularity allows it to serve as a foundational component in both short-term field campaigns and long-term environmental monitoring efforts. The data generated provide critical insights into plant–soil–atmosphere interactions, especially in relation to photosynthetic activity, respiration, and water use. In later chapters, integration into automated systems is explained to facilitate high-resolution, continuous flux measurements across spatial and temporal scales.
+
+#### Bill of Materials:
+
+A comprehensive overview of all components required to build the manual system to measure CO2 and ET fluxes (excluding the closed-chamber), needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-manual_flux_bom.
+
+| Component | Amount | Supplier | Price (approx.) |
+|---------------------------|---------------|---------------|---------------|
+| Microcontroller (e.g., UNO) | 1 | AZ-Delivery, Amazon | 9.00 € |
+| BMP280 | 1 | AZ-Delivery, Amazon | 2.00 € |
+| K30 FR NDIR CO2 sensor | 1 | Driesen & Kern | 80.00 € |
+| Data logger shield (UNO) | 1 | AZ-Delivery, Amazon | 6.00 € |
+| SHT41 module (weather proof) | 1 | Aliexpress | 8.00 € |
+| HC-05 / HC-06 Bluetooth RF Transceiver Module (RS232 TTL) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 9.00 € |
+| SD-card (2 GB) | 1 | Amazon | 5.00 € |
+| 0.96" OLED display (I2C) | 1 | Amazon, AZ-Delivery | 5.00 € |
+| PAR sensor | 1 | DIY (see handbook) | 3.45 € |
+| 3D-printed K30 FR sensor case | 1 | \- | 1.00 € |
+| B&W Outdoor Case Typ 500 (yellow) | 1 | Profikoffer | 30.00 € |
+| 6AA Battery holder | 2 | Amazon | 4.00 € |
+| NiMH Battery (2300 mAh; rechargeable) | 12 | Amazon, Reichelt, Conrad | 28.00 € |
+| 9V battery clip | 2 | Amazon | 1.00 € |
+| Dupont connector (male/female) / luster clamps | 24 | Amazon | 6.00 € |
+| Perfboard / MonksHillLab PCB board (5x7cm) | 1 | Amazon | 2.00 € |
+| Wires / screw terminal blocks (various colors) | \- | Amazon | 5.00 € |
+| \>10-wire cable, shielded (\~1.5 m, outdoor suitable) | 1 | Amazon | 8.00 € |
+| Rocker switch (4 connections) | 1 | Amazon | 5.00 € |
+| PG9 cable fitting | 1 | Hardware store | 2.00 € |
+| Hard foam plate | 1 | Amazon | 5.00 € |
+| **Total** |  |  | **224.50 €** |
+
+: Components required for data logger and sensor unit assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-manual_flux_bom}
+
+#### Wiring Diagram:
+
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in @fig-manual_flux_system_wiring.
+
+![Wiring scheme for the manual system to measure CO2 and ET fluxes, illustrating the electrical connections between the microcontroller (e.g., UNO), HC-05 Bluetooth module, data logger module, OLED display, BMP280 module, K30FR, PAR sensor and SHT41. The schematic focuses solely on the wiring layout required for sensor assembly, not placement of components and additional, non-electronical components within the sensor case.](assets\manual-flux-system-wiring.png){#fig-manual_flux_system_wiring fig-align="center"}
+
+#### Assembly Instructions:
+
+The following section provides a step-by-step assembly guide for constructing the manual system to measure CO2 and ET fluxes, detailing the integration of all components:
+
+1.  Prepare B&W outdoor case by drilling a Ø20mm hole into the left and back wall to install rocker switch and PG9 cable fitting
+
+2.  Use hard foam plate and carpet knife to cut custom inserts (1x vertical; 2x horizontal) that keep the 6xAA battery holder in position and install on left side of B&W outdoor case type 500
+
+3.  Fit (double sided tape or screws) the perfboard/PCB board with its longer side aligned along the shorter dimension of the B&W outdoor case type 500
+
+4.  Cut ends of \>10 wire cables (e.g., DSUB) and remove isolation; fit one end through the PG9 into the B&W outdoor case type 100 and connect wires to close end of the perfboard/PCB board using screw terminal blocks soldered to that end
+
+5.  Place 6xAA battery holder and connect red wires to rocker switch while connecting black wires to left side of the perfboard/PCB board using screw terminal blocks soldered to that side; connect both black wires;
+
+6.  Solder microcontroller to PCB/perfboard by connecting VIN (red; microcontroller) with screw terminal block one red with from rocker switch, GND (black) microcontroller) with screw terminal block with one wire (black) from one of the battery holder ( power supply to microcontroller);
+
+7.  Connect 2nd (red) wire from rocker switch with screw terminal block connected to \>10 wire cable (red) and screw terminal block with 2nd (black) wire from 2nd battery holder to screw terminal block connected to \>10 wire cable (black) ( power supply to K30FR)
+
+8.  Solder a green and yellow 10cm wire through the PCB/perfboard to SDA and SCL of the microcontroller; connect the other ends to the screw terminal blocks with the green and yellow wire from the \>10 wire cable ( connection for SHT41)
+
+9.  Solder a brown and white 10cm wire through the PCB/perfboard to digital pin 12 and 13 of the microcontroller; connect the other ends to the screw terminal blocks with the brown and white wire from the \>10 wire cable ( connection for K30 FR)
+
+10. Solder a green and yellow 10cm wire through the PCB/perfboard to SDA and SCL of the microcontroller; connect the other ends to SDA and SCL of the BMP280 placed on the PCB/perford thus fixing it to the board; solder in addition a 10cm red and black wire to VIN and GND of the BMP280 and solder the loose ends to 5V and GND of the Microcontroller
+
+11. Place data logger shield on top of microcontroller
+
+12. Crimp a male and female Dupont connector to 4 10cm wires (black, red, green and yellow) and use these wires to connect the OLED display with the microcontroller through connecting VCC (red; OLED) to 5V (red; microcontroller), GND (black; OLED) to GND (black; microcontroller), SDA (green; OLED) to SDA (green; microcontroller) and SCL (yellow; OLED) to SCL (yellow; microcontroller)
+
+13. Fit (double sided tape) OLED display to hard foam plate custom insert
+
+14. Crimp a male and female Dupont connector to 4 10cm wires (black, red, brown and white) and use these wires to connect the HC-05 Bluetooth module with the microcontroller through connecting VCC (red; HC-05) to 5V (red; microcontroller), GND (black; HC-05) to GND (black; microcontroller), TX (brown; HC-05) to RX (brown; microcontroller) and RX (white; HC-05) to TX (white; microcontroller)
+
+15. Fit (double sided tape) HC-05 Bluetooth module to hard foam plate custom insert or B&W outdoor case wall
+
+16. 3D-print sensor case and install PG9 cable fitting
+
+17. Fit the 2nd end of the \>10 wire cables (e.g., DSUB) through the PG9 into the sensor box
+
+18. Solder from the \>10 wire cable:
+
+<!-- -->
+
+a.  7.2V (red) wire to VCC (red) of the K30 FR\
+b.  5V (red) wire to SHT41 and PAR sensor (red)\
+c.  GND (black) to GND (black; K30 FR, PAR sensor and SHT41)\
+d.  SDA (green) to SHT41 (green)\
+e.  SCL (yellow) to SHT41 (Yellow)\
+f.  A2 (blue) to PAR sensor (blue)\
+g.  Digital pin 12 (brown) to TX of K30 FR (brown)\
+h.  Digital pin 13 (white) to RX of K30 FR (white)
+
+<!-- -->
+
+19. Seal solder connections using e.g. transparent nail polish;
+20. Upload program code to microcontroller and check if all system components deliver values in expected range via Bluetooth using the MonksHillLab Logger App
