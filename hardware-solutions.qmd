@@ -2,4 +2,313 @@
 title: "Hardware Solutions"
 ---
 
-In summary, this book has no content whatsoever.
+## Environmental Variables
+
+### NiMH Solar Trickle Charger
+
+#### Purpose & Use Case:
+
+The solar trickle charger module presented here is designed to provide a simple, low-cost, and field-deployable solution for recharging AA NiMH batteries in remote areas. Its primary use case is to support small-scale electronic devices—such as environmental sensors or data loggers—used in off-grid research and monitoring setups. Especially relevant in the Global South and other regions where access to stable electricity is limited, this charger enables reliable, low-maintenance battery recharging using solar energy. By leveraging basic components like a small solar panel and a Schottky diode, the system offers a practical way to maintain battery-powered devices in the field without the need for complex charging infrastructure or frequent battery replacement.
+
+#### Bill of Materials:
+
+A comprehensive overview of all components required to build the solar charger, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-solar_charger_bom
+
+| **Component** | **Amount** | **Supplier** | **Price (approx.)** |
+|-------------------|------------------|------------------|------------------|
+| Shotky-Diode | 1 | Amazon, Reichelt, Conrad | 0.10 € |
+| Common E-Series electronic resistor (e.g., 10 Ω) | 1 | Amazon, Reichelt, Conrad | 0.10 € |
+| 6AA Battery holder | 1 | Amazon | 3.00 € |
+| Perfboard / MonksHillLab PCB board (2x2 cm) | 1 | Amazon | 0.50 € |
+| Wires (black, red) / Screw Terminal Blocks | – | Amazon | 0.50 € |
+| 6V, 2.5W Solar Panel | 1 | Amazon | 10.00 € |
+| **Sum** |  |  | **14.20 €** |
+
+: Components required for solar charger assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-solar_charger_bom}
+
+#### Wiring Diagram:
+
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in @fig-PAR_wiring.
+
+![wiring scheme for the PAR sensor, illustrating the electrical connections between the photodiode, resistor, and microcontroller. The schematic focuses solely on the wiring layout required for sensor assembly, not placement of additional, non-electronical components within the sensor case.](assets/PAR-solar-wiring.png){#fig-PAR_wiring fig-align="center"}
+
+#### Assembly Instructions:
+
+1.  Solder a 5cm black and red wire to + and – pole of the solar panel.
+2.  Solder two 2x2 Screw terminal block (screw terminal 1 to 4) on the tiny perfboard/PCB board.
+3.  Remove 0,5cm isolation from the red wire coming from the solar panel and fix it in screw terminal 1.
+4.  Connect screw terminal 1 (Anode) and 2 (cathode) using the shotky-diode.
+5.  Connect screw terminal 2 and 3 using the 10 Ohm resistor.
+6.  Connect screw terminal 3 with + of the 4AA battery holder (using a red wire).
+7.  Remove 0,5cm isolation from the black wire coming from the solar panel and fix it in screw terminal 4.
+8.  Connect screw terminal 4 with - of the 4AA battery holder (using a black wire).
+9.  Seal solder connections using e.g. transparent nail polish.
+
+#### Calibration:
+
+Precise calibration is not required. To verify functionality, insert fully discharged NiMH batteries of the same type and capacity into the holder and expose the solar panel to direct sunlight for several hours. A gradual voltage increase indicates proper trickle charging. A current-limiting resistor (e.g., 10 Ω) is used to regulate charging current, based on Ohm’s Law (I = V / R). This ensures a safe, low current suitable for trickle charging, typically around 1/100th of the battery capacity per hour (e.g., 20 mA for 2000 mAh cells). The resistor value can be adjusted to suit panel output and battery size—higher resistance lowers the current to prevent overcharging in bright sunlight.
+
+#### Code:
+
+No specific code is provided for this module, as it operates passively without a microcontroller.
+
+### Photosynthetic Active Radiation (PAR) Sensor
+
+#### Purpose & Use Case:
+
+The PAR sensor module presented here can be used to determine photosynthetically active radiation (PAR), the range of solar radiation between 400 and 700 nm that is relevant for plant photosynthesis. While this chapter focuses on the construction and calibration of the sensor itself, it is designed to be integrated into larger monitoring setups that include power supply and data logging via a microcontroller. The sensor module thus serves as a **Component** in more comprehensive systems—such as automatic climate stations or gas flux chambers described in later chapters—where continuous PAR measurements are essential for understanding environmental conditions and light-driven plant processes.
+
+**Bill of Materials:**
+
+A comprehensive overview of all components required to build the sensor, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-PAR_sensor_bom.
+
+| **Component** | **Amount** | **Supplier** | **Price (approx.)** |
+|-------------------|------------------|------------------|------------------|
+| Photodiode BPW34 | 1 | Amazon, Reichelt, Conrad | 0.70 € |
+| Common E-Series electronic resistor (e.g., 2.2kΩ, 4.7kΩ or 10kΩ) | 1 | Amazon, Reichelt, Conrad | 0.10 € |
+| Visible light bandpass filter (400–700 nm; ⌀ 9.5 mm) | 1 | Aliexpress | 0.50 € |
+| Polytetrafluoroethylene (PTFE) diffusor disk (⌀ 10 mm) | 1 | Amazon | 0.10 € |
+| 3D-printed PAR sensor case | 1 | – | 0.10 € |
+| 3-wire cable, shielded, suitable for outdoor use (e.g., ⌀4 mm, \~1 m) | 1 | Amazon, Reichelt, Conrad | 0.50 € |
+| **Sum** |  |  | **2.00 €** |
+
+: Components required for PAR sensor assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-PAR_sensor_bom}
+
+#### Wiring Diagram:
+
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in Figure 2.1.2.3.
+
+![Wiring scheme for the PAR sensor, illustrating the electrical connections between the photodiode, resistor, and microcontroller. The schematic focuses solely on the wiring layout required for sensor assembly, not placement of additional, non-electronical components within the sensor case.](assets\PAR-sensor-wiring.png){#fig-PAR_sensor_wiring fig-align="center"}
+
+#### Assembly Instructions:
+
+1.  3D-print case (black) using UV-resistant material
+
+2.  Place the BPW34 photodiode into the designated slot in the 3D-printed case, ensuring correct orientation (cathode/anode);
+
+3.  Solder 5V (red) and signal (e.g., A2) wire (yellow) of the cable to anode (horizontal mark on leg) and cathode of the BPW34, respectively;
+
+4.  Connect electrical resistor (no specific orientation) by solder one leg to the signal (e.g., A2) wire (yellow) and the other to GND wire (black) of the cable;
+
+5.  Seal solder connections using e.g. transparent nail polish; Build-It-Yourself: Low-Cost Systems for Field Ecophysiology 10
+
+6.  Place the visible light bandpass filter over the BPW34 inside the 3D-printed case;
+
+7.  Place the PTFE diffusor over the visible light bandpass filter and BPW34 on top of the 3D-printed case;
+
+8.  Seal 3D-printed case where necessary using e.g., silicon.
+
+9.  Connect the three-wire cable to the respective connections (5V, GND, signal (e.g., A2))
+
+10. Upload program code to microcontroller and check if the sensor is delivering values in expected range under different light conditions;
+
+#### Calibration:
+
+Since the sensor provides only an analog voltage output, it must be calibrated to convert readings into meaningful units of photosynthetically active radiation (PAR; μmol m⁻² s⁻¹). This requires deriving a calibration function by operating the low-cost sensor alongside a high-accuracy PAR sensor under natural sunlight over the course of a clear day. Calibration is particularly important because different resistor values can be used to adjust the sensor's sensitivity to local light conditions. Lower resistor values reduce sensitivity, making them suitable for high-light environments (e.g., inner latitudes), while higher resistor values increase sensitivity but may lead to signal saturation under intense light. Appendix D (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; **Campbell Scientific, UK**).
+
+#### Code:
+
+Below, a basic Arduino IDE code example is given to implement the low-cost DIY PAR sensor with a microcontroller (e.g., UNO, ProMini, etc.).
+
+``` cpp
+// PAR sensor code
+const int sensorPin = A0; // Analog pin connected to photodiode anode
+int sensorValue = 0; // Variable to store the raw analog value
+void setup() {
+Serial.begin(9600); // Initialize serial communication
+}
+Build-It-Yourself: Low-Cost Systems for Field Ecophysiology
+11
+void loop() {
+sensorValue = analogRead(sensorPin); // Read analog value from sensor
+Serial.println(sensorValue); // Print value to serial monitor
+delay(1000); // Wait for 1 second
+}
+```
+
+### Environmental Variable Explorer (EVE platform)
+
+#### EVE-Offline Workflow (EVE platform; Weather station config.)
+
+##### Purpose & Use Case:
+
+EVE-Offline (Environmental Variable Explorer), configurated as a compact, low-cost weather station designed for long-term monitoring of environmental variables. It records PAR (400–700 nm), relative humidity (RH), air temperature, and air pressure at a user-defined (e.g., 30-minute interval). This setup enables continuous observation of site-specific weather conditions throughout cropping seasons or even across years. Data retrieval is realized via an Android application (“MonksHillLab Logger App”). This chapter focuses on the construction, calibration, and data retrieval. Continuous environmental data provided by the system helps contextualize physiological responses and supports a more accurate interpretation of crop–environment interactions.
+
+##### Bill of Materials:
+
+A comprehensive overview of all components required to build the automatic weather station, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-aws_bom.
+
+| **Component** | **Amount** | **Supplier** | **Price (approx.)** |
+|----------------------|-----------------|-----------------|-----------------|
+| PAR sensor | 1 | DIY (see handbook) | 2.00 € |
+| HC-05 / HC-06 Bluetooth Wireless RF Transceiver Module (RS232 TTL) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 3.50 € |
+| Microcontroller (e.g., Pro Mini) | 1 | AZ-Delivery, Amazon | 3.50 € |
+| TPL5110 Nano Power Timer | 1 | Antratek, BerryBase | 8.30 € |
+| BMP280 (weatherproof) | 1 | Aliexpress | 3.50 € |
+| RTC module (I2C; DS3231; 3.3V) | 1 | Amazon, BerryBase | 3.00 € |
+| FRAM module (5V; 32kb) | 1 | Amazon, BerryBase, Aliexpress | 3.00 € |
+| DC-DC step down converter | 1 | Amazon | 0.50 € |
+| SHT40 module (weather proof) | 1 | Aliexpress | 4.70 € |
+| 3D-printed PAR sensor/SHT41 case (EVE) | 1 | \- | 0.50 € |
+| Weatherproof junction box (10.0×6.8×5.0 cm) | 1 | Amazon | 3.00 € |
+| PG7 cable fitting | 2 | Hardware store | 0.50 € |
+| 4AA Battery holder | 1 | Amazon, Reichelt | 0.50 € |
+| NiMH Battery (2300 mAh; rechargeable) | 4 | Amazon, Reichelt | 3.80 € |
+| 9V battery clip | 1 | Amazon | 0.10 € |
+| Dupont connectors / headers / wires / terminal blocks | \- | Amazon | 0.50 € |
+| Perfboard / MonksHillLab PCB board (5×7 cm) | 1 | Amazon | 2.00 € |
+| 3-/4-wire cable, shielded (⌀4 mm, \~10 cm, outdoor suitable) | 1 | Amazon, Reichelt, Conrad | 0.50 € |
+| **Sum** |  |  | **44.40 €** |
+
+: Components required for weather station assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-aws_bom}
+
+##### Wiring Diagram:
+
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in @fig-EVE_wiring.
+
+![Wiring scheme for the EVE-Offline weather station configuration, illustrating the electrical connections between the TPL5110, Pro Mini Microcontroller, DC-DC converter, FRAM and RTC module as well as connected sensors (BMP280, SHT40 and PAR sensor). The schematic focuses solely on the wiring layout required for weather station assembly, not placement of additional, non-electronical components within the outdoor case.](assets\EVE-wiring.png){#fig-EVE_wiring fig-align="center"}
+
+##### Assembly Instructions:
+
+The following section provides a step-by-step assembly guide for constructing the PAR sensor, detailing the integration of all components: 1. 3D-print PAR sensor case (EVE; black) and SHT41 sensor case (white) using UV-resistant material 2. Assemble PAR sensor as explained within this handbook 3. Drill holes (Ø 4 mm) at the midpoint of one vertical side (top) of the weatherproof junction box 4. Fit the 3-wire cable connected to the PAR sensor through one of these hole and glue the PAR sensor on top of it 5. Fit PG7 on top of the 3D-printed SHT40 case (smaller part), glue smaller part and larger part of 3D-printed SHT40 case on top of each other, fit SHT40 cable through it until sensor head is fully covered by case and tighten PG7 up around the 4-wire cable of SHT40; finally fit 4-wire cable of SHT40 through one of two Ø 10 mm holes drilled into the vertical side of the weatherproof junction box, opposite to installed PAR sensor; fix wire to box with PG7; fit BMP280 through the second hole and fix with 2nd PG7 6. Solder female header (for electronical components) and screw terminal blocks onto perfboard/PVB board as indicated (MonksHillLab PCB is suggested cause easier to assemble) 7. Solder male header on bottom side of electronical components 8. Fit electronical components with male header on designated location with female header 9. Fix red and black wire of 9V battery clip in 2-Screw terminal block to GND (black) and 4.8V (red) 10. Fix red, black and blue wire of PAR sensor in 3-Screw terminal block to GND (black), 5V (red) and A3 (blue) 11. Fix red, black, green and yellow wire of SHT41 sensor in 4-Screw terminal block to GND (black), 5V (red), SCL (green) and SDA (yellow) 12. In case perfboard and not PCB board is used, connect components using color coded wires as indicated in wiring scheme on perfboard 13. Crimp a male and female Dupont connector to 4 7 cm wires (black, red, brown and white) and use these wires to connect the HC-05 Bluetooth module with the microcontroller through connecting VCC (red; HC-05) to VCC (red; microcontroller), GND (black; HC-05) to GND (black; microcontroller), TX (white; HC-05) to RX (white; microcontroller) and RX (brown; HC-05) to TX (brown; microcontroller) 14. Fit (double sided tape) HC-05 Bluetooth module to weatherproof junction box 15. Seal solder connections using e.g. transparent nail polish; 16. Upload program code to microcontroller and check if the sensors are delivering values and if TPL5110 shuts the system off/on as intended; 17. Connect to weather station using the MonksHillLab App and test to dump data on mobile and reset FRAM
+
+##### Calibration:
+
+The PAR sensor, which outputs analog voltage, requires calibration against a high-accuracy PAR sensor under natural sunlight to derive a conversion function to μmol m⁻² s⁻¹. Temperature, relative humidity, and air pressure sensors do not require direct calibration but can be validated by comparing readings with a reference-grade weather station. Appendix D (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; Campbell Scientific, UK). In addition, Appendix D (Supporting Data) contains a 7 days field deployment test/proof of concept of EVE-Offline, comparing air temperature and RH readings with high-cost instruments.
+
+##### Code:
+
+Please see Arduino IDE code example given in Appendix A to implement the offline workflow of the automatic weather station configuration of EVE. The required Android Application (“MonksHillLab Logger App”) can be found in Appendix C.
+
+##### Backend infrastructure and dashboard setup:
+
+Operation of the EVE-Online weather station configuration does not require programming expertise, but it does require access to a basic web server environment supporting PHP and MySQL. This can be provided by institutional infrastructure (e.g., a university server), a low-cost/free of charge shared web hosting service, or a local installation using a standard web server stack (e.g., XAMPP). The backend consists of a lightweight database and web dashboard that manage users, measurement sites, sensor nodes, and incoming data streams. Initial setup involves creating an empty MySQL database and importing a predefined SQL schema (provided in the Appendix C). Executing this schema automatically generates all required tables for user management, site configuration, node registration, and sensor data storage. The dashboard code is supplied as a ready-to-use package (Appendix C) and deployed by copying the contents of the provided www directory into the web server’s document root (e.g., public_html or www). Configuration files allow users to specify database credentials and define a secure authentication token that links individual EVE nodes to the backend. Once configured, a single initialization script is executed to create an administrator account. After setup, users can access the web-based dashboard to register measurement sites, assign sensor nodes, monitor incoming data in near–real time, and download datasets for further analysis. This backend design deliberately avoids complex dependencies and proprietary services, providing a transparent, self-hosted data pipeline that remains fully under user control.
+
+## Plant Responses
+
+### Handheld System to measure Spectral Plant Indices (e.g., NDVI, PRI)
+
+#### Purpose & Use Case:
+
+The handheld spectral measurement system presented here enables low-cost, in-situ measurement of vegetation indices by capturing reflectance data across six distinct wavelengths in the visible and/or near-infrared (NIR) wavelengths. These spectral measurements allow the calculation of widely used indices such as the Normalized Difference Vegetation Index (NDVI) and the Photochemical Reflectance Index (PRI), providing insights into plant physiological or health status, canopy structure, and light-use efficiency. This chapter focuses on the construction, calibration, and application of the handheld system tio measure spectral plant indices, which is designed for flexible deployment in field experiments, precision agriculture, and ecological monitoring. While primarily intended as a standalone handheld system, the working principle of made measurements can also be integrated into automatic systems.
+
+#### Bill of Materials:
+
+A comprehensive overview of all components required to build the handheld measurement system for spectral plant indices, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-spectral_indices_bom.
+
+| **Component** | **Amount** | **Supplier** | **Price (approx.)** |
+|---------------------------|---------------|---------------|---------------|
+| Microcontroller (e.g., UNO) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 9.00 € |
+| HC-05 / HC-06 Bluetooth Wireless RF Transceiver Module (RS232 TTL) | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 9.00 € |
+| AS7262/AS7263 6-channel spectral sensor | 2 | Aliexpress, Antratek, BerryBase | 60.00 € |
+| TCA9548A I2C Multiplexer | 1 | AZ-Delivery, Amazon, Reichelt, Conrad | 3.00 € |
+| PTFE diffuser disk (⌀ 40 mm) | 1 | Amazon | 0.50 € |
+| 3D-printed AS7262/AS7263 sensor case | 2 | \- | 1.00 € |
+| 3D-printed TCA9548A case | 1 | \- | 0.50 € |
+| Rocker switch (round) | 1 | Amazon | 1.00 € |
+| HMF ODK500 Outdoor case (19×13×5.5 mm) | 1 | Amazon | 20.00 € |
+| 6×AA battery holder | 1 | Amazon | 2.00 € |
+| NiMH batteries (2300 mAh, rechargeable) | 6 | Amazon, Reichelt, Conrad | 14.00 € |
+| 9V battery clip | 1 | Amazon | 0.50 € |
+| 4-wire USB-A extension cable (\~1 m, shielded, outdoor) | 1 | Amazon, Reichelt, Conrad | 3.50 € |
+| Dupont connectors (female) / terminal blocks | 4 | Amazon | 1.00 € |
+| Wires (black, red, yellow, green, blue, brown) | \- | Amazon | 0.50 € |
+| Aluminum/steel rods, wood or PVC pipe (4 m) | 1 | Hardware store | 20.00 € |
+| **Sum** |  |  | **145.50 €** |
+
+: Components required for assembly of the handheld system to measure spectral plant indices; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-spectral_indices_bom}
+
+#### Wiring Diagram:
+
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in Figure 2.2.1.3.
+
+![Wiring scheme for the handheld system to measure Spectral Plant Indices, illustrating the electrical connections between the spectral sensors, I2C multiplexer, Bluetooth module and microcontroller. The schematic focuses solely on the wiring layout required for system assembly, not placement of additional, non-electronical components within the sensor and/or battery case.](assets\spectral-plant-indices-wiring.png){#fig-spectral_indices_wiring fig-align="center"}
+
+#### Assembly Instructions:
+
+The following section provides a step-by-step assembly guide for constructing the handheld system to measure spectral plant indices, detailing the integration of all components: 1. 3D-print cases (black) using UV-resistant material; 2. Solder 5cm long wires to 3.3V (red), GND (black), SCL (green) and SDA (yellow) of one of the AS7262/3 and fix (glue or double sided tape) it to 3D-printed AS7262/3 case (upward case/smaller outer walls); fit loose ends through its back 3. Fix (double sided tape) TCA9548A I2C multiplexer to the back of the upward case 4. Fix (double sided tape) 6-Luster clamp to top of TCA9548A I2C multiplexer 5. Solder loose ends of the 5cm long wire for SCL (green) and SDA (yellow) to SC0 (green) and SD0 (yellow) of TCA9548A I2C multiplexer; 6. Fix loose ends of 5cm long wires for 3.3V (red) and GND (black) to 1 and 2 of the 6-luster clamp 7. Solder 15cm (!) long 3.3V (red), GND (black), SCL (green) and SDA (yellow) to the second of the AS7262/3 and fix (glue or double sided tape) it to 3D-printed AS7262/3 case (downward case/taller outer walls); fit loose ends through its back 8. Solder 5cm long wires for 3.3V (red), GND (black), SCL (green) and SDA (yellow) to VIN (red), GND (black), SCL (green) and SDA (yellow) of TCA9548A and fix their loose ends to 6-luster clamp 1, 2, 3 and 4 9. Solder 5cm long wires for SCL (green) and SDA (yellow) to SC1 (green) and SD1 (yellow) of TCA9548A and fix their loose ends to luster clamp 5 and 6 10. Fix loose ends of 15cm long wires for 3.3V (red), GND (black), SCL (green) and SDA (yellow) to 1, 2 5 and 6 of the 6-luster clamp 11. Cut 4-wire USB A extension cable into two similar long parts and remove ca. 5cm isolation on loose ends; fit one loose end through the hole in the TCA9548A case and connect the red, black, green and yellow wire of the USB A cable to luster clamp 1, 2, 3 and 4 (in case of different colors in USB A cable allocate wire color) 12. Drill a 5mm hole into the top end of the HMF ODK500 Outdoor case and a 20mm hole into the cover flap positioned near the hinge to insert the second USB A cable and install the rocker switch 13. Solder the red, black, green and yellow wire of the USB A cable to 3.3V, GND, SCL and SDA of the microcontroller 14. Solder 9V battery clip red wire to one of the rocker switch connectors and solder a 10cm long red wire to its second contact; than solder black wire of 9V battery clip and loose end of 10cm red wire to GND and VIN of microcontroller 15. Fix microcontroller to the box using e.g. double sided tape and insert batteries into 6AA battery holder and place it into the box as well (fix if necessary) 16. Solder a 7cm long red, black, white and blue cable to 5V, GND, TX and RX of the microcontroller and crimp a female Dupont connector to the loose wire ends; 17. Connect Dupont connectors on 5V, GND, TX and RX wires from microcontroller to VCC, GND, RX and TX male pins at HC-05 Bluetooth module and place the module within the box (note: RX goes to TX and TX to RX) 18. Seal solder connections using e.g. transparent nail polish; 19. Place the PTFE diffusor over the upward directed AS7262/3 on top of the 3D-printed case and connect cases together to form sensor head 20. Seal 3D-printed sensor head where necessary using e.g., silicon. 21. Construct a 1.8-meter high pole with a 1-meter long reinforced cantilever arm and fix sensor head on arm using e.g., cable tie (make sure sensors are directed up- and downwards as intended); fix battery/microcontroller box on pole and connect USB A plug (battery/microcontroller box) with socket (sensor head) 22. Upload program code to microcontroller and check if the sensor is delivering e.g., NDVI values in expected range via Bluetooth connection for different surfaces/canopies using the MonksHillLab Logger App;
+
+#### Calibration:
+
+Since the sensor provides direct NDVI measurements based on reflectance in selected spectral bands, measurement values does not need to be converted prior to use. However, calibration is essential to ensure accuracy and comparability across different setups and conditions. NDVI values can be easily calibrated against reference surfaces with known NDVI values to derive a correction function. A practical and low-cost approach involves using colored reference targets, such as cardboards with defined reflectance properties (e.g. white, black, green, yellow), as demonstrated by [@macagga2025].
+
+#### Code:
+
+Below, an Arduino IDE code example is given to implement the low-cost DIY handheld NDVI measurement system.
+
+```         
+// Handheld NDVI sensor code
+#include <Wire.h>
+#include <SPI.h>
+#include "AS726X.h"
+#include <SoftwareSerial.h>
+#define AS7263_I2C_ADDRESS 0x49 // Default I2C address of AS7263
+#define TCA_I2C_ADDRESS 0x70 // Address of the TCA9548A multiplexer
+#define NUMBER_OF_SENSORS 2
+#define DONEPIN 9 // Optional: for signaling when a cycle is done
+AS726X accel; // Shared AS726X object for both sensors
+// Variables
+int cycles = 0;
+float up_ir;
+float up_vis;
+float down_ir;
+float down_vis;
+float NDVI;
+float NIRup;
+float VISup;
+float NIRdown;
+float VISdown;
+void setup() {
+delay(1500);
+Wire.begin();
+Serial.begin(9600);
+delay(1500);
+// Initialize both AS726X sensors via TCA channels
+setTCAChannel(0);
+accel.begin(); // Initialize sensor on channel 0
+delay(1500);
+setTCAChannel(1);
+accel.begin(); // Initialize sensor on channel 1
+delay(1500);
+}
+void loop() {
+// --- Top Sensor (Channel 0) ---
+setTCAChannel(0);
+accel.takeMeasurements();
+up_ir = accel.getCalibratedS(); // Placeholder for IR reading (if needed)
+VISup = accel.getCalibratedS(); // Get visible spectrum value
+NIRup = accel.getCalibratedU() + accel.getCalibratedV(); // Combine NIR bands
+Serial.print(VISup);
+Serial.print(";");
+Serial.print(NIRup);
+delay(1500);
+// --- Bottom Sensor (Channel 1) ---
+setTCAChannel(1);
+accel.takeMeasurements();
+down_ir = accel.getCalibratedS(); // Placeholder
+VISdown = accel.getCalibratedS(); // Get visible spectrum value
+NIRdown = accel.getCalibratedU() + accel.getCalibratedV(); // Combine NIR bands
+// NDVI Calculation
+NDVI = ((NIRdown / NIRup) - (VISdown / VISup)) /
+((NIRdown / NIRup) + (VISdown / VISup));
+// Output data
+Serial.print(";");
+Serial.print(NDVI);
+Serial.print(";");
+Serial.print(VISdown);
+Serial.print(";");
+Serial.println(NIRdown);
+delay(900);
+}
+// Selects the I2C channel on the TCA9548A multiplexer
+void setTCAChannel(byte i) {
+Wire.beginTransmission(TCA_I2C_ADDRESS);
+Wire.write(1 << i);
+Wire.endTransmission();
+}
+```
+
+### Automatic System to measure Spectral Plant Indices (e.g., NDVI, PRI)
+
+#### Purpose & Use Case:
+The automatic system presented here enables automated monitoring of spectral plant indices such as the NDVI and PRI, which are indicators of plant health and photosynthetic activity. Unlike the handheld version **(chapter 3)**, this system is designed for permanent installation in the field and operates autonomously, recording data at regular intervals—typically once per hour for e.g., 30 seconds—over extended periods (weeks). This makes the system a valuable component for long-term ecological studies, crop monitoring, or integration into automated infrastructure such as stationary gas flux chambers or field phenotyping platforms, where continuous, high-temporal-resolution NDVI and PRI measurements are critical for analyzing plant responses to environmental conditions.

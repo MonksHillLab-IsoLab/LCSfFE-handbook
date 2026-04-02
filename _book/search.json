@@ -30,13 +30,43 @@
     ]
   },
   {
+    "objectID": "index.html#whats-new",
+    "href": "index.html#whats-new",
+    "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
+    "section": "Whats New?",
+    "text": "Whats New?\nVersion 2.1 introduces the EVE-Offline and EVE-Online worklfows including a backend infrastructure and dashboard setup for real-time data transfer and visualization (EVE-Online). In addtion Appendix D was added, now contiang supporting data (starting with data for the PAR sensor validation as well as the proof of concept of EVE-Offline and EVE-Online.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#whats-next",
+    "href": "index.html#whats-next",
+    "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
+    "section": "Whats Next?",
+    "text": "Whats Next?\nVersion 2.2 will add a new chapter presenting a low cost system for flush-sampling of chamber headspace air for lateron analyses at a GCMS, as well as the introduction of a new regional hub located in Germany.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
     "objectID": "index.html#citation",
     "href": "index.html#citation",
     "title": "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology",
     "section": "Citation",
-    "text": "Citation\nThis handbook is available under a CC-BY 4.0 licence.\nPlease cite the hanbook through the project’s Zenodo archive using DOI: 10.5281/zenodo.15562591. This DOI represents all versions, and will always resolve to the latest one.\nThe citation will look something like:\n\nHoffmann, M. (2025). Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems (2.1). Zenodo. https://doi.org/10.5281/zenodo.15562591.\n\nPlease visit the Zenodo archive DOI link to get the most recent version - the one above is not automatically generated and may be out of date if we release an updated version.\n\n Openscapes is licensed under a Creative Commons Attribution 4.0 International License.",
+    "text": "Citation\nThis handbook is available under a CC-BY 4.0 licence.\nPlease cite the handbook through the project’s Zenodo archive using DOI: 10.5281/zenodo.15562591. This DOI represents all versions, and will always resolve to the latest one.\nThe citation will look something like:\n\nHoffmann, M. (2025). Build-It-Yourself: Low-Cost Systems for Field Ecophysiology An Open Handbook for DIY Environmental Measurement Systems (2.1). Zenodo. https://doi.org/10.5281/zenodo.15562591.\n\nPlease visit the Zenodo archive DOI link to get the most recent version - the one above is not automatically generated and may be out of date if we release an updated version.\n\n Licensed under a Creative Commons Attribution 4.0 International License.",
     "crumbs": [
       "Preface"
+    ]
+  },
+  {
+    "objectID": "abbreviations.html",
+    "href": "abbreviations.html",
+    "title": "Abbreviations",
+    "section": "",
+    "text": "PTFE: Polytetrafluoroethylene\nPAR: Photosynthetic Active Radiation\nBWP34: Photodiode\nGND: Grounding line\n5V: 5V power line\nA2: Analog signal line\nET: Evapotranspiration\nCO2: Carbon dioxide\nCH4: Methane\nNDVI: Normalized Difference Vegetation index\nPRI: Photochemical Reflectance Index\nNiMH: Nickel-Metal Hydride\nmAh: Milliampere hour",
+    "crumbs": [
+      "Abbreviations"
     ]
   },
   {
@@ -44,7 +74,17 @@
     "href": "hardware-solutions.html",
     "title": "1  Hardware Solutions",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.",
+    "text": "1.1 Environmental Variables",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Hardware Solutions</span>"
+    ]
+  },
+  {
+    "objectID": "hardware-solutions.html#environmental-variables",
+    "href": "hardware-solutions.html#environmental-variables",
+    "title": "1  Hardware Solutions",
+    "section": "",
+    "text": "1.1.1 NiMH Solar Trickle Charger\n\n1.1.1.1 Purpose & Use Case:\nThe solar trickle charger module presented here is designed to provide a simple, low-cost, and field-deployable solution for recharging AA NiMH batteries in remote areas. Its primary use case is to support small-scale electronic devices—such as environmental sensors or data loggers—used in off-grid research and monitoring setups. Especially relevant in the Global South and other regions where access to stable electricity is limited, this charger enables reliable, low-maintenance battery recharging using solar energy. By leveraging basic components like a small solar panel and a Schottky diode, the system offers a practical way to maintain battery-powered devices in the field without the need for complex charging infrastructure or frequent battery replacement.\n\n\n1.1.1.2 Bill of Materials:\nA comprehensive overview of all components required to build the solar charger, needed quantities, recommended suppliers and approximate prices (in €) is provided in Table 1.1\n\n\n\nTable 1.1: Components required for solar charger assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).\n\n\n\n\n\n\n\n\n\n\n\nComponent\nAmount\nSupplier\nPrice (approx.)\n\n\n\n\nShotky-Diode\n1\nAmazon, Reichelt, Conrad\n0.10 €\n\n\nCommon E-Series electronic resistor (e.g., 10 Ω)\n1\nAmazon, Reichelt, Conrad\n0.10 €\n\n\n6AA Battery holder\n1\nAmazon\n3.00 €\n\n\nPerfboard / MonksHillLab PCB board (2x2 cm)\n1\nAmazon\n0.50 €\n\n\nWires (black, red) / Screw Terminal Blocks\n–\nAmazon\n0.50 €\n\n\n6V, 2.5W Solar Panel\n1\nAmazon\n10.00 €\n\n\nSum\n\n\n14.20 €\n\n\n\n\n\n\n\n\n1.1.1.3 Wiring Diagram:\nA schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in Figure 1.1.\n\n\n\n\n\n\nFigure 1.1: wiring scheme for the PAR sensor, illustrating the electrical connections between the photodiode, resistor, and microcontroller. The schematic focuses solely on the wiring layout required for sensor assembly, not placement of additional, non-electronical components within the sensor case.\n\n\n\n\n\n1.1.1.4 Assembly Instructions:\n\nSolder a 5cm black and red wire to + and – pole of the solar panel.\nSolder two 2x2 Screw terminal block (screw terminal 1 to 4) on the tiny perfboard/PCB board.\nRemove 0,5cm isolation from the red wire coming from the solar panel and fix it in screw terminal 1.\nConnect screw terminal 1 (Anode) and 2 (cathode) using the shotky-diode.\nConnect screw terminal 2 and 3 using the 10 Ohm resistor.\nConnect screw terminal 3 with + of the 4AA battery holder (using a red wire).\nRemove 0,5cm isolation from the black wire coming from the solar panel and fix it in screw terminal 4.\nConnect screw terminal 4 with - of the 4AA battery holder (using a black wire).\nSeal solder connections using e.g. transparent nail polish.\n\n\n\n1.1.1.5 Calibration:\nPrecise calibration is not required. To verify functionality, insert fully discharged NiMH batteries of the same type and capacity into the holder and expose the solar panel to direct sunlight for several hours. A gradual voltage increase indicates proper trickle charging. A current-limiting resistor (e.g., 10 Ω) is used to regulate charging current, based on Ohm’s Law (I = V / R). This ensures a safe, low current suitable for trickle charging, typically around 1/100th of the battery capacity per hour (e.g., 20 mA for 2000 mAh cells). The resistor value can be adjusted to suit panel output and battery size—higher resistance lowers the current to prevent overcharging in bright sunlight.\n\n\n1.1.1.6 Code:\nNo specific code is provided for this module, as it operates passively without a microcontroller.\n\n\n\n1.1.2 Photosynthetic Active Radiation (PAR) Sensor\n\n1.1.2.1 Purpose & Use Case:\nThe PAR sensor module presented here can be used to determine photosynthetically active radiation (PAR), the range of solar radiation between 400 and 700 nm that is relevant for plant photosynthesis. While this chapter focuses on the construction and calibration of the sensor itself, it is designed to be integrated into larger monitoring setups that include power supply and data logging via a microcontroller. The sensor module thus serves as a component in more comprehensive systems—such as automatic climate stations or gas flux chambers described in later chapters—where continuous PAR measurements are essential for understanding environmental conditions and light-driven plant processes.\nBill of Materials:\nA comprehensive overview of all components required to build the sensor, needed quantities, recommended suppliers and approximate prices (in €) is provided in Table 1.2.\n\n\n\nTable 1.2: Components required for PAR sensor assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).\n\n\n\n\n\n\n\n\n\n\n\nComponent\nAmount\nSupplier\nPrice (approx.)\n\n\n\n\nPhotodiode BPW34\n1\nAmazon, Reichelt, Conrad\n0.70 €\n\n\nCommon E-Series electronic resistor (e.g., 2.2kΩ, 4.7kΩ or 10kΩ)\n1\nAmazon, Reichelt, Conrad\n0.10 €\n\n\nVisible light bandpass filter (400–700 nm; ⌀ 9.5 mm)\n1\nAliexpress\n0.50 €\n\n\nPolytetrafluoroethylene (PTFE) diffusor disk (⌀ 10 mm)\n1\nAmazon\n0.10 €\n\n\n3D-printed PAR sensor case\n1\n–\n0.10 €\n\n\n3-wire cable, shielded, suitable for outdoor use (e.g., ⌀4 mm, ~1 m)\n1\nAmazon, Reichelt, Conrad\n0.50 €\n\n\nSum\n\n\n2.00 €\n\n\n\n\n\n\n\n\n1.1.2.2 Wiring Diagram:\nA schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in Figure 2.1.2.3.\n\n\n\n\n\n\nFigure 1.2: Wiring scheme for the PAR sensor, illustrating the electrical connections between the photodiode, resistor, and microcontroller. The schematic focuses solely on the wiring layout required for sensor assembly, not placement of additional, non-electronical components within the sensor case.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Hardware Solutions</span>"
     ]
@@ -67,16 +107,6 @@
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Real World Use & Regional Hubs</span>"
-    ]
-  },
-  {
-    "objectID": "abbreviations.html",
-    "href": "abbreviations.html",
-    "title": "Abbreviations",
-    "section": "",
-    "text": "PTFE: Polytetrafluoroethylene\nPAR: Photosynthetic Active Radiation\nBWP34: Photodiode\nGND: Grounding line\n5V: 5V power line\nA2: Analog signal line\nET: Evapotranspiration\nCO2: Carbon dioxide\nCH4: Methane\nNDVI: Normalized Difference Vegetation index\nPRI: Photochemical Reflectance Index\nNiMH: Nickel-Metal Hydride\nmAh: Milliampere hour",
-    "crumbs": [
-      "Abbreviations"
     ]
   }
 ]

@@ -24,7 +24,7 @@ You’re very welcome to share your improvements/chapters. Just email the author
 
 This handbook is available under a [CC-BY 4.0 licence](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/LICENSE.md).
 
-Please cite the hanbook through the project's Zenodo archive using DOI: [10.5281/zenodo.15562591](https://doi.org/10.5281/zenodo.15562591). This DOI represents all versions, and will always resolve to the latest one.
+Please cite the handbook through the project's Zenodo archive using DOI: [10.5281/zenodo.15562591](https://doi.org/10.5281/zenodo.15562591). This DOI represents all versions, and will always resolve to the latest one.
 
 The citation will look something like:
 

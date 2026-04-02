@@ -58,7 +58,8 @@ format:
     theme:
       light: flatly
       dark: darkly
-    embed-resources: true
+    lightbox: true
+  # embed-resources: true
   # pdf:
   #   documentclass: scrreprt
 
