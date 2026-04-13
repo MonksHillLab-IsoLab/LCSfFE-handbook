@@ -54,7 +54,7 @@ glossary:
   popup: hover
   show: true
 
-format:
+format: 
   html:
     theme:
       light: flatly
@@ -62,8 +62,8 @@ format:
     lightbox: true
     code-fold: true
     code-overflow: wrap
-  # pdf:
-  #   documentclass: scrreprt
+  typst: default
+
 
 comments:
   hypothesis: true

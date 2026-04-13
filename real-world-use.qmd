@@ -8,6 +8,7 @@ title: "Real World Use & Regional Hubs"
 
 Philippine Hub was located on a smallholder pineapple farm near Calauan, Laguna (14°07'49.9"N, 121°18'28.2"E), within the humid tropics of Southeast Asia.
 
+::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Interactive map showing the location of the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E) where low-cost sensor systems were deployed to monitor the reuse of pineapple residues under different nitrogen fertilizer strategies.
 #| label: leaflet-map
@@ -25,6 +26,7 @@ leaflet() |>
   setView(lng = lon, lat = lat, zoom = 15) |>
   addMarkers(lng = lon, lat = lat)
 ```
+:::
 
 ![Deployment of low-cost sensor systems at the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E), focusing on the reuse of pineapple residues under different nitrogen fertilizer strategies. (a, b, c, d, e) Field setup and sensor use on a smallholder pineapple farm. (f) Satellite imagery showing the experimental site location. (g) Experimental design comparing multiple residue management and fertilizer treatments. Integrated mini weather stations and manually operated systems were used to monitor greenhouse gas emissions (CO₂), evapotranspiration (ET), and plant physiological responses (e.g., NDVI).](assets/philippine-hub.png){#fig-philippine-hub fig-align="center"}
 
@@ -52,6 +54,7 @@ For further information see: @macagga2024; @macagga2025
 
 The Northern Ghana Hub is located in the moist savannah zone of Ghana (9.41°N, -0.99°E) and was established in May 2025 at the CSIR-Savanna Agricultural Research Institute experimental field.
 
+::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Interactive map showing the location of the Northern Ghana Hub (CSIR-Savanna Agricultural Research Institute, 9.41° N, -0.99° E) where low-cost sensor systems were deployed to monitor a dryland crop rotation trial in the moist savannah zone of Ghana.
 #| label: leaflet-map-ghana
@@ -66,6 +69,7 @@ leaflet() |>
   setView(lng = lon_ghana, lat = lat_ghana, zoom = 15) |>
   addMarkers(lng = lon_ghana, lat = lat_ghana)
 ```
+:::
 
 ![Deployment of low-cost sensor systems at the Northern Ghana Hub (Nyankpala, 9.41° N, -0.99° E), focusing on sustainable same season groundnut- sorghum and groundnut- maize rotations under different soil amendment strategies in the moist savannah zone. (a, c, d) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (e) Experimental design with eight treatment combinations including compost, biochar, NPK fertilizers. Integrated mini weather stations and installed frames are used to monitor gas exchange (CO2, ET and N2O) as well as plant development and health status (e.g., NDVI).](assets/ghana-hub.png){#fig-ghana-hub fig-align="center"}
 
@@ -93,6 +97,7 @@ No published references are available yet, as the research is ongoing. Relevant 
 
 The Central Benin Hub is located in the moist savannah zone of Benin (7.24°N, 2.28°E) and was established in November 2021 at the National Water Institute experimental field.
 
+::: {.content-visible when-format="html"}
 ```{r}
 #| fig-cap: Interactive map showing the location of the Central Benin Hub (National Water Institute, 7.24° N, 2.28° E) where alternate wetting and drying rice trials are conducted in the moist savannah zone of Benin.
 #| label: leaflet-map-benin
@@ -107,6 +112,7 @@ leaflet() |>
   setView(lng = lon_benin, lat = lat_benin, zoom = 15) |>
   addMarkers(lng = lon_benin, lat = lat_benin)
 ```
+:::
 
 ![Deployment of low-cost sensor systems at the Central Benin Hub (near Koussin-Lélé; 7.24° N, 2.28° E), focusing on sustainable wet rice cultivation under alternate wetting and drying (AWD) practices and varying N fertilization levels in a semi-arid environment. (a, c, d, e, f) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (g) Experimental design includes six treatment combinations differing in AWD intensity and nitrogen input. Integrated mini weather stations, low-cost gas exchange systems (CO₂ and ET), and sensor frames are used to monitor GHG emissions and plant physiological responses (e.g., NDVI), supporting the development of water- and nutrient-efficient rice production strategies.](assets/benin-hub.png){#fig-benin-hub fig-align="center"}
 
