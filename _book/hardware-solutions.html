@@ -385,7 +385,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Appendices</span></span></a>
   </div>
 </li>
     </ul>
@@ -667,7 +667,7 @@ Figure&nbsp;2.2: Wiring scheme for the PAR sensor, illustrating the electrical c
 </section>
 <section id="sec-par-sensor-calibration" class="level4" data-number="2.1.2.4">
 <h4 data-number="2.1.2.4" class="anchored" data-anchor-id="sec-par-sensor-calibration"><span class="header-section-number">2.1.2.4</span> Calibration:</h4>
-<p>Since the sensor provides only an analog voltage output, it must be calibrated to convert readings into meaningful units of photosynthetically active radiation (PAR; μmol m⁻² s⁻¹). This requires deriving a calibration function by operating the low-cost sensor alongside a high-accuracy PAR sensor under natural sunlight over the course of a clear day. Calibration is particularly important because different resistor values can be used to adjust the sensor’s sensitivity to local light conditions. Lower resistor values reduce sensitivity, making them suitable for high-light environments (e.g., inner latitudes), while higher resistor values increase sensitivity but may lead to signal saturation under intense light. <a href="appendices.html#sec-appendix_D" class="quarto-xref"><span>Section 4</span></a> (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; <strong>Campbell Scientific, UK</strong>).</p>
+<p>Since the sensor provides only an analog voltage output, it must be calibrated to convert readings into meaningful units of photosynthetically active radiation (PAR; μmol m⁻² s⁻¹). This requires deriving a calibration function by operating the low-cost sensor alongside a high-accuracy PAR sensor under natural sunlight over the course of a clear day. Calibration is particularly important because different resistor values can be used to adjust the sensor’s sensitivity to local light conditions. Lower resistor values reduce sensitivity, making them suitable for high-light environments (e.g., inner latitudes), while higher resistor values increase sensitivity but may lead to signal saturation under intense light. <a href="appendices.html#sec-appendix_D" class="quarto-xref"><span>Section 5.4</span></a> (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; <strong>Campbell Scientific, UK</strong>).</p>
 </section>
 <section id="sec-par-sensor-code" class="level4" data-number="2.1.2.5">
 <h4 data-number="2.1.2.5" class="anchored" data-anchor-id="sec-par-sensor-code"><span class="header-section-number">2.1.2.5</span> Code:</h4>
@@ -860,15 +860,15 @@ Figure&nbsp;2.3: Wiring scheme for the EVE-Offline weather station configuration
 </section>
 <section id="sec-eve-offline-calibration" class="level5">
 <h5 class="anchored" data-anchor-id="sec-eve-offline-calibration">Calibration:</h5>
-<p>The PAR sensor, which outputs analog voltage, requires calibration against a high-accuracy PAR sensor under natural sunlight to derive a conversion function to μmol m⁻² s⁻¹. Temperature, relative humidity, and air pressure sensors do not require direct calibration but can be validated by comparing readings with a reference-grade weather station. <a href="appendices.html#sec-appendix_D" class="quarto-xref"><span>Section 4</span></a> (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; Campbell Scientific, UK). In addition, <a href="appendices.html#sec-appendix_D" class="quarto-xref"><span>Section 4</span></a> (Supporting Data) contains a 7 days field deployment test/proof of concept of EVE-Offline, comparing air temperature and RH readings with high-cost instruments.</p>
+<p>The PAR sensor, which outputs analog voltage, requires calibration against a high-accuracy PAR sensor under natural sunlight to derive a conversion function to μmol m⁻² s⁻¹. Temperature, relative humidity, and air pressure sensors do not require direct calibration but can be validated by comparing readings with a reference-grade weather station. <a href="appendices.html#sec-appendix_D" class="quarto-xref"><span>Section 5.4</span></a> (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; Campbell Scientific, UK). In addition, <a href="appendices.html#sec-appendix_D" class="quarto-xref"><span>Section 5.4</span></a> (Supporting Data) contains a 7 days field deployment test/proof of concept of EVE-Offline, comparing air temperature and RH readings with high-cost instruments.</p>
 </section>
 <section id="sec-eve-offline-code" class="level5">
 <h5 class="anchored" data-anchor-id="sec-eve-offline-code">Code:</h5>
-<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 1</span></a> to implement the offline workflow of the automatic weather station configuration of EVE. The required Android Application (“MonksHillLab Logger App”) can be found in <a href="appendices.html#sec-appendix_C" class="quarto-xref"><span>Section 3</span></a>.</p>
+<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 5.1</span></a> to implement the offline workflow of the automatic weather station configuration of EVE. The required Android Application (“MonksHillLab Logger App”) can be found in <a href="appendices.html#sec-appendix_C" class="quarto-xref"><span>Section 5.3</span></a>.</p>
 </section>
 <section id="sec-eve-offline-backend" class="level5">
 <h5 class="anchored" data-anchor-id="sec-eve-offline-backend">Backend infrastructure and dashboard setup:</h5>
-<p>Operation of the EVE-Online weather station configuration does not require programming expertise, but it does require access to a basic web server environment supporting PHP and MySQL. This can be provided by institutional infrastructure (e.g., a university server), a low-cost/free of charge shared web hosting service, or a local installation using a standard web server stack (e.g., XAMPP). The backend consists of a lightweight database and web dashboard that manage users, measurement sites, sensor nodes, and incoming data streams. Initial setup involves creating an empty MySQL database and importing a predefined SQL schema (provided in the <a href="appendices.html#sec-appendix_C" class="quarto-xref"><span>Section 3</span></a>). Executing this schema automatically generates all required tables for user management, site configuration, node registration, and sensor data storage. The dashboard code is supplied as a ready-to-use package (<a href="appendices.html#sec-appendix_C" class="quarto-xref"><span>Section 3</span></a>) and deployed by copying the contents of the provided www directory into the web server’s document root (e.g., public_html or www). Configuration files allow users to specify database credentials and define a secure authentication token that links individual EVE nodes to the backend. Once configured, a single initialization script is executed to create an administrator account. After setup, users can access the web-based dashboard to register measurement sites, assign sensor nodes, monitor incoming data in near–real time, and download datasets for further analysis. This backend design deliberately avoids complex dependencies and proprietary services, providing a transparent, self-hosted data pipeline that remains fully under user control.</p>
+<p>Operation of the EVE-Online weather station configuration does not require programming expertise, but it does require access to a basic web server environment supporting PHP and MySQL. This can be provided by institutional infrastructure (e.g., a university server), a low-cost/free of charge shared web hosting service, or a local installation using a standard web server stack (e.g., XAMPP). The backend consists of a lightweight database and web dashboard that manage users, measurement sites, sensor nodes, and incoming data streams. Initial setup involves creating an empty MySQL database and importing a predefined SQL schema (provided in the <a href="appendices.html#sec-appendix_C" class="quarto-xref"><span>Section 5.3</span></a>). Executing this schema automatically generates all required tables for user management, site configuration, node registration, and sensor data storage. The dashboard code is supplied as a ready-to-use package (<a href="appendices.html#sec-appendix_C" class="quarto-xref"><span>Section 5.3</span></a>) and deployed by copying the contents of the provided www directory into the web server’s document root (e.g., public_html or www). Configuration files allow users to specify database credentials and define a secure authentication token that links individual EVE nodes to the backend. Once configured, a single initialization script is executed to create an administrator account. After setup, users can access the web-based dashboard to register measurement sites, assign sensor nodes, monitor incoming data in near–real time, and download datasets for further analysis. This backend design deliberately avoids complex dependencies and proprietary services, providing a transparent, self-hosted data pipeline that remains fully under user control.</p>
 </section>
 </section>
 </section>
@@ -1291,7 +1291,7 @@ Figure&nbsp;2.5: wiring scheme for the automatic system to measure spectral plan
 </section>
 <section id="sec-automatic-spectral-code" class="level4" data-number="2.2.2.5">
 <h4 data-number="2.2.2.5" class="anchored" data-anchor-id="sec-automatic-spectral-code"><span class="header-section-number">2.2.2.5</span> Code:</h4>
-<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 1</span></a> to implement the automatic low-cost DIY NDVI measurement system.</p>
+<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 5.1</span></a> to implement the automatic low-cost DIY NDVI measurement system.</p>
 </section>
 </section>
 </section>
@@ -1533,7 +1533,7 @@ Figure&nbsp;2.6: Wiring scheme for the manual system to measure CO2 and ET fluxe
 </section>
 <section id="sec-manual-flux-code" class="level4" data-number="2.3.1.6">
 <h4 data-number="2.3.1.6" class="anchored" data-anchor-id="sec-manual-flux-code"><span class="header-section-number">2.3.1.6</span> Code:</h4>
-<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 1</span></a> to implement the manual low-cost DIY CO2 and ET flux measurement system.</p>
+<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 5.1</span></a> to implement the manual low-cost DIY CO2 and ET flux measurement system.</p>
 </section>
 </section>
 <section id="sec-mesocosm-flux" class="level3" data-number="2.3.2">
@@ -1867,7 +1867,7 @@ Figure&nbsp;2.7: Wiring scheme for the mesocosm system for automatic CO2 and ET 
 </section>
 <section id="sec-mesocosm-flux-code" class="level4" data-number="2.3.2.6">
 <h4 data-number="2.3.2.6" class="anchored" data-anchor-id="sec-mesocosm-flux-code"><span class="header-section-number">2.3.2.6</span> Code:</h4>
-<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 1</span></a> to implement the mesocosm system for automatic CO2 and ET flux measurements.</p>
+<p>Please see Arduino IDE code example given in <a href="appendices.html#sec-appendix_A" class="quarto-xref"><span>Section 5.1</span></a> to implement the mesocosm system for automatic CO2 and ET flux measurements.</p>
 </section>
 </section>
 <section id="sec-isotope-bag" class="level3" data-number="2.3.3">

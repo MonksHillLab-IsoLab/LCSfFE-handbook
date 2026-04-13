@@ -1,3 +1,4 @@
+- Appendices are currently numbered so that cross-referencing works but they also have there numeric label as well. Confirm how to proceed
 - improve use of glossary.yml within documents
 - write a beginners guide to contributing: cross-referencing, images and tables. making Zenodo releases. 
 - highlight key benefits of transitioning to Quarto website: better accessibility (e.g. simultaneous HTML/PDF rendering, mobile browsing, lightbox figures, potential to expand to other content e.g. videos in the future), facilitating outside collaboration (contributing guide, pull-requests), long-term maintenance (automations, publishing of versions to Zenodo)
