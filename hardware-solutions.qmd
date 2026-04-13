@@ -104,7 +104,7 @@ A schematic overview of the wiring layout, showing all necessary connections bet
 
 #### Calibration: {#sec-par-sensor-calibration}
 
-Since the sensor provides only an analog voltage output, it must be calibrated to convert readings into meaningful units of photosynthetically active radiation (PAR; μmol m⁻² s⁻¹). This requires deriving a calibration function by operating the low-cost sensor alongside a high-accuracy PAR sensor under natural sunlight over the course of a clear day. Calibration is particularly important because different resistor values can be used to adjust the sensor's sensitivity to local light conditions. Lower resistor values reduce sensitivity, making them suitable for high-light environments (e.g., inner latitudes), while higher resistor values increase sensitivity but may lead to signal saturation under intense light. Appendix D (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; **Campbell Scientific, UK**).
+Since the sensor provides only an analog voltage output, it must be calibrated to convert readings into meaningful units of photosynthetically active radiation (PAR; μmol m⁻² s⁻¹). This requires deriving a calibration function by operating the low-cost sensor alongside a high-accuracy PAR sensor under natural sunlight over the course of a clear day. Calibration is particularly important because different resistor values can be used to adjust the sensor's sensitivity to local light conditions. Lower resistor values reduce sensitivity, making them suitable for high-light environments (e.g., inner latitudes), while higher resistor values increase sensitivity but may lead to signal saturation under intense light. @sec-appendix_D (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; **Campbell Scientific, UK**).
 
 #### Code: {#sec-par-sensor-code}
 
@@ -174,15 +174,15 @@ The following section provides a step-by-step assembly guide for constructing th
 
 ##### Calibration: {#sec-eve-offline-calibration}
 
-The PAR sensor, which outputs analog voltage, requires calibration against a high-accuracy PAR sensor under natural sunlight to derive a conversion function to μmol m⁻² s⁻¹. Temperature, relative humidity, and air pressure sensors do not require direct calibration but can be validated by comparing readings with a reference-grade weather station. Appendix D (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; Campbell Scientific, UK). In addition, Appendix D (Supporting Data) contains a 7 days field deployment test/proof of concept of EVE-Offline, comparing air temperature and RH readings with high-cost instruments.
+The PAR sensor, which outputs analog voltage, requires calibration against a high-accuracy PAR sensor under natural sunlight to derive a conversion function to μmol m⁻² s⁻¹. Temperature, relative humidity, and air pressure sensors do not require direct calibration but can be validated by comparing readings with a reference-grade weather station. @sec-appendix_D (Supporting Data) contains a 48h data set of a low-cost PAR sensor directly compared with a high-cost SKP215 PAR sensor (trueness; Campbell Scientific, UK) as well as a 36h test of 10 low-cost PAR sensors directly compared with a high-cost SKP215 PAR sensor (accuracy; Campbell Scientific, UK). In addition, @sec-appendix_D (Supporting Data) contains a 7 days field deployment test/proof of concept of EVE-Offline, comparing air temperature and RH readings with high-cost instruments.
 
 ##### Code: {#sec-eve-offline-code}
 
-Please see Arduino IDE code example given in Appendix A to implement the offline workflow of the automatic weather station configuration of EVE. The required Android Application (“MonksHillLab Logger App”) can be found in Appendix C.
+Please see Arduino IDE code example given in @sec-appendix_A to implement the offline workflow of the automatic weather station configuration of EVE. The required Android Application (“MonksHillLab Logger App”) can be found in @sec-appendix_C.
 
 ##### Backend infrastructure and dashboard setup: {#sec-eve-offline-backend}
 
-Operation of the EVE-Online weather station configuration does not require programming expertise, but it does require access to a basic web server environment supporting PHP and MySQL. This can be provided by institutional infrastructure (e.g., a university server), a low-cost/free of charge shared web hosting service, or a local installation using a standard web server stack (e.g., XAMPP). The backend consists of a lightweight database and web dashboard that manage users, measurement sites, sensor nodes, and incoming data streams. Initial setup involves creating an empty MySQL database and importing a predefined SQL schema (provided in the Appendix C). Executing this schema automatically generates all required tables for user management, site configuration, node registration, and sensor data storage. The dashboard code is supplied as a ready-to-use package (Appendix C) and deployed by copying the contents of the provided www directory into the web server’s document root (e.g., public_html or www). Configuration files allow users to specify database credentials and define a secure authentication token that links individual EVE nodes to the backend. Once configured, a single initialization script is executed to create an administrator account. After setup, users can access the web-based dashboard to register measurement sites, assign sensor nodes, monitor incoming data in near–real time, and download datasets for further analysis. This backend design deliberately avoids complex dependencies and proprietary services, providing a transparent, self-hosted data pipeline that remains fully under user control.
+Operation of the EVE-Online weather station configuration does not require programming expertise, but it does require access to a basic web server environment supporting PHP and MySQL. This can be provided by institutional infrastructure (e.g., a university server), a low-cost/free of charge shared web hosting service, or a local installation using a standard web server stack (e.g., XAMPP). The backend consists of a lightweight database and web dashboard that manage users, measurement sites, sensor nodes, and incoming data streams. Initial setup involves creating an empty MySQL database and importing a predefined SQL schema (provided in the @sec-appendix_C). Executing this schema automatically generates all required tables for user management, site configuration, node registration, and sensor data storage. The dashboard code is supplied as a ready-to-use package (@sec-appendix_C) and deployed by copying the contents of the provided www directory into the web server’s document root (e.g., public_html or www). Configuration files allow users to specify database credentials and define a secure authentication token that links individual EVE nodes to the backend. Once configured, a single initialization script is executed to create an administrator account. After setup, users can access the web-based dashboard to register measurement sites, assign sensor nodes, monitor incoming data in near–real time, and download datasets for further analysis. This backend design deliberately avoids complex dependencies and proprietary services, providing a transparent, self-hosted data pipeline that remains fully under user control.
 
 ## Plant Responses {#sec-plant-responses}
 
@@ -220,7 +220,7 @@ A comprehensive overview of all components required to build the handheld measur
 
 #### Wiring Diagram: {#sec-handheld-spectral-wiring}
 
-A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in Figure 2.2.1.3.
+A schematic overview of the wiring layout, showing all necessary connections between electrical components, is provided in @fig-spectral_indices_wiring.
 
 ![Wiring scheme for the handheld system to measure Spectral Plant Indices, illustrating the electrical connections between the spectral sensors, I2C multiplexer, Bluetooth module and microcontroller. The schematic focuses solely on the wiring layout required for system assembly, not placement of additional, non-electronical components within the sensor and/or battery case.](assets\spectral-plant-indices-wiring.png){#fig-spectral_indices_wiring fig-align="center"}
 
@@ -359,7 +359,7 @@ Since the sensor provides direct NDVI measurements based on reflectance in selec
 
 #### Code: {#sec-automatic-spectral-code}
 
-Please see Arduino IDE code example given in Appendix A to implement the automatic low-cost DIY NDVI measurement system.
+Please see Arduino IDE code example given in @sec-appendix_A to implement the automatic low-cost DIY NDVI measurement system.
 
 ## Biogeochemical Cycling {#sec-biogeochemical-cycling}
 
@@ -468,7 +468,7 @@ Although the CO₂ and RH sensors used in this system provide direct readings in
 
 #### Code: {#sec-manual-flux-code}
 
-Please see Arduino IDE code example given in Appendix A to implement the manual low-cost DIY CO2 and ET flux measurement system.
+Please see Arduino IDE code example given in @sec-appendix_A to implement the manual low-cost DIY CO2 and ET flux measurement system.
 
 ### Mesocosm System for Automatic CO2 and ET flux measurements {#sec-mesocosm-flux}
 
@@ -631,7 +631,7 @@ Together, these checks help validate the accuracy and operational stability of y
 
 #### Code: {#sec-mesocosm-flux-code}
 
-Please see Arduino IDE code example given in Appendix A to implement the mesocosm system for automatic CO2 and ET flux measurements.
+Please see Arduino IDE code example given in @sec-appendix_A to implement the mesocosm system for automatic CO2 and ET flux measurements.
 
 ### Water-stable isotope bag sampling system {#sec-isotope-bag}
 

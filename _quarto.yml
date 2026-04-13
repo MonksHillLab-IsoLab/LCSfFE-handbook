@@ -23,8 +23,6 @@ book:
     contents: 
       - text: "Home"
         href: index.qmd
-      # - text: "Introduction"
-      #   href: intro.qmd
       - text: "Hardware Solutions"
         href: hardware-solutions.qmd
       - text: "Software Solutions"
@@ -41,11 +39,11 @@ book:
   page-footer: "License: Creative Commons Attribution 4.0 (CC-BY 4.0)" 
   chapters: 
     - index.qmd    
-    - abbreviations.qmd
     - hardware-solutions.qmd
     - software-solutions.qmd
     - real-world-use.qmd
     - references.qmd
+    - abbreviations.qmd
     - appendices.qmd
 
 
@@ -64,7 +62,6 @@ format:
     lightbox: true
     code-fold: true
     code-overflow: wrap
-  # embed-resources: true
   # pdf:
   #   documentclass: scrreprt
 

@@ -45,7 +45,7 @@ author:
     #   - ref: ZALF
 ---
 
-# Preface {.unnumbered}
+# Preface {#sec-preface}
 
 This handbook is part of the MonksHillLab initiative (integral part of the [Working Group Ecophysiology of Water and Matter Cycling](https://www.zalf.de/en/struktur/pb1/ibg/Pages/default.aspx) of the [Leibniz Centre for Agricultural Landscape Research](https://www.zalf.de/en/Pages/ZALF.aspx)) which aims to democratize science by enabling low-cost, DIY sensor development for environmental monitoring. It provides step-by-step guidance on building and calibrating sensor systems using open hardware and widely available components.
 
@@ -65,7 +65,7 @@ You’re very welcome to share your improvements/chapters. Just email the author
 
 ## Whats New? {#sec-whats-new}
 
-**Version 2.1** introduces the EVE-Offline and EVE-Online worklfows including a backend infrastructure and dashboard setup for real-time data transfer and visualization (EVE-Online). In addtion Appendix D was added, now contiang supporting data (starting with data for the PAR sensor validation as well as the proof of concept of EVE-Offline and EVE-Online.
+**Version 2.1** introduces the EVE-Offline and EVE-Online worklfows including a backend infrastructure and dashboard setup for real-time data transfer and visualization (EVE-Online). In addtion @sec-appendix_D was added, now contiang supporting data (starting with data for the PAR sensor validation as well as the proof of concept of EVE-Offline and EVE-Online.
 
 ## Whats Next? {#sec-whats-next}
 

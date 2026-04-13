@@ -6,11 +6,11 @@ title: "Software Solutions"
 
 ### Purpose & Use Case: {#sec-monkshilllab-app-purpose}
 
-The “MonkshillLab Logger App” is an Android-based tool developed to support field deployment of low-cost DIY environmental monitoring systems presented in this Handbook. It enables wireless Bluetooth communication between mobile devices and DIY sensors, allowing users to retrieve logged data or trigger new measurements directly in the field. For systems like the handheld NDVI sensor (see 2.2.1), the app is essential, as data are stored solely on the mobile device. For other platforms such as the weather station (see 2.1.3) and the manual system to measure CO₂/ET fluxes (2.3.1), the app usage is optional but provides a convenient alternative to physical data retrieval. Beyond sensor communication, the app includes modes for manually entering field observations—such as leaf temperature or soil moisture. This allows users to directly digitize field data at the point of measurement, improving organization and reducing transcription errors. All functionalities are structured into modular “modes” within the app, which users can select depending on the used low-cost DIY system or measurement task in field.
+The “MonkshillLab Logger App” is an Android-based tool developed to support field deployment of low-cost DIY environmental monitoring systems presented in this Handbook. It enables wireless Bluetooth communication between mobile devices and DIY sensors, allowing users to retrieve logged data or trigger new measurements directly in the field. For systems like the handheld NDVI sensor (see @sec-handheld-spectral), the app is essential, as data are stored solely on the mobile device. For other platforms such as the weather station (see @sec-eve-platform) and the manual system to measure CO₂/ET fluxes (see @sec-manual-flux), the app usage is optional but provides a convenient alternative to physical data retrieval. Beyond sensor communication, the app includes modes for manually entering field observations—such as leaf temperature or soil moisture. This allows users to directly digitize field data at the point of measurement, improving organization and reducing transcription errors. All functionalities are structured into modular “modes” within the app, which users can select depending on the used low-cost DIY system or measurement task in field.
 
 ### System Requirements: {#sec-monkshilllab-app-requirements}
 
-The “MonkshillLab Logger App” is developed using [MIT App Inventor](https://appinventor.mit.edu/) and is currently available as a standalone `.apk` file (\~3.7 MB; Appendix C). It is compatible with most Android devices, typically Android 6.0 (Marshmallow) or higher. The app is not available on the Google Play Store and must be downloaded manually (see 3.1.3). For Bluetooth communication, the app is designed to work with HC-05 Bluetooth modules, which operate using the classic Bluetooth protocol. These modules are commonly used in low-cost DIY microcontroller systems and are supported by Android. iOS devices are not compatible with HC-05 modules and are therefore not supported by the current version of the app. To ensure proper functionality, the Android device must support:
+The “MonkshillLab Logger App” is developed using [MIT App Inventor](https://appinventor.mit.edu/) and is currently available as a standalone `.apk` file (\~3.7 MB; @sec-appendix_C). It is compatible with most Android devices, typically Android 6.0 (Marshmallow) or higher. The app is not available on the Google Play Store and must be downloaded manually (see @sec-monkshilllab-app-installation). For Bluetooth communication, the app is designed to work with HC-05 Bluetooth modules, which operate using the classic Bluetooth protocol. These modules are commonly used in low-cost DIY microcontroller systems and are supported by Android. iOS devices are not compatible with HC-05 modules and are therefore not supported by the current version of the app. To ensure proper functionality, the Android device must support:
 
 1.  Classic Bluetooth (not only BLE)
 2.  External storage access, which is needed to store `.csv` files in download folder
@@ -18,7 +18,7 @@ The “MonkshillLab Logger App” is developed using [MIT App Inventor](https://
 
 ### Installation & Setup: {#sec-monkshilllab-app-installation}
 
-The “MonkshillLab Logger App” is distributed as a standalone `.apk` file (see Appendix C) and must be installed manually. The file can be transferred to the Android device via USB, Bluetooth, or email/cloud services. To install the app:
+The “MonkshillLab Logger App” is distributed as a standalone `.apk` file (see @sec-appendix_C) and must be installed manually. The file can be transferred to the Android device via USB, Bluetooth, or email/cloud services. To install the app:
 
 1.  Enable “Install unknown apps”; On most Android devices, navigate to: Settings → Apps & notifications → Special app access → Install unknown apps; Then allow your file manager (e.g., “Files” or “Chrome”) to install apps.
 2.  Open the transferred `.apk` on the device and confirm the installation prompt
@@ -33,8 +33,8 @@ Once installed and paired, the “MonkshillLab Logger App” is ready to be used
 
 The “MonkshillLab Logger App” operates in six distinct modes, each tailored to specific measurement tasks:
 
-1.  Weather Station (EVE): Collects via Bluetooth environmental data from the weather station (see 2.1.3)
-2.  CO₂ & ET Sampling (Minion): Connects via Bluetooth to the manual device for CO2 and ET flux measurements (see 2.3.1) to initiate CO₂ and ET flux measurements and associate sampling location identifiers to the collected data.
+1.  Weather Station (EVE): Collects via Bluetooth environmental data from the weather station (see @sec-eve-platform)
+2.  CO₂ & ET Sampling (Minion): Connects via Bluetooth to the manual device for CO2 and ET flux measurements (see @sec-manual-flux) to initiate CO₂ and ET flux measurements and associate sampling location identifiers to the collected data.
 3.  NDVI Sampling (WallE): Connects via Bluetooth to the handhold NDVI sensor, enabling measurement initiation and adding sampling location identifiers to the collected data.
 4.  GC Sampling: Used during NFT-NSS closed chamber measurements for gas chromatography (GC) vial sampling. This mode automatically records sampling date and times, allows selection of vial numbers corresponding to specific time points (t0, t1, t2, t3, t4) sampled, and adds those information together with the sampling location identifiers to the collected data.
 5.  Analyzer Sampling: Serves as a backup protocol for multi-gas analyzer measurements by recording start and end times of measurements to facilitate matching gas analyzer data with measured sampling locations.

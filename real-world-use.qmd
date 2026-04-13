@@ -81,7 +81,7 @@ The field trial is operated by Dr. Michael Asante from the CSIR–Savanna Agricu
 
 ### Current Status: {#sec-ghana-hub-status}
 
-Both used systems have been successfully introduced and tested under field conditions. Weekly and biweekly measurement routines are being established, and initial data collection has begun. While still in the early phase, the setup has proven feasible under the local climate (Macagga et al. 2024). Continuous coordination between CSIR-SARI and ZALF ensures technical support and protocol alignment. Full data evaluation will follow after the first cropping season.
+Both used systems have been successfully introduced and tested under field conditions. Weekly and biweekly measurement routines are being established, and initial data collection has begun. While still in the early phase, the setup has proven feasible under the local climate @macagga2024. Continuous coordination between CSIR-SARI and ZALF ensures technical support and protocol alignment. Full data evaluation will follow after the first cropping season.
 
 ### References {#sec-ghana-hub-references}
 
@@ -122,7 +122,7 @@ The field trial is operated by Dr. Goeffroy Sossa from the National Water Instit
 
 ### Current Status: {#sec-benin-hub-status}
 
-The field trial has been completed, and the collected data have been evaluated and submitted for publication (Sossa et al., under review in Heliyon). The analysis revealed clear difference in yield and, in particular, water use efficiency (WUE) across the three alternate wetting and drying (AWD) practices and two N fertilization levels. Notably, moderate AWD down to a soil water table depth of 15 cm achieved yields comparable to permanent flooding while significantly improving WUE. Furthermore, increasing N input beyond a certain threshold did not lead to substantial yield gains, highlighting the importance of timing and resource-efficient management.
+The field trial has been completed, and the collected data have been evaluated and submitted for publication [@sossa2024]. The analysis revealed clear difference in yield and, in particular, water use efficiency (WUE) across the three alternate wetting and drying (AWD) practices and two N fertilization levels. Notably, moderate AWD down to a soil water table depth of 15 cm achieved yields comparable to permanent flooding while significantly improving WUE. Furthermore, increasing N input beyond a certain threshold did not lead to substantial yield gains, highlighting the importance of timing and resource-efficient management.
 
 ### References {#sec-benin-hub-references}
 

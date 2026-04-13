@@ -8,7 +8,7 @@ format:
 
 # Appendices {.unnumbered}
 
-## Appendix A — Full Code Listings {#sec-appendix_A .unnumbered}
+## Appendix A — Full Code Listings {#sec-appendix_A}
 
 Complete Arduino IDE scripts, click the links download the .ino files, or copy and paste the code blocks into your Arduino IDE.
 
@@ -1013,7 +1013,7 @@ The following Arduino IDE scripts are included in the Zenodo uploads and are als
 5.  [Mesocosm_System.ino](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_A_full_code_listings/Mesocosm_System.ino)
 :::
 
-## Appendix B — 3D-printing/PCB board files {#sec-appendix_B .unnumbered}
+## Appendix B — 3D-printing/PCB board files {#sec-appendix_B}
 
 3D-printing STL files and PCB design archives for building the sensor systems.
 
@@ -1071,7 +1071,7 @@ The following 3D-printing STL files and PCB design archives are included in the 
 12. [EVE_Weather_station.zip](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/EVE_Weather_station.zip)
 :::
 
-## Appendix C — Other Software {#sec-appendix_C .unnumbered}
+## Appendix C — Other Software {#sec-appendix_C}
 
 Additional software components including mobile applications, database schemas, and backend dashboard scripts. Click the links below to download the files from the GitHub repository for this project, or access them in the GitHub repository under the folder `X_Appendix_C_other_software/`.
 
@@ -1182,7 +1182,7 @@ The following software components are available in the Zenodo uploads and are al
 3.  [SQL_scheme.txt](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_C_other_software/SQL_scheme.txt)
 :::
 
-## Appendix D — Supporting Data {#sec-appendix_D .unnumbered}
+## Appendix D — Supporting Data {#sec-appendix_D}
 
 Supporting datasets from field deployments and sensor comparison tests. Click the links below to download the files from the GitHub repository for this project, or access them in the GitHub repository under the folder `X_Appendix_D_Supporting_Data/`.
 
