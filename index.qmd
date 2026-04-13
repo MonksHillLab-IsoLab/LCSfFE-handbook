@@ -55,7 +55,7 @@ This is a living document: users are encouraged to build upon the existing desig
 
 We are currently exploring the idea of organizing a low-cost sensor summer school and/or online workshop to provide hands-on training, exchange ideas, and build a global community around DIY environmental monitoring. If you are interested in participating or helping shape the format, feel free to get in touch or respond to the [feedback link](https://docs.google.com/forms/d/e/1FAIpQLSd-lZMnjAK-ll1-eMoKwWdKpjrdHeFioPDRd5Fp-lMQW38EWg/viewform?usp=header)
 
-## Structure of the handbook
+## Structure of the handbook {#sec-structure}
 
 This handbook provides open-source, low-cost designs for field-based ecophysiological measurement systems in agricultural research. It is intended to support researchers, practitioners, and students in building and deploying affordable monitoring tools that can be adapted to a wide range of field conditions. To provide structure and clarity, the handbook is organized around three key domains of ecophysiological monitoring: (1) environmental variables (e.g., air temperature, humidity, radiation, soil moisture), (2) plant health and development (e.g., leaf temperature, chlorophyll status, canopy reflectance), and (3) biogeochemical cycles (e.g., evapotranspiration (ET), CO₂ and CH₄ fluxes, nutrient dynamics). These categories reflect increasing system complexity—from relatively simple measurements of ambient conditions to more integrated assessments of ecosystem processes. Each chapter follows the same practical structure—covering use cases, required materials, wiring diagrams, step-by-step assembly, calibration, and code—making it easy to adapt and implement these systems regardless of technical background.
 
@@ -63,15 +63,15 @@ This handbook provides open-source, low-cost designs for field-based ecophysiolo
 
 You’re very welcome to share your improvements/chapters. Just email the author (mathias.hoffmann\@zalf.de) and submit an update.
 
-## Whats New?
+## Whats New? {#sec-whats-new}
 
 **Version 2.1** introduces the EVE-Offline and EVE-Online worklfows including a backend infrastructure and dashboard setup for real-time data transfer and visualization (EVE-Online). In addtion Appendix D was added, now contiang supporting data (starting with data for the PAR sensor validation as well as the proof of concept of EVE-Offline and EVE-Online.
 
-## Whats Next?
+## Whats Next? {#sec-whats-next}
 
 **Version 2.2** will add a new chapter presenting a low cost system for flush-sampling of chamber headspace air for lateron analyses at a GCMS, as well as the introduction of a new regional hub located in Germany.
 
-## Citation
+## Citation {#sec-citation}
 
 This handbook is available under a [CC-BY 4.0 licence](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/LICENSE.md).
 

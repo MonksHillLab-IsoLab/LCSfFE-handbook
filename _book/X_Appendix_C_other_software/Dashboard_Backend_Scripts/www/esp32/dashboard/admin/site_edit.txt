@@ -1,0 +1,181 @@
+<?php
+// /esp32/dashboard/admin/site_edit.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+
+require_once __DIR__ . '/../auth.php';
+require_admin();
+
+$msg = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!csrf_check($_POST['csrf'] ?? '')) {
+        http_response_code(400);
+        exit('Invalid CSRF token');
+    }
+
+    $action = $_POST['action'] ?? '';
+
+    if ($action === 'create_site') {
+        $name = trim($_POST['name'] ?? '');
+        $slug = strtolower(trim($_POST['slug'] ?? ''));
+
+        if ($name !== '' && $slug !== '') {
+            // Optionally normalise slug characters.
+            $slug = preg_replace('~[^a-z0-9\-]+~', '-', $slug);
+            $stmt = pdo()->prepare('INSERT INTO sites (name, slug) VALUES (?, ?)');
+            $stmt->execute([$name, $slug]);
+            $msg = 'Site created';
+        } else {
+            $msg = 'Name and slug are required';
+        }
+    } elseif ($action === 'add_node') {
+        $siteId    = (int)($_POST['site_id'] ?? 0);
+        $nodeName  = trim($_POST['name'] ?? '');
+        $deviceId  = trim($_POST['device_id'] ?? '');
+
+        if ($siteId > 0 && $nodeName !== '' && $deviceId !== '') {
+            $stmt = pdo()->prepare('INSERT INTO nodes (site_id, name, device_id) VALUES (?, ?, ?)');
+            $stmt->execute([$siteId, $nodeName, $deviceId]);
+            $msg = 'Node added';
+        } else {
+            $msg = 'Please provide site, node name, and device ID';
+        }
+    } elseif ($action === 'upload_bg') {
+        $siteId = (int)($_POST['site_id'] ?? 0);
+
+        if ($siteId <= 0) {
+            $msg = 'Invalid site id';
+        } elseif (!isset($_FILES['bg']) || $_FILES['bg']['error'] !== UPLOAD_ERR_OK) {
+            $msg = 'No file uploaded or upload error';
+        } else {
+            $tmp  = $_FILES['bg']['tmp_name'];
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mime  = $finfo->file($tmp);
+
+            $allowed = [
+                'image/jpeg' => 'jpg',
+                'image/png'  => 'png',
+                'image/webp' => 'webp',
+            ];
+
+            if (!isset($allowed[$mime])) {
+                $msg = 'Only JPG, PNG, or WEBP images are allowed';
+            } else {
+                $ext = $allowed[$mime];
+                $uploadDir = realpath(__DIR__ . '/../uploads/backgrounds');
+
+                if ($uploadDir === false) {
+                    $uploadDir = __DIR__ . '/../uploads/backgrounds';
+                    @mkdir($uploadDir, 0755, true);
+                }
+
+                $filename = $siteId . '_' . bin2hex(random_bytes(6)) . '.' . $ext;
+                $dstPath  = rtrim($uploadDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $filename;
+
+                if (move_uploaded_file($tmp, $dstPath)) {
+                    $url = BASE_URL . '/uploads/backgrounds/' . $filename;
+                    $stmt = pdo()->prepare('UPDATE sites SET background_path = ? WHERE id = ?');
+                    $stmt->execute([$url, $siteId]);
+                    $msg = 'Background image updated';
+                } else {
+                    $msg = 'Upload failed';
+                }
+            }
+        }
+    }
+}
+
+// Fetch sites and their nodes for display.
+$sitesStmt = pdo()->query('SELECT id, name, slug, background_path FROM sites ORDER BY name');
+$sites = $sitesStmt->fetchAll();
+
+$page_title = 'Admin · ESP32 Dashboard';
+$activeSite = null;
+
+include __DIR__ . '/../header.php';
+?>
+<section class="section">
+  <h2 class="section-title">Admin</h2>
+
+  <?php if ($msg): ?>
+    <p style="color: green;"><?= htmlspecialchars($msg) ?></p>
+  <?php endif; ?>
+
+  <div class="card">
+    <h3>Create site</h3>
+    <form method="post">
+      <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrf_token()) ?>">
+      <input type="hidden" name="action" value="create_site">
+      <label>
+        Name
+        <input name="name" required>
+      </label>
+      <label>
+        Slug
+        <input name="slug" required placeholder="e.g. field-north">
+      </label>
+      <button class="btn" type="submit">Create site</button>
+    </form>
+  </div>
+
+  <?php foreach ($sites as $s): ?>
+    <div class="card">
+      <h3><?= htmlspecialchars($s['name']) ?> (<?= htmlspecialchars($s['slug']) ?>)</h3>
+
+      <?php if (!empty($s['background_path'])): ?>
+        <p class="muted">Current background:</p>
+        <img src="<?= htmlspecialchars($s['background_path']) ?>" alt="" style="max-width: 100%; height: auto; border-radius: 0.5rem;">
+      <?php endif; ?>
+
+      <h4>Upload background image</h4>
+      <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrf_token()) ?>">
+        <input type="hidden" name="action" value="upload_bg">
+        <input type="hidden" name="site_id" value="<?= (int)$s['id'] ?>">
+        <label>
+          Background image
+          <input type="file" name="bg" accept=".jpg,.jpeg,.png,.webp" required>
+        </label>
+        <button class="btn" type="submit">Upload</button>
+      </form>
+
+      <h4>Add node</h4>
+      <form method="post">
+        <input type="hidden" name="csrf" value="<?= htmlspecialchars(csrf_token()) ?>">
+        <input type="hidden" name="action" value="add_node">
+        <input type="hidden" name="site_id" value="<?= (int)$s['id'] ?>">
+        <label>
+          Node name
+          <input name="name" required placeholder="e.g. EVE-NODE-01">
+        </label>
+        <label>
+          Device ID
+          <input name="device_id" required placeholder="exact device_id from sensor_data">
+        </label>
+        <button class="btn" type="submit">Add node</button>
+      </form>
+
+      <h4>Existing nodes</h4>
+      <?php
+        $nodesStmt = pdo()->prepare('SELECT id, name, device_id FROM nodes WHERE site_id = ? ORDER BY name');
+        $nodesStmt->execute([$s['id']]);
+        $nodes = $nodesStmt->fetchAll();
+      ?>
+      <?php if ($nodes): ?>
+        <ul class="node-list">
+          <?php foreach ($nodes as $n): ?>
+            <li>
+              <strong><?= htmlspecialchars($n['name']) ?></strong>
+              <span class="muted">(<?= htmlspecialchars($n['device_id']) ?>)</span>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      <?php else: ?>
+        <p class="muted">No nodes defined yet.</p>
+      <?php endif; ?>
+    </div>
+  <?php endforeach; ?>
+</section>
+<?php include __DIR__ . '/../footer.php'; ?>

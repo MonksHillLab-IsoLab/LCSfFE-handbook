@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -34,19 +54,21 @@ ul.task-list li input[type="checkbox"] {
 <link href="./assets/mhl-logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-eb767fe655e6f8c8224c258eed8bcfd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-0d23d6da6e18eb1e53161bd2c3430360.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-eb767fe655e6f8c8224c258eed8bcfd8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fce6aed2dd9f1252f90388b37b192189.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-603897be52f06fa729c59cd1fbb7dffe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fce6aed2dd9f1252f90388b37b192189.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -80,11 +102,35 @@ ul.task-list li input[type="checkbox"] {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+<script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+
+<script src="site_libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+
 
 
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -270,8 +316,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./assets/mhl-logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./assets/mhl-logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./assets/mhl-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./"></a> 
@@ -326,16 +371,51 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Appendices</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#philippine-hub-reuse-of-pineapple-residues" id="toc-philippine-hub-reuse-of-pineapple-residues" class="nav-link active" data-scroll-target="#philippine-hub-reuse-of-pineapple-residues"><span class="header-section-number">3.1</span> Philippine Hub – Reuse of Pineapple Residues</a>
+  <ul class="collapse">
+  <li><a href="#sec-philippine-hub-location" id="toc-sec-philippine-hub-location" class="nav-link" data-scroll-target="#sec-philippine-hub-location"><span class="header-section-number">3.1.1</span> Location &amp; Context:</a></li>
+  <li><a href="#sec-philippine-hub-systems" id="toc-sec-philippine-hub-systems" class="nav-link" data-scroll-target="#sec-philippine-hub-systems"><span class="header-section-number">3.1.2</span> Used Systems:</a></li>
+  <li><a href="#sec-philippine-hub-deployment" id="toc-sec-philippine-hub-deployment" class="nav-link" data-scroll-target="#sec-philippine-hub-deployment"><span class="header-section-number">3.1.3</span> Deployment &amp; Operation:</a></li>
+  <li><a href="#sec-philippine-hub-status" id="toc-sec-philippine-hub-status" class="nav-link" data-scroll-target="#sec-philippine-hub-status"><span class="header-section-number">3.1.4</span> Current Status:</a></li>
+  <li><a href="#sec-philippine-hub-references" id="toc-sec-philippine-hub-references" class="nav-link" data-scroll-target="#sec-philippine-hub-references"><span class="header-section-number">3.1.5</span> References</a></li>
+  </ul></li>
+  <li><a href="#northern-ghana-hub-moist-savannah-dryland-rotation-trial" id="toc-northern-ghana-hub-moist-savannah-dryland-rotation-trial" class="nav-link" data-scroll-target="#northern-ghana-hub-moist-savannah-dryland-rotation-trial"><span class="header-section-number">3.2</span> Northern Ghana Hub – Moist Savannah Dryland Rotation Trial</a>
+  <ul class="collapse">
+  <li><a href="#sec-ghana-hub-location" id="toc-sec-ghana-hub-location" class="nav-link" data-scroll-target="#sec-ghana-hub-location"><span class="header-section-number">3.2.1</span> Location &amp; Context:</a></li>
+  <li><a href="#sec-ghana-hub-systems" id="toc-sec-ghana-hub-systems" class="nav-link" data-scroll-target="#sec-ghana-hub-systems"><span class="header-section-number">3.2.2</span> Used Systems:</a></li>
+  <li><a href="#sec-ghana-hub-deployment" id="toc-sec-ghana-hub-deployment" class="nav-link" data-scroll-target="#sec-ghana-hub-deployment"><span class="header-section-number">3.2.3</span> Deployment &amp; Operation:</a></li>
+  <li><a href="#sec-ghana-hub-status" id="toc-sec-ghana-hub-status" class="nav-link" data-scroll-target="#sec-ghana-hub-status"><span class="header-section-number">3.2.4</span> Current Status:</a></li>
+  <li><a href="#sec-ghana-hub-references" id="toc-sec-ghana-hub-references" class="nav-link" data-scroll-target="#sec-ghana-hub-references"><span class="header-section-number">3.2.5</span> References</a></li>
+  </ul></li>
+  <li><a href="#central-benin-hub-alternate-wetting-and-drying-rice-trial" id="toc-central-benin-hub-alternate-wetting-and-drying-rice-trial" class="nav-link" data-scroll-target="#central-benin-hub-alternate-wetting-and-drying-rice-trial"><span class="header-section-number">3.3</span> Central Benin Hub – Alternate Wetting and Drying Rice Trial</a>
+  <ul class="collapse">
+  <li><a href="#sec-benin-hub-location" id="toc-sec-benin-hub-location" class="nav-link" data-scroll-target="#sec-benin-hub-location"><span class="header-section-number">3.3.1</span> Location &amp; Context:</a></li>
+  <li><a href="#sec-benin-hub-systems" id="toc-sec-benin-hub-systems" class="nav-link" data-scroll-target="#sec-benin-hub-systems"><span class="header-section-number">3.3.2</span> Used Systems:</a></li>
+  <li><a href="#sec-benin-hub-deployment" id="toc-sec-benin-hub-deployment" class="nav-link" data-scroll-target="#sec-benin-hub-deployment"><span class="header-section-number">3.3.3</span> Deployment &amp; Operation:</a></li>
+  <li><a href="#sec-benin-hub-status" id="toc-sec-benin-hub-status" class="nav-link" data-scroll-target="#sec-benin-hub-status"><span class="header-section-number">3.3.4</span> Current Status:</a></li>
+  <li><a href="#sec-benin-hub-references" id="toc-sec-benin-hub-references" class="nav-link" data-scroll-target="#sec-benin-hub-references"><span class="header-section-number">3.3.5</span> References</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/zalf-lli/LCSfFE-handbook/edit/main/real-world-use.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -357,9 +437,142 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary, this book has no content whatsoever.</p>
+<section id="philippine-hub-reuse-of-pineapple-residues" class="level2 page-columns page-full" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="philippine-hub-reuse-of-pineapple-residues"><span class="header-section-number">3.1</span> Philippine Hub – Reuse of Pineapple Residues</h2>
+<section id="sec-philippine-hub-location" class="level3 page-columns page-full" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="sec-philippine-hub-location"><span class="header-section-number">3.1.1</span> Location &amp; Context:</h3>
+<p>Philippine Hub was located on a smallholder pineapple farm near Calauan, Laguna (14°07’49.9”N, 121°18’28.2”E), within the humid tropics of Southeast Asia.</p>
+<div class="cell page-columns page-full">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-7916876309a6953f6eb6" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-7916876309a6953f6eb6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[14.13053,121.30783,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[14.13053,121.30783],15,[]],"limits":{"lat":[14.13053,14.13053],"lng":[121.30783,121.30783]}},"evals":[],"jsHooks":[]}</script>
+<p>Interactive map showing the location of the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E) where low-cost sensor systems were deployed to monitor the reuse of pineapple residues under different nitrogen fertilizer strategies.</p>
+</div></div></div>
+<div id="fig-philippine-hub" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-philippine-hub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="assets/philippine-hub.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Deployment of low-cost sensor systems at the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E), focusing on the reuse of pineapple residues under different nitrogen fertilizer strategies. (a, b, c, d, e) Field setup and sensor use on a smallholder pineapple farm. (f) Satellite imagery showing the experimental site location. (g) Experimental design comparing multiple residue management and fertilizer treatments. Integrated mini weather stations and manually operated systems were used to monitor greenhouse gas emissions (CO₂), evapotranspiration (ET), and plant physiological responses (e.g., NDVI)."><img src="assets/philippine-hub.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-philippine-hub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Deployment of low-cost sensor systems at the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E), focusing on the reuse of pineapple residues under different nitrogen fertilizer strategies. (a, b, c, d, e) Field setup and sensor use on a smallholder pineapple farm. (f) Satellite imagery showing the experimental site location. (g) Experimental design comparing multiple residue management and fertilizer treatments. Integrated mini weather stations and manually operated systems were used to monitor greenhouse gas emissions (CO₂), evapotranspiration (ET), and plant physiological responses (e.g., NDVI).
+</figcaption>
+</figure>
+</div>
+<p>From 2022 to 2023, the site hosted a field trial that tested different reuse strategies for pineapple residues in combination with various nitrogen (N) fertilizer forms. The research assessed their impacts on greenhouse gas (GHG) emissions, water dynamics, carbon (C) and nitrogen cycling, as well as crop yield. The trial addressed key challenges in enhancing soil health and productivity in tropical smallholder systems under resource-limited conditions.</p>
+</section>
+<section id="sec-philippine-hub-systems" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="sec-philippine-hub-systems"><span class="header-section-number">3.1.2</span> Used Systems:</h3>
+<p>The handheld system for measuring spectral plant indices such as NDVI was used alongside the manual CO₂ and ET flux measurement system presented in this handbook. Together, these tools enabled low-cost assessment of plant physiological responses and ecosystem gas exchange under harsh field conditions (e.g., temperatures up to 45 °C, high humidity, and heavy rainfall during throughout the year).</p>
+</section>
+<section id="sec-philippine-hub-deployment" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="sec-philippine-hub-deployment"><span class="header-section-number">3.1.3</span> Deployment &amp; Operation:</h3>
+<p>The field trial was a key activity of the BMEL-funded project rePRISING, coordinated by Reena Macagga (PhD student at ZALF and Humboldt-Universität zu Berlin) in collaboration with the University of the Philippines Los Baños and a local farmer. Conducted from 2022 to 2023, the field trial covered a full pineapple crop growth period, lasting nearly 18 months on a smallholder farm near Calauan, Laguna. All measurements—using handheld systems for spectral plant indices and manual gas flux chambers for CO₂ and ET—were carried out on a biweekly basis during intensive field campaigns. Mini climate stations were installed permanently to ensure continuous environmental monitoring throughout the field trial.</p>
+</section>
+<section id="sec-philippine-hub-status" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="sec-philippine-hub-status"><span class="header-section-number">3.1.4</span> Current Status:</h3>
+<p>The field trial has been completed. A key outcome was that the addition of chopped pineapple residues into the soil prior to planting substantially increased yields across all treatments—unfertilized, mineral fertilized, and organically fertilized (chicken manure). During a farmer workshop, participants also noted that pineapples grown with residue addition tasted sweeter, though this observation remains subjective and unverified by compositional analysis. Improved plant performance was reflected in higher CO₂ exchange and NDVI values. No consistent differences in evapotranspiration (ET) or water use efficiency (WUE) were observed. A central achievement of this trial was the development and successful testing of both used sensor systems under real field conditions.</p>
+</section>
+<section id="sec-philippine-hub-references" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="sec-philippine-hub-references"><span class="header-section-number">3.1.5</span> References</h3>
+<p>For further information see: <span class="citation" data-cites="macagga2024">Macagga et al. (<a href="references.html#ref-macagga2024" role="doc-biblioref">2024</a>)</span>; <span class="citation" data-cites="macagga2025">Macagga et al. (<a href="references.html#ref-macagga2025" role="doc-biblioref">2025</a>)</span></p>
+</section>
+</section>
+<section id="northern-ghana-hub-moist-savannah-dryland-rotation-trial" class="level2 page-columns page-full" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="northern-ghana-hub-moist-savannah-dryland-rotation-trial"><span class="header-section-number">3.2</span> Northern Ghana Hub – Moist Savannah Dryland Rotation Trial</h2>
+<section id="sec-ghana-hub-location" class="level3 page-columns page-full" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="sec-ghana-hub-location"><span class="header-section-number">3.2.1</span> Location &amp; Context:</h3>
+<p>The Northern Ghana Hub is located in the moist savannah zone of Ghana (9.41°N, -0.99°E) and was established in May 2025 at the CSIR-Savanna Agricultural Research Institute experimental field.</p>
+<div class="cell page-columns page-full">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-cf146683eae60688e25b" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-cf146683eae60688e25b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[9.41,-0.99,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[9.41,-0.99],15,[]],"limits":{"lat":[9.41,9.41],"lng":[-0.99,-0.99]}},"evals":[],"jsHooks":[]}</script>
+<p>Interactive map showing the location of the Northern Ghana Hub (CSIR-Savanna Agricultural Research Institute, 9.41° N, -0.99° E) where low-cost sensor systems were deployed to monitor a dryland crop rotation trial in the moist savannah zone of Ghana.</p>
+</div></div></div>
+<div id="fig-ghana-hub" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ghana-hub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="assets/ghana-hub.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3.2: Deployment of low-cost sensor systems at the Northern Ghana Hub (Nyankpala, 9.41° N, -0.99° E), focusing on sustainable same season groundnut- sorghum and groundnut- maize rotations under different soil amendment strategies in the moist savannah zone. (a, c, d) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (e) Experimental design with eight treatment combinations including compost, biochar, NPK fertilizers. Integrated mini weather stations and installed frames are used to monitor gas exchange (CO2, ET and N2O) as well as plant development and health status (e.g., NDVI)."><img src="assets/ghana-hub.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ghana-hub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: Deployment of low-cost sensor systems at the Northern Ghana Hub (Nyankpala, 9.41° N, -0.99° E), focusing on sustainable same season groundnut- sorghum and groundnut- maize rotations under different soil amendment strategies in the moist savannah zone. (a, c, d) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (e) Experimental design with eight treatment combinations including compost, biochar, NPK fertilizers. Integrated mini weather stations and installed frames are used to monitor gas exchange (CO2, ET and N2O) as well as plant development and health status (e.g., NDVI).
+</figcaption>
+</figure>
+</div>
+<p>It aims to investigate the effect of same season groundnut-maize/sorghum crop rotation under different soil amendments and fertilizer strategies on GHG emissions, water, N and C cycling. It thus especially reflecting the pressures of nutritious food production in semi-arid environments.</p>
+</section>
+<section id="sec-ghana-hub-systems" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="sec-ghana-hub-systems"><span class="header-section-number">3.2.2</span> Used Systems:</h3>
+<p>The handheld system for measuring spectral plant indices such as NDVI and PRI is used alongside the manual CO₂ and ET flux measurement system presented in this handbook. Together, these tools enable low-cost assessment of plant physiological responses and ecosystem gas exchange under harsh field conditions (e.g., temperatures up to 50 °C, high humidity, and heavy rainfall during the rainy season).</p>
+</section>
+<section id="sec-ghana-hub-deployment" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="sec-ghana-hub-deployment"><span class="header-section-number">3.2.3</span> Deployment &amp; Operation:</h3>
+<p>The field trial is operated by Dr.&nbsp;Michael Asante from the CSIR–Savanna Agricultural Research Institute in Tamale, Ghana, with support from the Leibniz Centre for Agricultural Landscape Research (ZALF). It is planned to run the field trial for three consecutive cropping seasons. Measurements are scheduled on a weekly basis for spectral plant indices (e.g., NDVI) and biweekly (twice per month) for CO₂, N2O and ET fluxes. Deployment in the field takes place during measurement campaigns only, except for the mini climate stations, which remain installed continuously.</p>
+</section>
+<section id="sec-ghana-hub-status" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="sec-ghana-hub-status"><span class="header-section-number">3.2.4</span> Current Status:</h3>
+<p>Both used systems have been successfully introduced and tested under field conditions. Weekly and biweekly measurement routines are being established, and initial data collection has begun. While still in the early phase, the setup has proven feasible under the local climate (Macagga et al.&nbsp;2024). Continuous coordination between CSIR-SARI and ZALF ensures technical support and protocol alignment. Full data evaluation will follow after the first cropping season.</p>
+</section>
+<section id="sec-ghana-hub-references" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="sec-ghana-hub-references"><span class="header-section-number">3.2.5</span> References</h3>
+<p>No published references are available yet, as the research is ongoing. Relevant outputs will be added in future handbook updates.</p>
+</section>
+</section>
+<section id="central-benin-hub-alternate-wetting-and-drying-rice-trial" class="level2 page-columns page-full" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="central-benin-hub-alternate-wetting-and-drying-rice-trial"><span class="header-section-number">3.3</span> Central Benin Hub – Alternate Wetting and Drying Rice Trial</h2>
+<section id="sec-benin-hub-location" class="level3 page-columns page-full" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="sec-benin-hub-location"><span class="header-section-number">3.3.1</span> Location &amp; Context:</h3>
+<p>The Central Benin Hub is located in the moist savannah zone of Benin (7.24°N, 2.28°E) and was established in November 2021 at the National Water Institute experimental field.</p>
+<div class="cell page-columns page-full">
+
+<div class="no-row-height column-margin column-container"><div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-ff98cca84969371d9ee9" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ff98cca84969371d9ee9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[7.24,2.28,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[7.24,2.28],15,[]],"limits":{"lat":[7.24,7.24],"lng":[2.28,2.28]}},"evals":[],"jsHooks":[]}</script>
+<p>Interactive map showing the location of the Central Benin Hub (National Water Institute, 7.24° N, 2.28° E) where alternate wetting and drying rice trials are conducted in the moist savannah zone of Benin.</p>
+</div></div></div>
+<div id="fig-benin-hub" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-benin-hub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="assets/benin-hub.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3.3: Deployment of low-cost sensor systems at the Central Benin Hub (near Koussin-Lélé; 7.24° N, 2.28° E), focusing on sustainable wet rice cultivation under alternate wetting and drying (AWD) practices and varying N fertilization levels in a semi-arid environment. (a, c, d, e, f) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (g) Experimental design includes six treatment combinations differing in AWD intensity and nitrogen input. Integrated mini weather stations, low-cost gas exchange systems (CO₂ and ET), and sensor frames are used to monitor GHG emissions and plant physiological responses (e.g., NDVI), supporting the development of water- and nutrient-efficient rice production strategies."><img src="assets/benin-hub.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-benin-hub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: Deployment of low-cost sensor systems at the Central Benin Hub (near Koussin-Lélé; 7.24° N, 2.28° E), focusing on sustainable wet rice cultivation under alternate wetting and drying (AWD) practices and varying N fertilization levels in a semi-arid environment. (a, c, d, e, f) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (g) Experimental design includes six treatment combinations differing in AWD intensity and nitrogen input. Integrated mini weather stations, low-cost gas exchange systems (CO₂ and ET), and sensor frames are used to monitor GHG emissions and plant physiological responses (e.g., NDVI), supporting the development of water- and nutrient-efficient rice production strategies.
+</figcaption>
+</figure>
+</div>
+<p>It aims to investigate the effect of alternate wetting and drying as well as different N fertilization rates on GHG emissions, water, N and C cycling of wet rice cultivation. Located in Central Benin, this hub reflects the need for sustainable intensification and the purposeful use of scarce water resources in the context of nutritious food production under semi-arid conditions. It thus especially reflecting the pressures of nutritious food production in semi-arid environments.</p>
+</section>
+<section id="sec-benin-hub-systems" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="sec-benin-hub-systems"><span class="header-section-number">3.3.2</span> Used Systems:</h3>
+<p>The handheld system for measuring spectral plant indices such as NDVI and PRI was used alongside the manual CO₂ and ET flux measurement system presented in this handbook. Together, these tools enable low-cost assessment of plant physiological responses and ecosystem gas exchange under harsh field conditions (e.g., temperatures up to 50 °C, high humidity, and heavy rainfall during the rainy season).</p>
+</section>
+<section id="sec-benin-hub-deployment" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="sec-benin-hub-deployment"><span class="header-section-number">3.3.3</span> Deployment &amp; Operation:</h3>
+<p>The field trial is operated by Dr.&nbsp;Goeffroy Sossa from the National Water Institute, University of Abomey-Calavi, Abomey-Calavi, Benin, with support from the Leibniz Centre for Agricultural Landscape Research (ZALF). The field trial was running for two consecutive cropping seasons from 2021 to 2023. Measurements were scheduled on a weekly basis for spectral plant indices (e.g., NDVI) and biweekly (twice per month) for CO₂ and ET fluxes. Deployment in the field took place during measurement campaigns only, except for the mini climate stations, which remained installed continuously. The new set up of the field trial is planned for November 2025 (this time running over three seasons), with the aim to use low-cost DIY equipment, for precision timing of fertilization and irrigation events.</p>
+</section>
+<section id="sec-benin-hub-status" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="sec-benin-hub-status"><span class="header-section-number">3.3.4</span> Current Status:</h3>
+<p>The field trial has been completed, and the collected data have been evaluated and submitted for publication (Sossa et al., under review in Heliyon). The analysis revealed clear difference in yield and, in particular, water use efficiency (WUE) across the three alternate wetting and drying (AWD) practices and two N fertilization levels. Notably, moderate AWD down to a soil water table depth of 15 cm achieved yields comparable to permanent flooding while significantly improving WUE. Furthermore, increasing N input beyond a certain threshold did not lead to substantial yield gains, highlighting the importance of timing and resource-efficient management.</p>
+</section>
+<section id="sec-benin-hub-references" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="sec-benin-hub-references"><span class="header-section-number">3.3.5</span> References</h3>
+<p>For more information see: <span class="citation" data-cites="sossa2024">Sossa et al. (<a href="references.html#ref-sossa2024" role="doc-biblioref">2024</a>)</span></p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-macagga2024" class="csl-entry" role="listitem">
+Macagga, Reena, Michael Asante, Geoffroy Sossa, Danica Antonijević, Maren Dubbert, and Mathias Hoffmann. 2024. <span>“Validation and Field Application of a Low-Cost Device to Measure CO <span><sub>2</sub></span> and Evapotranspiration (ET) Fluxes.”</span> <em>Atmospheric Measurement Techniques</em> 17 (4): 1317–32. <a href="https://doi.org/10.5194/amt-17-1317-2024">https://doi.org/10.5194/amt-17-1317-2024</a>.
+</div>
+<div id="ref-macagga2025" class="csl-entry" role="listitem">
+Macagga, Reena, Geoffroy Sossa, Yvonne Ayaribil, Rinan Bayot, Pearl Sanchez, Jürgen Augustin, Sonoko Dorothea Bellingrath-Kimura, and Mathias Hoffmann. 2025. <span>“A New, Low-Cost Ground-Based NDVI Sensor for Manual and Automated Crop Monitoring.”</span> <em>Smart Agricultural Technology</em> 11 (August): 100892. <a href="https://doi.org/10.1016/j.atech.2025.100892">https://doi.org/10.1016/j.atech.2025.100892</a>.
+</div>
+<div id="ref-sossa2024" class="csl-entry" role="listitem">
+Sossa, Geoffroy, Mathias Hoffmann, Jesse Naab, Souleymane Sanogo, Michael Asante, Yvonne Ayaribil, Luc O. Sintondji, Jürgen Augustin, and Maren Dubbert. 2024. <span>“Optimize Irrigated Rice Cultivation in West Africa&nbsp;by Improving Water Use Efficiency.”</span> <a href="http://dx.doi.org/10.2139/ssrn.4860972">http://dx.doi.org/10.2139/ssrn.4860972</a>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -426,14 +639,13 @@ ul.task-list li input[type="checkbox"] {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -795,12 +1007,44 @@ ul.task-list li input[type="checkbox"] {
     </div>   
     <div class="nav-footer-center">
 <p>License: Creative Commons Attribution 4.0 (CC-BY 4.0)</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/zalf-lli/LCSfFE-handbook/edit/main/real-world-use.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/zalf-lli/LCSfFE-handbook/edit/main/real-world-use.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

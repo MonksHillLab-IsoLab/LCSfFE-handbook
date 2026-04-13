@@ -1,0 +1,1209 @@
+---
+format:
+  html:
+    code-fold: true
+    code-overflow: wrap
+    code-link: true
+---
+
+# Appendices {.unnumbered}
+
+## Appendix A — Full Code Listings {#sec-appendix_A .unnumbered}
+
+Complete Arduino IDE scripts, click the links download the .ino files, or copy and paste the code blocks into your Arduino IDE.
+
+::: {.content-visible when-format="html"}
+1.  [Automatic NDVI System](X_Appendix_A_full_code_listings/Automatic_NDVI/Automatic_NDVI.ino){download="Automatic_NDVI.ino"}
+
+``` {.cpp filename="Automatic_NDVI.ino"}
+//Automatic Wall-E 2.0 script version 1.0 (by Mathias Hoffmann)
+
+#include "AS726X.h"
+#include<Wire.h>
+#define AS7263_I2C_ADDRESS 0x49
+#define TCA_I2C_ADDRESS    0x70
+#include <SoftwareSerial.h>
+#define NUMBER_OF_SENSORS 2
+#define DONEPIN 9
+#include <SPI.h>
+#include "SdFat.h"
+#include "RTClib.h"
+SdFat sd;
+SdFile myFile;
+
+const int chipSelect = 10;
+
+int cycles = 0;
+float up_ir;
+float up_vis;
+float down_ir;
+float down_vis;
+int i =0;
+float NDVI;
+float NIRup;
+float VISup;
+float NIRdown;
+float VISdown;
+
+AS726X accel;   // NIR Sensor
+RTC_DS3231 rtc;
+
+void setup() {
+delay(1500);
+pinMode(DONEPIN, OUTPUT);
+  digitalWrite(DONEPIN, LOW);              // LOW until its time to cut power
+
+  Wire.begin();
+  Serial.begin(9600);
+    setTCAChannel(1);
+    delay(1500);
+accel.begin(); // Init the sensor connected to this0 port
+    setTCAChannel(7);
+    delay(1500);
+accel.begin(); // Init the sensor connected to this port
+    sd.begin(chipSelect, SPI_HALF_SPEED);
+    setTCAChannel(5);
+    rtc.begin();
+    //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+}
+
+void loop() {  
+    while(i<31){
+    
+    setTCAChannel(5);                                                                                                                                        
+    DateTime now = rtc.now();
+    Serial.print(now.year(), DEC);
+    Serial.print('/');
+    Serial.print(now.month(), DEC);
+    Serial.print('/');
+    Serial.print(now.day(), DEC);
+    Serial.print(" ");
+    Serial.print(now.hour(), DEC);
+    Serial.print(':'); 
+    Serial.print(now.minute(), DEC);
+    Serial.print(':');
+    Serial.print(now.second(), DEC);
+  
+   myFile.open("test.txt", FILE_WRITE);
+     setTCAChannel(5);
+     myFile.print(now.year(), DEC);
+     myFile.print('/');
+     myFile.print(now.month(), DEC);
+     myFile.print('/');
+     myFile.print(now.day(), DEC);
+     myFile.print(" ");
+     myFile.print(now.hour(), DEC);
+     myFile.print(':');
+     myFile.print(now.minute(), DEC);
+     myFile.print(':');
+     myFile.print(now.second(), DEC);
+  
+     setTCAChannel(1);
+     accel.takeMeasurements();
+     up_ir=accel.getCalibratedS();
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedR(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedS(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedT(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedU(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedV(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedW(), 2);
+
+     VISup=accel.getCalibratedS();
+     NIRup=accel.getCalibratedU()+accel.getCalibratedV();
+    
+     setTCAChannel(7);
+     accel.takeMeasurements();
+     down_ir=accel.getCalibratedS();
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedR(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedS(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedT(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedU(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedV(), 2);
+     delay(15);
+     myFile.print(";");
+     myFile.print(accel.getCalibratedW(), 2);
+     delay(15);
+
+     VISdown=accel.getCalibratedS();
+     NIRdown=accel.getCalibratedU()+accel.getCalibratedV();
+     NDVI=((NIRdown/NIRup)-(VISdown/VISup))/((NIRdown/NIRup)+(VISdown/VISup));
+     myFile.print(";");
+     myFile.println(NDVI, 2);
+     Serial.print(";");
+     Serial.println(NDVI);
+    
+   myFile.close(); 
+  delay(900); 
+ 
+ i++;
+
+}  
+  delay(15); 
+
+  digitalWrite(DONEPIN, HIGH); // Restore power
+}
+
+void setTCAChannel(byte i){
+  Wire.beginTransmission(TCA_I2C_ADDRESS);
+  Wire.write(1 << i);
+  Wire.endTransmission();  
+}
+```
+
+2.  [Manual System for CO₂ and ET Fluxes](X_Appendix_A_full_code_listings/Manual_System_CO2_ET_fluxes/Manual_System_CO2_ET_fluxes%20.ino){download="Manual_System_CO2_ET_fluxes.ino"}
+
+``` {.cpp filename="Manual_System_CO2_ET_fluxes.ino"}
+//Script for manual chamber minion with K30FR, SHT31 and PAR sensor by Mathias Hoffmann 
+//Version 1.0
+//30.10.2024
+
+// Import the required libraries
+#include "Wire.h"
+#include <SD.h>
+#include <SPI.h>
+#include "RTClib.h"
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include "kSeries.h" 
+#include <Adafruit_SHT4x.h>
+#include <Adafruit_BMP280.h>
+#include <Arduino.h>
+#include <SSD1306Ascii.h>
+#include <SSD1306AsciiWire.h>
+
+SSD1306AsciiWire oled;
+const int chipSelect = 10; // define the PIN for datalogger shield
+String timestring; // String to store the formatted timestamp
+const int flowMeterPin = 9; // Pin connected to the flow meter pulse output
+const float flowFactor = 7.5; // Flow factor for conversion (adjust based on your flow meter)
+int valMultiplier = 1; // Multiplier for value. Default is 1. Set to 3 for K-30 3% and 10 for K-33 ICB
+unsigned long previousMillis = 0;
+const long interval = 3000; // The interval in milliseconds between CO2 readings and data logging
+const float activeArea_m2 = 7.5;
+const int photodiodePin = A2; // Analog input pin for the photodiode
+const float resistorValue = 4700.0; // Replace with the actual resistor value in ohms
+const float responsivity_microA_per_lux = 0.0075/1000000; // 0.075 μA / 1 klx = 0.075e-6 A/lux
+
+int Mosfet = 7 ;// define the PIN for Mosfet
+
+
+RTC_DS1307 rtc; // Initialize the real-time clock object
+Adafruit_SHT4x sht4 = Adafruit_SHT4x(); // Create an object for the SHT31 sensor
+kSeries K_30_Serial(13,12);  // Sets up a virtual serial port for K-30 CO2 sensor
+Adafruit_BMP280 bmp;  //I2C
+
+void setup()
+{
+  Serial.begin(9600);// Initialize the Serial communication with a baud rate of 9600
+  analogReference(DEFAULT);
+ 
+  //  Wait for 1 second to allow devices to initialize
+  //delay(1000); 
+  pinMode(Mosfet, OUTPUT);
+  digitalWrite(Mosfet, HIGH);
+
+  // Initialize the real-time clock
+  rtc.begin();
+  Wire.setClock(100000); // Set I2C clock speed to 100kHz
+  Wire.begin(); // Initialize I2C communication
+  bmp.begin(0x76);
+
+
+  // Check if the SD card is present and can be initialized: 
+  if (!SD.begin(chipSelect)) {
+  Serial.println("Card failed, or not present");
+  // If the SD card cannot be initialized, enter an endless loop:
+    while (1);
+  }
+  Serial.println("card initialized.");
+  
+
+  Wire.begin();// Initialize I2C commmunication 
+  if (!sht4.begin()) {
+    Serial.println("Couldn't find SHT4x sensor!");
+    while (1) delay(10);
+  }
+
+  Serial.println("SHT4x sensor initialized.");
+  
+  sht4.setPrecision(SHT4X_HIGH_PRECISION);
+  oled.begin(&Adafruit128x64, 0x3C);  // 0x3C is common I2C address
+  oled.setFont(fixed_bold10x15);            // Light font, fits more text
+  oled.clear();
+  oled.setCursor(0, 0); 
+  oled.println("");            // Set cursor to top-left
+  oled.println(" MonksHill");       // First line
+  oled.println("    Lab");          // Second line
+  delay(1000);
+}
+
+void loop()
+{
+      digitalWrite(Mosfet, HIGH);  // Turn the Mosfet on 
+      //get CO2 data from K30FR including error check
+      double co2 = K_30_Serial.getCO2('p'); // Read CO2 concentration from the K-30 CO2 sensor ('p' for ppm)
+      (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check)
+      (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check)
+
+      //get temperature and RH data from SHT4x
+      sensors_event_t humidity, temp;
+      float p = bmp.readPressure();  
+
+      sht4.getEvent(&humidity, &temp);
+
+      //get data from PAR sensor (not yet with correction function applied)
+      int rawAnalogValue = analogRead(photodiodePin); // Read the analog voltage from the photodiode
+      float voltage = rawAnalogValue* (5.0 / 1023.0); // Convert the raw reading to voltage (assuming 5V reference)
+      float photocurrent_A = voltage / resistorValue;
+      float illuminance_lux = photocurrent_A / (responsivity_microA_per_lux);
+      float illuminance_PAR = illuminance_lux/1000*18;
+      float pressure =  bmp.readPressure();
+
+      //get date and time
+      DateTime now = rtc.now(); // Get the current date and time from the real-time clock
+      timestring = now.day();
+      timestring += "-";
+      timestring += now.month();
+      timestring += "-";
+      timestring += now.year();
+      timestring += " ";
+      timestring += now.hour();
+      timestring += ":";
+      timestring += now.minute();
+      timestring += ":";
+      timestring += now.second();
+
+      //writedate/time, temperture, RH, CO2 and PAR to serial monitor
+      // Serial.print(timestring); // Print the formatted timestamp to the Serial monitor
+      // Serial.print(";");    
+      Serial.print(temp.temperature); // Print temperature to the Serial monitor
+      Serial.print(";");
+      Serial.print(humidity.relative_humidity); // Print humidity to the Serial monitor
+      Serial.print(";");  
+      Serial.print(co2); // Print CO2 concentration to the Serial monitor
+      Serial.print(";");  
+      Serial.print(illuminance_PAR, 2); // Display illuminance with 2 decimal places
+      Serial.print(";");  
+      Serial.print(pressure); 
+      Serial.print(";");
+      Serial.println("Minion 1");
+
+
+      oled.clear();
+      oled.setCursor(0, 0);   // First line
+      oled.print("CO2:");
+      oled.print(co2, 0);
+      oled.println(" ppm");
+
+      oled.setCursor(0, 2);   // Second line
+      oled.print("RH:");
+      oled.print(humidity.relative_humidity, 1);
+      oled.println(" %");
+
+      oled.setCursor(0, 4);   // Second line
+      oled.print("Temp:");
+      oled.print(temp.temperature, 1);
+      oled.println(" C");
+  
+
+      //open SD card file and wirte data to SD card
+      File dataFile = SD.open("datalog.txt", FILE_WRITE);
+     // If the file is available, write the data to it:
+      if (dataFile) {    
+        dataFile.print(timestring); // Write the timestamp to the file
+        dataFile.print(";");
+        dataFile.print(temp.temperature); // Write the temperature to the file
+        dataFile.print(";");
+        dataFile.print(humidity.relative_humidity); // Write the humidity to the file
+        dataFile.print(";");
+        dataFile.print(co2); // Write the CO2 concentration to the file
+        dataFile.print(";");
+        dataFile.print(illuminance_PAR, 2); // Display illuminance with 2 decimal places
+        dataFile.print(";");
+        dataFile.print(pressure); // Display illuminance with 2 decimal places
+        dataFile.print(";");
+        dataFile.println("Minion 1");
+        dataFile.close();
+        }
+
+       // If the file isn't open, print an error message to the Serial monitor:
+      else {
+        Serial.println("error opening datalog.txt");
+      }
+ 
+delay(2700); // Delay for 3 seconds between iterations
+}
+```
+
+3.  [EVE Offline Weather Station](X_Appendix_A_full_code_listings/EVE_offline/EVE_offline_weather_station.ino){download="EVE_offline_weather_station.ino"}
+
+``` {.cpp filename="EVE_offline_weather_station.ino"}
+#include <Wire.h>
+#include <RTClib.h>
+//#include <Adafruit_SHT31.h>
+#include "Adafruit_SHT4x.h"
+#include <Adafruit_BMP280.h>
+
+#define FRAM_I2C_ADDR  0x50
+#define ADDRESS_STORE  0x0000   // Where the write pointer is stored
+#define DATA_START     0x0010   // Leave first 16 bytes empty to avoid overlap
+#define RECORD_SIZE    20        // 4 (timestamp) + 4 (air temperature) + 4 (humidity) + 4 (PAR) + 4 (air pressure)
+#define DONE_PIN 9  // Pin connected to TPL5110 DONE
+
+RTC_DS3231 rtc;
+//Adafruit_SHT31 sht31 = Adafruit_SHT31();
+Adafruit_SHT4x sht4 = Adafruit_SHT4x();
+String inputBuffer;
+Adafruit_BMP280 bmp; // I2C
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+  pinMode(DONE_PIN, OUTPUT);
+  digitalWrite(DONE_PIN, LOW);  // Ensure it's low initially
+
+  if (!rtc.begin()) {
+    Serial.println("Couldn't find RTC");
+    while (1);
+  }
+
+  Serial.println(rtc.lostPower());
+
+ if (!bmp.begin(0x76)) {  // Or 0x77 depending on your module
+    Serial.println("Could not find BMP280 sensor!");
+    while (1);
+  }
+  
+  //if (!sht31.begin(0x44)) {
+  //  Serial.println("Couldn't find SHT31 sensor");
+  //  while (1);
+  //}
+  if (! sht4.begin()) {
+    Serial.println("Couldn't find SHT4x");
+    while (1) delay(1);
+  }
+  sht4.setPrecision(SHT4X_HIGH_PRECISION);
+  sht4.setHeater(SHT4X_NO_HEATER);
+  //Serial.println("System ready. Type 'read' to dump FRAM, 'reset' to clear pointer.");
+}
+
+void loop() {
+unsigned long start = millis();
+while (millis() - start < 20000) {  // Wait up to 15 seconds
+  if (Serial.available()) {
+    inputBuffer = Serial.readStringUntil('\n');
+    inputBuffer.trim();
+
+    if (inputBuffer == "read") {
+      readFRAM();
+      return;
+    } else if (inputBuffer == "reset") {
+      setAddressPointer(DATA_START);
+      Serial.println("Pointer reset to DATA_START (0x0010).");
+      return;
+    }
+  }
+}
+
+  // Take 5-second averaged readings
+  const unsigned long sampleDuration = 5000;
+  const unsigned long sampleInterval = 500;
+  const int numSamples = sampleDuration / sampleInterval;
+
+  float tempSum = 0, humSum = 0, parSum = 0, presSum = 0;
+  int validSamples = 0;
+
+  for (int i = 0; i < numSamples; i++) {
+    //float t = sht31.readTemperature();
+    //float h = sht31.readHumidity();
+    sensors_event_t humidity, temp;
+    sht4.getEvent(&humidity, &temp); // Populate temp and humidity objects
+
+    float t = temp.temperature;   // in °C
+    float h = humidity.relative_humidity; // in %
+    float p = analogRead(A3);
+    float pres = bmp.readPressure() / 100.0; // hPa
+    
+    if (!isnan(t) && !isnan(h)) {
+      tempSum += t;
+      humSum += h;
+      parSum += p;
+      presSum += pres;
+      validSamples++;
+    }
+    delay(sampleInterval);
+  }
+  delay(1000);                    // Give TPL time to react
+
+
+
+  float temp = validSamples > 0 ? tempSum / validSamples : NAN;
+  float hum = validSamples > 0 ? humSum / validSamples : NAN;
+  float par = validSamples > 0 ? parSum / validSamples : NAN;
+  float pressure = validSamples > 0 ? presSum / validSamples : NAN;
+
+  uint32_t timestamp = rtc.now().unixtime();
+
+  if (!isnan(temp) && !isnan(hum) && !isnan(par) && !isnan(pressure)) {
+    uint16_t addr = getAddressPointer();
+    writeRecord(addr, timestamp, temp, hum, par, pressure);
+    setAddressPointer(addr + RECORD_SIZE);
+
+    Serial.print(addr); Serial.print(";");
+    Serial.print(addr + RECORD_SIZE); Serial.print(";");
+    Serial.print(timestamp); Serial.print(";");
+    Serial.print(temp); Serial.print(";");
+    Serial.print(hum); Serial.print(";");
+    Serial.print(pressure); Serial.print(";");
+    Serial.println(par);
+  } else {
+    Serial.println("Sensor read failed");
+  }
+
+  delay(1000);                    // Give TPL time to react
+  digitalWrite(DONE_PIN, HIGH);  // Signal to TPL5110 that we're done
+  delay(100);                    // Give TPL time to react
+}
+
+void writeRecord(uint16_t addr, uint32_t ts, float temp, float hum, float par, float pres) {
+  union { float f; uint8_t b[4]; } tf, hf, pf, prf;
+  tf.f = temp;
+  hf.f = hum;
+  pf.f = par;
+  prf.f = pres;
+
+  Wire.beginTransmission(FRAM_I2C_ADDR);
+  Wire.write(addr >> 8);
+  Wire.write(addr & 0xFF);
+  Wire.write(ts & 0xFF);
+  Wire.write((ts >> 8) & 0xFF);
+  Wire.write((ts >> 16) & 0xFF);
+  Wire.write((ts >> 24) & 0xFF);
+  for (int i = 0; i < 4; i++) Wire.write(tf.b[i]);
+  for (int i = 0; i < 4; i++) Wire.write(hf.b[i]);
+  for (int i = 0; i < 4; i++) Wire.write(pf.b[i]);
+  for (int i = 0; i < 4; i++) Wire.write(prf.b[i]);
+  Wire.endTransmission();
+}
+
+void readFRAM() {
+  //Serial.println("Dumping FRAM records (timestamp, temp °C, hum %, PAR, air pressure):");
+
+  uint16_t endAddr = getAddressPointer();
+  for (uint16_t addr = DATA_START; addr + RECORD_SIZE <= endAddr; addr += RECORD_SIZE) {
+    Wire.beginTransmission(FRAM_I2C_ADDR);
+    Wire.write(addr >> 8);
+    Wire.write(addr & 0xFF);
+    Wire.endTransmission();
+
+    Wire.requestFrom(FRAM_I2C_ADDR, RECORD_SIZE);
+    while (Wire.available() < RECORD_SIZE);
+
+    uint32_t ts = Wire.read();
+    ts |= (uint32_t)Wire.read() << 8;
+    ts |= (uint32_t)Wire.read() << 16;
+    ts |= (uint32_t)Wire.read() << 24;
+
+  union { float f; uint8_t b[4]; } tf, hf, pf, prf;
+   for (int i = 0; i < 4; i++) tf.b[i] = Wire.read();
+   for (int i = 0; i < 4; i++) hf.b[i] = Wire.read();
+   for (int i = 0; i < 4; i++) pf.b[i] = Wire.read();
+   for (int i = 0; i < 4; i++) prf.b[i] = Wire.read();
+
+  Serial.print(ts); Serial.print(";");
+  Serial.print(tf.f); Serial.print(";");
+  Serial.print(hf.f); Serial.print(";");
+  Serial.print(pf.f); Serial.print(";");
+  Serial.println(prf.f);
+  }
+}
+
+uint16_t getAddressPointer() {
+  Wire.beginTransmission(FRAM_I2C_ADDR);
+  Wire.write(ADDRESS_STORE >> 8);
+  Wire.write(ADDRESS_STORE & 0xFF);
+  Wire.endTransmission();
+
+  Wire.requestFrom(FRAM_I2C_ADDR, 2);
+  while (Wire.available() < 2);
+  uint8_t msb = Wire.read();
+  uint8_t lsb = Wire.read();
+
+  uint16_t ptr = ((uint16_t)msb << 8) | lsb;
+  return ptr < DATA_START ? DATA_START : ptr;
+}
+
+void setAddressPointer(uint16_t addr) {
+  Wire.beginTransmission(FRAM_I2C_ADDR);
+  Wire.write(ADDRESS_STORE >> 8);
+  Wire.write(ADDRESS_STORE & 0xFF);
+  Wire.write(addr >> 8);
+  Wire.write(addr & 0xFF);
+  Wire.endTransmission();
+}
+```
+
+4.  [EVE Online Weather Station](X_Appendix_A_full_code_listings/EVE_online/EVE_online_weather_station.txt){download="EVE_online_weather_station.txt"}
+
+``` {.cpp filename="EVE_online_weather_station.txt"}
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <Wire.h>
+#include "Adafruit_SHT4x.h"
+#include <Adafruit_BMP280.h>
+#include "BluetoothSerial.h"
+
+// Disclaimer: This example code is part of a research prototype.
+// It is provided "as is", without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+
+// -----------------------------------------------------------------------------
+// User configuration section
+// -----------------------------------------------------------------------------
+
+// === Wi-Fi credentials ===
+// TODO: Insert the SSID (network name) and password of the Wi-Fi network
+// that should be used by the EVE-NODE in the field.
+const char* ssid     = "YOUR_WIFI_SSID_HERE";
+const char* password = "YOUR_WIFI_PASSWORD_HERE";
+
+// === Server URL with token ===
+// TODO: Replace this with the full URL of your ingestion endpoint, including
+// the token you configured in esp32_data.php (e.g. ?token=YOUR_LONG_RANDOM_TOKEN).
+const char* serverName =
+  "http://your-server.example.org/esp32_data.php?token=YOUR_LONG_RANDOM_TOKEN";
+
+// === Device identifier ===
+// TODO: Give each physical node a unique device_id string. This must match the
+// device_id stored in the database (nodes/device_id).
+const char* deviceId = "EVE-NODE-XX";
+
+// === Bluetooth device name (optional, for debugging) ===
+const char* btName = "EVE-NODE-DEBUG";
+
+// -----------------------------------------------------------------------------
+// Sensors and hardware configuration
+// -----------------------------------------------------------------------------
+
+Adafruit_SHT4x sht4 = Adafruit_SHT4x();
+Adafruit_BMP280 bmp;
+
+BluetoothSerial SerialBT;
+
+// TPL5110 DONE pin: set HIGH when the measurement cycle is finished so that the
+// external timer can power down the node.
+const int DONE_PIN = 17;
+
+// PAR sensor configuration
+const int   parPin       = 34;       // GPIO34 ADC input
+const float R_load       = 4700.0;   // Load resistor in ohms
+const float responsivity = 0.0075 / 1e6; // A/lux (example value)
+
+// Timing: average over 5 seconds, with one sample every 0.5 seconds.
+const unsigned long sampleDuration = 5000;   // ms
+const unsigned long sampleInterval = 500;    // ms
+const int           numSamples     = sampleDuration / sampleInterval;
+
+// -----------------------------------------------------------------------------
+// Setup
+// -----------------------------------------------------------------------------
+
+void setup() {
+  Serial.begin(9600);          // USB Serial for debugging
+  SerialBT.begin(btName);      // Bluetooth Serial for field debugging
+
+  Wire.begin();
+
+  pinMode(DONE_PIN, OUTPUT);
+  digitalWrite(DONE_PIN, LOW);
+
+  // --- Connect to Wi-Fi ---
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to Wi-Fi");
+  SerialBT.print("Connecting to Wi-Fi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+    SerialBT.print(".");
+  }
+  Serial.println("\n✅ Wi-Fi connected");
+  SerialBT.println("\n✅ Wi-Fi connected");
+
+  // --- Initialize sensors ---
+  if (!sht4.begin()) {
+    Serial.println("❌ SHT4x not found");
+    SerialBT.println("❌ SHT4x not found");
+    while (true) {
+      delay(1);
+    }
+  }
+  sht4.setPrecision(SHT4X_HIGH_PRECISION);
+
+  if (!bmp.begin(0x76)) {
+    Serial.println("❌ BMP280 not found");
+    SerialBT.println("❌ BMP280 not found");
+    while (true) {
+      delay(1);
+    }
+  }
+
+  analogReadResolution(12); // ESP32 ADC: 0–4095 for 0–3.3 V (default 12 bit)
+}
+
+// -----------------------------------------------------------------------------
+// Main loop: measure, average, send once, then signal DONE
+// -----------------------------------------------------------------------------
+
+void loop() {
+  float tempSum    = 0.0f;
+  float humSum     = 0.0f;
+  float bmpTempSum = 0.0f;
+  float presSum    = 0.0f;
+  float parSum     = 0.0f;
+  int   validSamples = 0;
+
+  // --- Sampling loop with simple averaging ---
+  for (int i = 0; i < numSamples; i++) {
+    sensors_event_t hum, temp;
+    sht4.getEvent(&hum, &temp);
+
+    float bmpTemp  = bmp.readTemperature();     // °C
+    float pressure = bmp.readPressure() / 100.0; // hPa
+
+    int   rawPar   = analogRead(parPin);
+    float voltage  = rawPar * (3.3f / 4095.0f);
+    float currentA = voltage / R_load;
+    float lux      = currentA / responsivity;   // very approximate PAR proxy
+
+    if (!isnan(temp.temperature) && !isnan(hum.relative_humidity)) {
+      tempSum    += temp.temperature;
+      humSum     += hum.relative_humidity;
+      bmpTempSum += bmpTemp;
+      presSum    += pressure;
+      parSum     += lux;
+      validSamples++;
+    }
+
+    delay(sampleInterval);
+  }
+
+  if (validSamples == 0) {
+    Serial.println("⚠️ No valid sensor samples collected");
+    SerialBT.println("⚠️ No valid sensor samples collected");
+  } else {
+    float avgTemp    = tempSum    / validSamples;
+    float avgHum     = humSum     / validSamples;
+    float avgBmpTemp = bmpTempSum / validSamples;
+    float avgPres    = presSum    / validSamples;
+    float avgPar     = parSum     / validSamples;
+
+    // --- Build JSON payload ---
+    String payload = "{";
+    payload += "\"device_id\":\"" + String(deviceId) + "\",";
+    payload += "\"sht_temp\":"   + String(avgTemp,    2) + ",";
+    payload += "\"humidity\":"   + String(avgHum,     2) + ",";
+    payload += "\"bmp_temp\":"   + String(avgBmpTemp, 2) + ",";
+    payload += "\"pressure\":"   + String(avgPres,    2) + ",";
+    payload += "\"par\":"        + String(avgPar,     2);
+    payload += "}";
+
+    // --- Debug Output ---
+    Serial.println("📤 Sending JSON:");
+    Serial.println(payload);
+    SerialBT.println("📤 Sending JSON:");
+    SerialBT.println(payload);
+
+    // --- Send JSON to server ---
+    if (WiFi.status() == WL_CONNECTED) {
+      HTTPClient http;
+      http.begin(serverName);
+      http.addHeader("Content-Type", "application/json");
+
+      int responseCode = http.POST(payload);
+      Serial.print("📶 Server response: ");
+      Serial.println(responseCode);
+      SerialBT.print("📶 Server response: ");
+      SerialBT.println(responseCode);
+
+      http.end();
+    } else {
+      Serial.println("⚠️ Wi-Fi not connected");
+      SerialBT.println("⚠️ Wi-Fi not connected");
+    }
+  }
+
+  // Small delay, then signal to the external timer that we are finished.
+  delay(1000);
+  digitalWrite(DONE_PIN, HIGH);
+  delay(100);
+}
+```
+
+5.  [Mesocosm System](X_Appendix_A_full_code_listings/Mesocosm_System.ino){download="Mesocosm_System.ino"}
+
+``` {.cpp filename="Mesocosm_System.ino"}
+// Mesocosm System for Automatic CO2 and ET flux measurements 
+// Written by Wael Al Hamwi & Dr.Mathias Hoffmann 
+// Version 0.1
+
+
+// Import the required libraries
+#include "Wire.h"
+#include <SD.h>
+#include <SPI.h>
+#include "RTClib.h"
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include "kSeries.h" 
+#include "Adafruit_SHT31.h"
+#include <Arduino.h>
+
+
+// Define the input PIN
+const int chipSelect = 10; // define the PIN for datalogger shield
+#define RELAY_PIN 4 // define the PIN for Relay
+#define RELAY_PIN_2 5 // define the PIN for Relay
+#define Mosfet_PIN 7 // define the PIN for Mosfet
+// The closing and opening time is dteremined by multiplying the "Close_time" or "Open_time" by "Measurement_freq". 
+//exp --> 60 * 5000 = 300000 Miliseconds = 5 Minutes for opening , 300 * 5000 = 1500000 Miliseconds = 25 Minutes for closing
+int Close_time=60;
+int Open_time=300;
+int Measurement_freq=5000;
+
+
+RTC_DS1307 rtc; // Initialize the real-time clock object
+String timestring; // String to store the formatted timestamp
+Adafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an object for the SHT31 sensor
+kSeries K_30_Serial(13,12);  // Sets up a virtual serial port for K-30 CO2 sensor
+
+
+int valMultiplier = 1; // Multiplier for value. Default is 1. Set to 3 for K-30 3% and 10 for K-33 ICB
+unsigned long previousMillis = 0;
+const long interval = 3000; // The interval in milliseconds between CO2 readings and data logging
+
+void setup()
+{
+  Serial.begin(9600);// Initialize the Serial communication with a baud rate of 9600
+
+  delay(1000); // Wait for 1 second to allow devices to initialize
+  Serial.print("Initializing SD card...");
+  rtc.begin(); // Initialize the real-time clock
+
+  // Check if the SD card is present and can be initialized:
+  if (!SD.begin(chipSelect)) {
+    Serial.println("Card failed, or not present");
+    // If the SD card cannot be initialized, enter an endless loop:
+    while (1);
+  }
+  Serial.println("card initialized.");
+  
+  Wire.begin(); // Initialize I2C communication
+  sht31.begin(0x44); // Initialize the SHT31 sensor with the I2C address 0x44
+
+
+  Wire.setClock(100000); // Set I2C clock speed to 100kHz
+  pinMode(flowMeterPin, INPUT_PULLUP); // Set flow meter pin as INPUT_PULLUP
+  pinMode(RELAY_PIN, OUTPUT); // Set RELAY_PIN as an output pin
+  pinMode(RELAY_PIN_2, OUTPUT); // Set RELAY_PIN_2 as an output pin
+  pinMode(Mosfet_PIN, OUTPUT); // Set Mosfet_PIN as an output pin
+}
+
+void loop()
+{
+ int i=0;
+ while(i<Close_time) {
+    digitalWrite(RELAY_PIN, LOW); // Turn the RELAY_PIN on (low state)
+    digitalWrite(RELAY_PIN_2, HIGH); // Turn the RELAY_PIN_2 off (high state)
+    digitalWrite(Mosfet_PIN, LOW); // Turn the Mosfet_PIN on (low state)
+
+    unsigned long currentMillis = millis(); // Get the current time in milliseconds
+    if (currentMillis - previousMillis >= interval) {
+      previousMillis = currentMillis; 
+      double co2 = K_30_Serial.getCO2('p'); // Read CO2 concentration from the K-30 CO2 sensor ('p' for ppm)
+      (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check)
+      (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check)
+    
+      float t = sht31.readTemperature(); // Read temperature from the SHT31 sensor
+      float h = sht31.readHumidity(); // Read humidity from the SHT31 sensor
+
+      DateTime now = rtc.now(); // Get the current date and time from the real-time clock
+      timestring = now.day();
+      timestring += "-";
+      timestring += now.month();
+      timestring += "-";
+      timestring += now.year();
+      timestring += " ";
+      timestring += now.hour();
+      timestring += ":";
+      timestring += now.minute();
+      timestring += ":";
+      timestring += now.second();
+      Serial.print(timestring); // Print the formatted timestamp to the Serial monitor
+      Serial.print(";");
+      Serial.print("1"); // Indicator for the coffen being open (0 for open, 1 for closed)
+      Serial.print(";");
+      Serial.print(t); // Print temperature to the Serial monitor
+      Serial.print(";");
+      Serial.print(h); // Print humidity to the Serial monitor
+      Serial.print(";");  
+      Serial.print(co2); // Print CO2 concentration to the Serial monitor
+
+   
+  
+      File dataFile = SD.open("datalog.txt", FILE_WRITE);
+
+     // If the file is available, write the data to it:
+      if (dataFile) {
+
+    
+    
+        dataFile.print(timestring); // Write the timestamp to the file
+        dataFile.print(";");
+        dataFile.print(t); // Write the temperature to the file
+        dataFile.print(";");
+        dataFile.print(h); // Write the humidity to the file
+        dataFile.print(";");
+        dataFile.print("1"); // Write the indicator for coffen open to the file
+        dataFile.print(";");
+        dataFile.println(co2); // Write the CO2 concentration to the file
+
+        dataFile.close();
+        }
+
+      
+       // If the file isn't open, print an error message to the Serial monitor:
+      else {
+        Serial.println("error opening datalog.txt");
+      }
+
+
+    }
+  Serial.print(";"); 
+  Serial.println(i); 
+  i++;
+  delay(Measurement_freq); // Delay for 3 seconds between iterations
+  }
+  
+ int j=0;
+ while(j<Open_time) {
+    digitalWrite(RELAY_PIN, HIGH);  // Turn the RELAY_PIN off (high state)
+    digitalWrite(RELAY_PIN_2, LOW); // Turn the RELAY_PIN_2 on (low state)
+    digitalWrite(Mosfet_PIN, HIGH); // Turn the Mosfet_PIN off (high state)
+    //digitalWrite(Mosfet_CO2, HIGH); // Turn the Mosfet_CO2 off (high state)
+
+    static int negativeCO2Count = 0;
+    
+    unsigned long currentMillis = millis(); // Get the current time in milliseconds
+    if (currentMillis - previousMillis >= interval) {
+      previousMillis = currentMillis; 
+      double co2 = K_30_Serial.getCO2('p'); // Read CO2 concentration from the K-30 CO2 sensor ('p' for ppm)
+      (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check)
+      (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check) 
+
+      if (co2 < 0) { // securety Loop for resarting the CO2 sensor in case of the sensor faild 
+        negativeCO2Count++; // Increment the negative CO2 counter
+        if (negativeCO2Count >= 3) { // if there are 3 negative CO2 value,do a restart for the sensor
+          delay(1000); // delay for 1 seconds
+          //digitalWrite(Mosfet_CO2, HIGH);
+          double co2 = K_30_Serial.getCO2('p'); // Read CO2 concentration from the K-30 CO2 sensor ('p' for ppm)
+          (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check)
+          (co2 < 0) ? co2 = K_30_Serial.getCO2('p') : co2; // Re-read if negative value (error check) 
+        }
+      } else {
+        //digitalWrite(Mosfet_CO2, HIGH); // Turn on the Mosfet_PIN (high state)
+        negativeCO2Count = 0; // Reset the negative CO2 counter
+      }   
+
+      float t = sht31.readTemperature(); // Read humidity from the SHT31 sensor
+      float h = sht31.readHumidity(); // Read humidity from the SHT31 sensor
+
+      DateTime now = rtc.now(); // Get the current date and time from the real-time clock
+      timestring = now.day();
+      timestring += "-";
+      timestring += now.month();
+      timestring += "-";
+      timestring += now.year();
+      timestring += " ";
+      timestring += now.hour();
+      timestring += ":";
+      timestring += now.minute();
+      timestring += ":";
+      timestring += now.second();
+      Serial.print(timestring); // Print the formatted timestamp to the Serial monitor
+      Serial.print(";");
+      Serial.print("0"); // Indicator for the coffen being closed (0 for open, 1 for closed)
+      Serial.print(";");
+      Serial.print(t); // Print temperature to the Serial monitor
+      Serial.print(";");
+      Serial.print(h); // Print humidity to the Serial monitor
+      Serial.print(";");
+      Serial.print(co2); // Print CO2 concentration to the Serial monitor
+
+
+   
+  
+      File dataFile = SD.open("datalog.txt", FILE_WRITE); // Open the data log file in write mode
+
+     // if the file is available, write to it:
+      if (dataFile) {
+
+        dataFile.print(timestring); // Write the timestamp to the file
+        dataFile.print(";");
+        dataFile.print(t); // Write the temperature to the file
+        dataFile.print(";");
+        dataFile.print(h); // Write the humidity to the file
+        dataFile.print(";");
+        dataFile.print("0"); // Write the indicator for coffen Open to the file
+        dataFile.print(";");
+        dataFile.println(co2); // Write the CO2 concentration to the file
+
+
+        dataFile.close(); // Close the file
+        }
+
+      
+      // If the file isn't open, print an error message to the Serial monitor:
+      else {
+        Serial.println("error opening datalog.txt");
+      }
+
+    }
+  Serial.print(";"); 
+  Serial.println(j); 
+  j++;
+  delay(Measurement_freq);  // Delay between iterations
+  }
+}
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+The following Arduino IDE scripts are included in the Zenodo uploads and are also downloadable via the links below from the Github repository for this project. They are also available in the GitHub repository for this project under the folder `X_Appendix_A_full_code_listings/`.:
+
+1.  [Automatic_NDVI.ino](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_A_full_code_listings/Automatic_NDVI/Automatic_NDVI.ino)
+
+2.  [Manual_System_CO2_ET_fluxes.ino](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_A_full_code_listings/Manual_System_CO2_ET_fluxes/Manual_System_CO2_ET_fluxes%20.ino)
+
+3.  [EVE_offline_weather_station.ino](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_A_full_code_listings/EVE_offline/EVE_offline_weather_station.ino)
+
+4.  [EVE_online_weather_station.txt](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_A_full_code_listings/EVE_online/EVE_online_weather_station.txt)
+
+5.  [Mesocosm_System.ino](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_A_full_code_listings/Mesocosm_System.ino)
+:::
+
+## Appendix B — 3D-printing/PCB board files {#sec-appendix_B .unnumbered}
+
+3D-printing STL files and PCB design archives for building the sensor systems.
+
+::: {.content-visible when-format="html"}
+1.  [PAR_Sensor_case.stl](X_Appendix_B_3D_printing_PCB_board_files/PAR_Sensor_case.stl){download="PAR_Sensor_case.stl"}
+
+2.  [NDVI_PRI_Sensor_case.stl](X_Appendix_B_3D_printing_PCB_board_files/NDVI_PRI_Sensor_case.stl){download="NDVI_PRI_Sensor_case.stl"}
+
+3.  [Automatic_NDVI_System_case_I.stl](X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_System_case_I.stl){download="Automatic_NDVI_System_case_I.stl"}
+
+4.  [Automatic_NDVI_System_case_II.stl](X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_System_case_II.stl){download="Automatic_NDVI_System_case_II.stl"}
+
+5.  [Automatic_NDVI_AS7262_3_case.stl](X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_AS7262_3_case.stl){download="Automatic_NDVI_AS7262_3_case.stl"}
+
+6.  [Manual_CO2_ET_System_K30_FR_sensor_case.stl](X_Appendix_B_3D_printing_PCB_board_files/Manual_CO2_ET_System_K30_FR_sensor_case.stl){download="Manual_CO2_ET_System_K30_FR_sensor_case.stl"}
+
+7.  [EVE_PAR_sensor_case.stl](X_Appendix_B_3D_printing_PCB_board_files/EVE_PAR_sensor_case.stl){download="EVE_PAR_sensor_case.stl"}
+
+8.  [EVE_SHT41_case.stl](X_Appendix_B_3D_printing_PCB_board_files/EVE_SHT41_case.stl){download="EVE_SHT41_case.stl"}
+
+9.  [Automatic_NDVI_PRI_System_PCB.zip](X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_PRI_System_PCB.zip){download="Automatic_NDVI_PRI_System_PCB.zip"}
+
+10. [Manual_CO2_ET_System_PCB.zip](X_Appendix_B_3D_printing_PCB_board_files/Manual_CO2_ET_System_PCB.zip){download="Manual_CO2_ET_System_PCB.zip"}
+
+11. [NiMH_Solar_Trickle_Charger_PCB.zip](X_Appendix_B_3D_printing_PCB_board_files/NiMH_Solar_Trickle_Charger_PCB.zip){download="NiMH_Solar_Trickle_Charger_PCB.zip"}
+
+12. [EVE_Weather_station.zip](X_Appendix_B_3D_printing_PCB_board_files/EVE_Weather_station.zip){download="EVE_Weather_station.zip"}
+:::
+
+::: {.content-visible when-format="pdf"}
+The following 3D-printing STL files and PCB design archives are included in the Zenodo uploads and are also downloadable via the links below from the Github repository for this project. They are also available in the GitHub repository for this project under the folder `X_Appendix_B_3D_printing_PCB_board_files/`.:
+
+1.  [PAR_Sensor_case.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/PAR_Sensor_case.stl)
+
+2.  [NDVI_PRI_Sensor_case.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/NDVI_PRI_Sensor_case.stl)
+
+3.  [Automatic_NDVI_System_case_I.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_System_case_I.stl)
+
+4.  [Automatic_NDVI_System_case_II.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_System_case_II.stl)
+
+5.  [Automatic_NDVI_AS7262_3_case.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_AS7262_3_case.stl)
+
+6.  [Manual_CO2_ET_System_K30_FR_sensor_case.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/Manual_CO2_ET_System_K30_FR_sensor_case.stl)
+
+7.  [EVE_PAR_sensor_case.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/EVE_PAR_sensor_case.stl)
+
+8.  [EVE_SHT41_case.stl](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/EVE_SHT41_case.stl)
+
+9.  [Automatic_NDVI_PRI_System_PCB.zip](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/Automatic_NDVI_PRI_System_PCB.zip)
+
+10. [Manual_CO2_ET_System_PCB.zip](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/Manual_CO2_ET_System_PCB.zip)
+
+11. [NiMH_Solar_Trickle_Charger_PCB.zip](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/NiMH_Solar_Trickle_Charger_PCB.zip)
+
+12. [EVE_Weather_station.zip](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_B_3D_printing_PCB_board_files/EVE_Weather_station.zip)
+:::
+
+## Appendix C — Other Software {#sec-appendix_C .unnumbered}
+
+Additional software components including mobile applications, database schemas, and backend dashboard scripts. Click the links below to download the files from the GitHub repository for this project, or access them in the GitHub repository under the folder `X_Appendix_C_other_software/`.
+
+::: {.content-visible when-format="html"}
+1.  [MonksHillLab Logger App](X_Appendix_C_other_software/MonksHillLab_Logger_APP.apk){download="MonksHillLab_Logger_APP.apk"}
+
+2.  [Dashboard Backend Scripts](X_Appendix_C_other_software/Dashboard_Backend_Scripts){download="Dashboard_Backend_Scripts.zip"}
+
+3.  [SQL Database Schema](X_Appendix_C_other_software/SQL_scheme.txt){download="SQL_scheme.txt"}
+
+``` {.sql filename="SQL_scheme.txt"}
+-- Disclaimer: Example SQL schema for a research supplement.
+-- Review and adapt (database name, sizes, indexes) before production use.
+
+-- 1) Create database (optional)
+-- TODO: Replace YOUR_DATABASE_NAME_HERE with your actual DB name.
+CREATE DATABASE IF NOT EXISTS YOUR_DATABASE_NAME_HERE
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE YOUR_DATABASE_NAME_HERE;
+
+-- 2) Users table --------------------------------------------------------
+-- Used for authentication (login.php, auth.php, create_admin.php, create_team_user.php)
+
+CREATE TABLE users (
+  id            INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  email         VARCHAR(190) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role          ENUM('user','admin') NOT NULL DEFAULT 'user',
+  created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_email (email)
+) ENGINE=InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+-- 3) Sites table --------------------------------------------------------
+-- Logical sites/locations for dashboards (index.php, site.php, admin/site_edit.php)
+
+CREATE TABLE sites (
+  id              INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name            VARCHAR(190) NOT NULL,
+  slug            VARCHAR(190) NOT NULL,
+  background_path VARCHAR(255) DEFAULT NULL,
+  created_at      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_slug (slug)
+) ENGINE=InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+-- 4) Nodes table --------------------------------------------------------
+-- Individual devices (EVE-NODE) belonging to a site (site.php, api/data.php, download.php, admin/site_edit.php)
+
+CREATE TABLE nodes (
+  id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  site_id     INT UNSIGNED NOT NULL,
+  name        VARCHAR(190) NOT NULL,
+  device_id   VARCHAR(64) NOT NULL,
+  device_type VARCHAR(64) DEFAULT NULL,
+  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_site_id (site_id),
+  UNIQUE KEY uniq_device_id (device_id),
+  CONSTRAINT fk_nodes_site
+    FOREIGN KEY (site_id) REFERENCES sites(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+-- 5) Sensor data table --------------------------------------------------
+-- Time series from EVE-NODE (esp32_data.php, api/data.php, download.php, dashboard.php)
+
+CREATE TABLE sensor_data (
+  id         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  timestamp  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  device_id  VARCHAR(64) NOT NULL,
+  sht_temp   DOUBLE DEFAULT NULL,
+  humidity   DOUBLE DEFAULT NULL,
+  bmp_temp   DOUBLE DEFAULT NULL,
+  pressure   DOUBLE DEFAULT NULL,
+  par        DOUBLE DEFAULT NULL,
+  battery    DOUBLE DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY idx_device_time (device_id, timestamp),
+  KEY idx_time (timestamp)
+) ENGINE=InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci;
+
+-- Notes:
+-- - CO2 and methane columns are intentionally omitted to match the cleaned PHP code.
+-- - Only EVE-NODE devices are assumed; device_type is kept generic for future extensions.
+-- - The esp32_data.php ingestion script relies on timestamp having a DEFAULT CURRENT_TIMESTAMP.
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+The following software components are available in the Zenodo uploads and are also downloadable via the links below from the Github repository for this project. They are also available in the GitHub repository for this project under the folder `X_Appendix_C_other_software/`.:
+
+1.  [MonksHillLab_Logger_APP.apk](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_C_other_software/MonksHillLab_Logger_APP.apk)
+
+2.  [Dashboard_Backend_Scripts](https://github.com/zalf-lli/LCSfFE-handbook/tree/main/X_Appendix_C_other_software/Dashboard_Backend_Scripts)
+
+3.  [SQL_scheme.txt](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_C_other_software/SQL_scheme.txt)
+:::
+
+## Appendix D — Supporting Data {#sec-appendix_D .unnumbered}
+
+Supporting datasets from field deployments and sensor comparison tests. Click the links below to download the files from the GitHub repository for this project, or access them in the GitHub repository under the folder `X_Appendix_D_Supporting_Data/`.
+
+::: {.content-visible when-format="html"}
+1.  [36h_PAR_comparison_test.csv](X_Appendix_D_Supporting_Data/36h_PAR_comparison_test.csv){download="36h_PAR_comparison_test.csv"} — 36-hour PAR sensor comparison test data
+
+2.  [48h_PAR_comparison_test.csv](X_Appendix_D_Supporting_Data/48h_PAR_comparison_test.csv){download="48h_PAR_comparison_test.csv"} — 48-hour PAR sensor comparison test data
+
+3.  [EVE_Offline_Field_Deployment.csv](X_Appendix_D_Supporting_Data/EVE_Offline_Field_Deployment.csv){download="EVE_Offline_Field_Deployment.csv"} — EVE offline weather station field deployment data
+
+4.  [EVE_Online_Field_Deployment.csv](X_Appendix_D_Supporting_Data/EVE_Online_Field_Deployment.csv){download="EVE_Online_Field_Deployment.csv"} — EVE online weather station field deployment data
+:::
+
+::: {.content-visible when-format="pdf"}
+The following datasets are available in the Zenodo uploads and are also downloadable via the links below from the Github repository for this project. They are also available in the GitHub repository for this project under the folder `X_Appendix_D_Supporting_Data/`.:
+
+1.  [36h_PAR_comparison_test.csv](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_D_Supporting_Data/36h_PAR_comparison_test.csv) — 36-hour PAR sensor comparison test data
+
+2.  [48h_PAR_comparison_test.csv](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_D_Supporting_Data/48h_PAR_comparison_test.csv) — 48-hour PAR sensor comparison test data
+
+3.  [EVE_Offline_Field_Deployment.csv](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_D_Supporting_Data/EVE_Offline_Field_Deployment.csv) — EVE offline weather station field deployment data
+
+4.  [EVE_Online_Field_Deployment.csv](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/X_Appendix_D_Supporting_Data/EVE_Online_Field_Deployment.csv) — EVE online weather station field deployment data
+:::

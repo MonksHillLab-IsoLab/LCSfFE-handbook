@@ -1,0 +1,26 @@
+<?php
+// /esp32/dashboard/config.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+
+// Basic database configuration used by the dashboard backend.
+// TODO: Replace all placeholder values with your own database settings.
+define('DB_HOST', 'localhost');                 // e.g. 'localhost'
+define('DB_NAME', 'YOUR_DATABASE_NAME_HERE');   // TODO: set your database name
+define('DB_USER', 'YOUR_DATABASE_USER_HERE');   // TODO: set your database user
+define('DB_PASS', 'YOUR_DATABASE_PASSWORD_HERE'); // TODO: set your database password
+
+// Base URL of the dashboard relative to the web server root.
+// Adjust this if you deploy the dashboard in a different directory.
+define('BASE_URL', '/esp32/dashboard');
+
+// Configure secure session cookies. This must be called before session_start().
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path'     => '/',
+    'domain'   => '',
+    'secure'   => !empty($_SERVER['HTTPS']), // set to true if you always use HTTPS
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);

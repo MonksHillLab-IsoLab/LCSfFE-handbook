@@ -2,4 +2,56 @@
 title: "Software Solutions"
 ---
 
-In summary, this book has no content whatsoever.
+## MonksHillLab Logger App {#sec-monkshilllab-app}
+
+### Purpose & Use Case: {#sec-monkshilllab-app-purpose}
+
+The “MonkshillLab Logger App” is an Android-based tool developed to support field deployment of low-cost DIY environmental monitoring systems presented in this Handbook. It enables wireless Bluetooth communication between mobile devices and DIY sensors, allowing users to retrieve logged data or trigger new measurements directly in the field. For systems like the handheld NDVI sensor (see 2.2.1), the app is essential, as data are stored solely on the mobile device. For other platforms such as the weather station (see 2.1.3) and the manual system to measure CO₂/ET fluxes (2.3.1), the app usage is optional but provides a convenient alternative to physical data retrieval. Beyond sensor communication, the app includes modes for manually entering field observations—such as leaf temperature or soil moisture. This allows users to directly digitize field data at the point of measurement, improving organization and reducing transcription errors. All functionalities are structured into modular “modes” within the app, which users can select depending on the used low-cost DIY system or measurement task in field.
+
+### System Requirements: {#sec-monkshilllab-app-requirements}
+
+The “MonkshillLab Logger App” is developed using [MIT App Inventor](https://appinventor.mit.edu/) and is currently available as a standalone `.apk` file (\~3.7 MB; Appendix C). It is compatible with most Android devices, typically Android 6.0 (Marshmallow) or higher. The app is not available on the Google Play Store and must be downloaded manually (see 3.1.3). For Bluetooth communication, the app is designed to work with HC-05 Bluetooth modules, which operate using the classic Bluetooth protocol. These modules are commonly used in low-cost DIY microcontroller systems and are supported by Android. iOS devices are not compatible with HC-05 modules and are therefore not supported by the current version of the app. To ensure proper functionality, the Android device must support:
+
+1.  Classic Bluetooth (not only BLE)
+2.  External storage access, which is needed to store `.csv` files in download folder
+3.  Location permission, which is needed to scan for new Bluetooth devices
+
+### Installation & Setup: {#sec-monkshilllab-app-installation}
+
+The “MonkshillLab Logger App” is distributed as a standalone `.apk` file (see Appendix C) and must be installed manually. The file can be transferred to the Android device via USB, Bluetooth, or email/cloud services. To install the app:
+
+1.  Enable “Install unknown apps”; On most Android devices, navigate to: Settings → Apps & notifications → Special app access → Install unknown apps; Then allow your file manager (e.g., “Files” or “Chrome”) to install apps.
+2.  Open the transferred `.apk` on the device and confirm the installation prompt
+3.  Grant necessary permissions; Upon first launch, the app will likely request:
+    -   Location access (required to scan for new Bluetooth devices)
+    -   Storage access (to save generated `.csv` data files to your Downloads folder)
+4.  Go to Bluetooth settings on your Android device and pair with the HC-05 device (usually named “HC-05” or similar; Tip: rename your low-cost DIY devices for better organization); default pairing PIN is often 1234 or 0000.
+
+Once installed and paired, the “MonkshillLab Logger App” is ready to be used in the field. Users can select a measurement mode, connect to the device, and begin data retrieval or manual entry.
+
+### Usage Instructions: {#sec-monkshilllab-app-usage}
+
+The “MonkshillLab Logger App” operates in six distinct modes, each tailored to specific measurement tasks:
+
+1.  Weather Station (EVE): Collects via Bluetooth environmental data from the weather station (see 2.1.3)
+2.  CO₂ & ET Sampling (Minion): Connects via Bluetooth to the manual device for CO2 and ET flux measurements (see 2.3.1) to initiate CO₂ and ET flux measurements and associate sampling location identifiers to the collected data.
+3.  NDVI Sampling (WallE): Connects via Bluetooth to the handhold NDVI sensor, enabling measurement initiation and adding sampling location identifiers to the collected data.
+4.  GC Sampling: Used during NFT-NSS closed chamber measurements for gas chromatography (GC) vial sampling. This mode automatically records sampling date and times, allows selection of vial numbers corresponding to specific time points (t0, t1, t2, t3, t4) sampled, and adds those information together with the sampling location identifiers to the collected data.
+5.  Analyzer Sampling: Serves as a backup protocol for multi-gas analyzer measurements by recording start and end times of measurements to facilitate matching gas analyzer data with measured sampling locations.
+6.  Multi-Purpose: Supports manual entry of measurements such as leaf temperature or soil moisture. Users can input a numeric value along with the sampling location identifiers; the date and time is automatically recorded and added.
+
+For modes 1 to 3, Bluetooth connectivity is required to communicate with the respective systems.
+
+### Output Format & Interpretation: {#sec-monkshilllab-app-output}
+
+Each mode creates a CSV file named according to the mode and the date of data collection, saved in the download folder of the Android device. The CSV files include headers that identify the data columns, facilitating interpretation and further analysis. Subsequent data collected on the same date is appended to the existing file, ensuring continuous and organized record-keeping.
+
+### Troubleshooting & Known Issues: {#sec-monkshilllab-app-troubleshooting}
+
+This section summarizes common issues encountered when using the “MonkshillLab Logger App” and provides practical solutions to help ensure smooth operation and accurate data collection:
+
+1.  Bluetooth Connectivity: Ensure Bluetooth is enabled on the Android device and the target system (EVE, Minion, WallE) is powered on and within range. Retry connection if connections fail. Also, make sure the devices have been properly paired in the Android Bluetooth settings before.
+2.  Zero Values for the handhold NDVI Sensor (e.g. by completely blocking the lower sensor) might results in error warnings by the app as NaN NDVI values are calculated. Confirm proper sensor connection and adequate lighting conditions, and avoid measurements in situations likely to cause invalid readings.
+3.  `.csv` files are not saved: Verify that there is sufficient storage space on the Android device and that the app has permission to write files to your download folder. Additionally, ensure the `.csv` files are not open in other applications (e.g., spreadsheet editors) during data collection, as this can prevent the app from saving new data.
+4.  Confirm the Android device’s date and time settings are correct to ensure accurate timestamps for all recorded measurements.
+5.  Double-check all manually entered values and sampling location identifiers to prevent data entry errors.

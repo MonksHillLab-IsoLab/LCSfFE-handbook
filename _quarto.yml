@@ -35,6 +35,8 @@ book:
         href: references.qmd
       - text: "Abbreviations"
         href: abbreviations.qmd
+      - text: "Appendices"
+        href: appendices.qmd
 
   page-footer: "License: Creative Commons Attribution 4.0 (CC-BY 4.0)" 
   chapters: 
@@ -44,6 +46,7 @@ book:
     - software-solutions.qmd
     - real-world-use.qmd
     - references.qmd
+    - appendices.qmd
 
 
 bibliography: references.bib
@@ -59,6 +62,8 @@ format:
       light: flatly
       dark: darkly
     lightbox: true
+    code-fold: true
+    code-overflow: wrap
   # embed-resources: true
   # pdf:
   #   documentclass: scrreprt

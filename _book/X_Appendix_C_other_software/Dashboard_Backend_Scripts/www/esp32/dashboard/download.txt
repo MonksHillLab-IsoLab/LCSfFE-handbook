@@ -1,0 +1,90 @@
+<?php
+// /esp32/dashboard/download.php
+// Disclaimer: This example code is part of a research prototype.
+// It is provided “as is”, without any warranty of any kind.
+// Please review, adapt, and test carefully before using it in production.
+
+require_once __DIR__ . '/auth.php';
+require_login();
+
+$nodeId = (int)($_GET['node_id'] ?? 0);
+$range  = $_GET['range'] ?? '24h';
+
+if ($nodeId <= 0) {
+    http_response_code(400);
+    exit('Missing or invalid node_id');
+}
+
+// Parse the requested time range into hours.
+$hours = 24;
+if (preg_match('/^(\d+)h$/i', $range, $m)) {
+    $hours = (int)$m[1];
+} elseif (preg_match('/^(\d+)d$/i', $range, $m)) {
+    $hours = (int)$m[1] * 24;
+} elseif (preg_match('/^(\d+)w$/i', $range, $m)) {
+    $hours = (int)$m[1] * 24 * 7;
+}
+// Clamp to a sensible window (1 hour .. 6 months).
+$hours = max(1, min($hours, 24 * 180));
+
+// Map node_id to device_id and names.
+$stmt = pdo()->prepare(
+    'SELECT n.name AS node_name, n.device_id, s.name AS site_name
+     FROM nodes n
+     JOIN sites s ON n.site_id = s.id
+     WHERE n.id = ?'
+);
+$stmt->execute([$nodeId]);
+$node = $stmt->fetch();
+
+if (!$node) {
+    http_response_code(404);
+    exit('Node not found');
+}
+
+$deviceId = $node['device_id'];
+
+// Build a safe filename: e.g. site-node_24h_20250101_120000.csv
+$slugNode = preg_replace('~[^a-zA-Z0-9_-]+~', '_', $node['node_name'] ?? ('node_' . $nodeId));
+$slugSite = preg_replace('~[^a-zA-Z0-9_-]+~', '_', $node['site_name'] ?? 'site');
+$fn = sprintf(
+    '%s-%s_%dh_%s.csv',
+    strtolower($slugSite),
+    strtolower($slugNode),
+    $hours,
+    date('Ymd_His')
+);
+
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Disposition: attachment; filename="' . $fn . '"');
+
+$out = fopen('php://output', 'w');
+
+// CSV header – gas sensor columns have been intentionally omitted.
+fputcsv($out, [
+    'timestamp',
+    'device_id',
+    'sht_temp',
+    'humidity',
+    'bmp_temp',
+    'pressure',
+    'par',
+    'battery',
+]);
+
+// Query the data for this device and range.
+$sql = "
+  SELECT timestamp, device_id, sht_temp, humidity, bmp_temp, pressure, par, battery
+  FROM sensor_data
+  WHERE device_id = ?
+    AND timestamp >= (NOW() - INTERVAL {$hours} HOUR)
+  ORDER BY timestamp ASC
+";
+$q = pdo()->prepare($sql);
+$q->execute([$deviceId]);
+
+while ($row = $q->fetch(PDO::FETCH_NUM)) {
+    fputcsv($out, $row);
+}
+
+fclose($out);

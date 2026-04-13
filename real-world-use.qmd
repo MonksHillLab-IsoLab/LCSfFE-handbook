@@ -2,4 +2,128 @@
 title: "Real World Use & Regional Hubs"
 ---
 
-In summary, this book has no content whatsoever.
+## Philippine Hub – Reuse of Pineapple Residues
+
+### Location & Context: {#sec-philippine-hub-location}
+
+Philippine Hub was located on a smallholder pineapple farm near Calauan, Laguna (14°07'49.9"N, 121°18'28.2"E), within the humid tropics of Southeast Asia.
+
+```{r}
+#| fig-cap: Interactive map showing the location of the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E) where low-cost sensor systems were deployed to monitor the reuse of pineapple residues under different nitrogen fertilizer strategies.
+#| label: leaflet-map
+#| echo: false
+#| column: margin
+
+library(leaflet)
+
+# Coordinates (decimal degrees)
+lat <- 14.13053
+lon <- 121.30783
+
+leaflet() |>
+  addProviderTiles(providers$Esri.WorldImagery) |>
+  setView(lng = lon, lat = lat, zoom = 15) |>
+  addMarkers(lng = lon, lat = lat)
+```
+
+![Deployment of low-cost sensor systems at the Philippine Hub (Calauan, Laguna, 14.13° N, 121.31° E), focusing on the reuse of pineapple residues under different nitrogen fertilizer strategies. (a, b, c, d, e) Field setup and sensor use on a smallholder pineapple farm. (f) Satellite imagery showing the experimental site location. (g) Experimental design comparing multiple residue management and fertilizer treatments. Integrated mini weather stations and manually operated systems were used to monitor greenhouse gas emissions (CO₂), evapotranspiration (ET), and plant physiological responses (e.g., NDVI).](assets/philippine-hub.png){#fig-philippine-hub fig-align="center"}
+
+From 2022 to 2023, the site hosted a field trial that tested different reuse strategies for pineapple residues in combination with various nitrogen (N) fertilizer forms. The research assessed their impacts on greenhouse gas (GHG) emissions, water dynamics, carbon (C) and nitrogen cycling, as well as crop yield. The trial addressed key challenges in enhancing soil health and productivity in tropical smallholder systems under resource-limited conditions.
+
+### Used Systems: {#sec-philippine-hub-systems}
+
+The handheld system for measuring spectral plant indices such as NDVI was used alongside the manual CO₂ and ET flux measurement system presented in this handbook. Together, these tools enabled low-cost assessment of plant physiological responses and ecosystem gas exchange under harsh field conditions (e.g., temperatures up to 45 °C, high humidity, and heavy rainfall during throughout the year).
+
+### Deployment & Operation: {#sec-philippine-hub-deployment}
+
+The field trial was a key activity of the BMEL-funded project rePRISING, coordinated by Reena Macagga (PhD student at ZALF and Humboldt-Universität zu Berlin) in collaboration with the University of the Philippines Los Baños and a local farmer. Conducted from 2022 to 2023, the field trial covered a full pineapple crop growth period, lasting nearly 18 months on a smallholder farm near Calauan, Laguna. All measurements—using handheld systems for spectral plant indices and manual gas flux chambers for CO₂ and ET—were carried out on a biweekly basis during intensive field campaigns. Mini climate stations were installed permanently to ensure continuous environmental monitoring throughout the field trial.
+
+### Current Status: {#sec-philippine-hub-status}
+
+The field trial has been completed. A key outcome was that the addition of chopped pineapple residues into the soil prior to planting substantially increased yields across all treatments—unfertilized, mineral fertilized, and organically fertilized (chicken manure). During a farmer workshop, participants also noted that pineapples grown with residue addition tasted sweeter, though this observation remains subjective and unverified by compositional analysis. Improved plant performance was reflected in higher CO₂ exchange and NDVI values. No consistent differences in evapotranspiration (ET) or water use efficiency (WUE) were observed. A central achievement of this trial was the development and successful testing of both used sensor systems under real field conditions.
+
+### References {#sec-philippine-hub-references}
+
+For further information see: @macagga2024; @macagga2025
+
+## Northern Ghana Hub – Moist Savannah Dryland Rotation Trial
+
+### Location & Context: {#sec-ghana-hub-location}
+
+The Northern Ghana Hub is located in the moist savannah zone of Ghana (9.41°N, -0.99°E) and was established in May 2025 at the CSIR-Savanna Agricultural Research Institute experimental field.
+
+```{r}
+#| fig-cap: Interactive map showing the location of the Northern Ghana Hub (CSIR-Savanna Agricultural Research Institute, 9.41° N, -0.99° E) where low-cost sensor systems were deployed to monitor a dryland crop rotation trial in the moist savannah zone of Ghana.
+#| label: leaflet-map-ghana
+#| echo: false
+#| column: margin
+library(leaflet)
+# Coordinates (decimal degrees)
+lat_ghana <- 9.41
+lon_ghana <- -0.99
+leaflet() |>
+  addProviderTiles(providers$Esri.WorldImagery) |>
+  setView(lng = lon_ghana, lat = lat_ghana, zoom = 15) |>
+  addMarkers(lng = lon_ghana, lat = lat_ghana)
+```
+
+![Deployment of low-cost sensor systems at the Northern Ghana Hub (Nyankpala, 9.41° N, -0.99° E), focusing on sustainable same season groundnut- sorghum and groundnut- maize rotations under different soil amendment strategies in the moist savannah zone. (a, c, d) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (e) Experimental design with eight treatment combinations including compost, biochar, NPK fertilizers. Integrated mini weather stations and installed frames are used to monitor gas exchange (CO2, ET and N2O) as well as plant development and health status (e.g., NDVI).](assets/ghana-hub.png){#fig-ghana-hub fig-align="center"}
+
+It aims to investigate the effect of same season groundnut-maize/sorghum crop rotation under different soil amendments and fertilizer strategies on GHG emissions, water, N and C cycling. It thus especially reflecting the pressures of nutritious food production in semi-arid environments.
+
+### Used Systems: {#sec-ghana-hub-systems}
+
+The handheld system for measuring spectral plant indices such as NDVI and PRI is used alongside the manual CO₂ and ET flux measurement system presented in this handbook. Together, these tools enable low-cost assessment of plant physiological responses and ecosystem gas exchange under harsh field conditions (e.g., temperatures up to 50 °C, high humidity, and heavy rainfall during the rainy season).
+
+### Deployment & Operation: {#sec-ghana-hub-deployment}
+
+The field trial is operated by Dr. Michael Asante from the CSIR–Savanna Agricultural Research Institute in Tamale, Ghana, with support from the Leibniz Centre for Agricultural Landscape Research (ZALF). It is planned to run the field trial for three consecutive cropping seasons. Measurements are scheduled on a weekly basis for spectral plant indices (e.g., NDVI) and biweekly (twice per month) for CO₂, N2O and ET fluxes. Deployment in the field takes place during measurement campaigns only, except for the mini climate stations, which remain installed continuously.
+
+### Current Status: {#sec-ghana-hub-status}
+
+Both used systems have been successfully introduced and tested under field conditions. Weekly and biweekly measurement routines are being established, and initial data collection has begun. While still in the early phase, the setup has proven feasible under the local climate (Macagga et al. 2024). Continuous coordination between CSIR-SARI and ZALF ensures technical support and protocol alignment. Full data evaluation will follow after the first cropping season.
+
+### References {#sec-ghana-hub-references}
+
+No published references are available yet, as the research is ongoing. Relevant outputs will be added in future handbook updates.
+
+## Central Benin Hub – Alternate Wetting and Drying Rice Trial
+
+### Location & Context: {#sec-benin-hub-location}
+
+The Central Benin Hub is located in the moist savannah zone of Benin (7.24°N, 2.28°E) and was established in November 2021 at the National Water Institute experimental field.
+
+```{r}
+#| fig-cap: Interactive map showing the location of the Central Benin Hub (National Water Institute, 7.24° N, 2.28° E) where alternate wetting and drying rice trials are conducted in the moist savannah zone of Benin.
+#| label: leaflet-map-benin
+#| echo: false
+#| column: margin
+library(leaflet)
+# Coordinates (decimal degrees)
+lat_benin <- 7.24
+lon_benin <- 2.28
+leaflet() |>
+  addProviderTiles(providers$Esri.WorldImagery) |>
+  setView(lng = lon_benin, lat = lat_benin, zoom = 15) |>
+  addMarkers(lng = lon_benin, lat = lat_benin)
+```
+
+![Deployment of low-cost sensor systems at the Central Benin Hub (near Koussin-Lélé; 7.24° N, 2.28° E), focusing on sustainable wet rice cultivation under alternate wetting and drying (AWD) practices and varying N fertilization levels in a semi-arid environment. (a, c, d, e, f) Field establishment and sensor installation. (b) Satellite imagery showing experimental site location. (g) Experimental design includes six treatment combinations differing in AWD intensity and nitrogen input. Integrated mini weather stations, low-cost gas exchange systems (CO₂ and ET), and sensor frames are used to monitor GHG emissions and plant physiological responses (e.g., NDVI), supporting the development of water- and nutrient-efficient rice production strategies.](assets/benin-hub.png){#fig-benin-hub fig-align="center"}
+
+It aims to investigate the effect of alternate wetting and drying as well as different N fertilization rates on GHG emissions, water, N and C cycling of wet rice cultivation. Located in Central Benin, this hub reflects the need for sustainable intensification and the purposeful use of scarce water resources in the context of nutritious food production under semi-arid conditions. It thus especially reflecting the pressures of nutritious food production in semi-arid environments.
+
+### Used Systems: {#sec-benin-hub-systems}
+
+The handheld system for measuring spectral plant indices such as NDVI and PRI was used alongside the manual CO₂ and ET flux measurement system presented in this handbook. Together, these tools enable low-cost assessment of plant physiological responses and ecosystem gas exchange under harsh field conditions (e.g., temperatures up to 50 °C, high humidity, and heavy rainfall during the rainy season).
+
+### Deployment & Operation: {#sec-benin-hub-deployment}
+
+The field trial is operated by Dr. Goeffroy Sossa from the National Water Institute, University of Abomey-Calavi, Abomey-Calavi, Benin, with support from the Leibniz Centre for Agricultural Landscape Research (ZALF). The field trial was running for two consecutive cropping seasons from 2021 to 2023. Measurements were scheduled on a weekly basis for spectral plant indices (e.g., NDVI) and biweekly (twice per month) for CO₂ and ET fluxes. Deployment in the field took place during measurement campaigns only, except for the mini climate stations, which remained installed continuously. The new set up of the field trial is planned for November 2025 (this time running over three seasons), with the aim to use low-cost DIY equipment, for precision timing of fertilization and irrigation events.
+
+### Current Status: {#sec-benin-hub-status}
+
+The field trial has been completed, and the collected data have been evaluated and submitted for publication (Sossa et al., under review in Heliyon). The analysis revealed clear difference in yield and, in particular, water use efficiency (WUE) across the three alternate wetting and drying (AWD) practices and two N fertilization levels. Notably, moderate AWD down to a soil water table depth of 15 cm achieved yields comparable to permanent flooding while significantly improving WUE. Furthermore, increasing N input beyond a certain threshold did not lead to substantial yield gains, highlighting the importance of timing and resource-efficient management.
+
+### References {#sec-benin-hub-references}
+
+For more information see: @sossa2024
