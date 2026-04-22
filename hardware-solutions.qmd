@@ -58,7 +58,7 @@ No specific code is provided for this module, as it operates passively without a
 
 The PAR sensor module presented here can be used to determine photosynthetically active radiation (PAR), the range of solar radiation between 400 and 700 nm that is relevant for plant photosynthesis. While this chapter focuses on the construction and calibration of the sensor itself, it is designed to be integrated into larger monitoring setups that include power supply and data logging via a microcontroller. The sensor module thus serves as a **Component** in more comprehensive systems—such as automatic climate stations or gas flux chambers described in later chapters—where continuous PAR measurements are essential for understanding environmental conditions and light-driven plant processes.
 
-**Bill of Materials:** {#sec-par-sensor-bom}
+#### Bill of Materials: {#sec-par-sensor-bom}
 
 A comprehensive overview of all components required to build the sensor, needed quantities, recommended suppliers and approximate prices (in €) is provided in @tbl-PAR_sensor_bom.
 
