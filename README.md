@@ -8,7 +8,7 @@ This is a living document: users are encouraged to build upon the existing desig
 
 We are currently exploring the idea of organizing a low-cost sensor summer school and/or online workshop to provide hands-on training, exchange ideas, and build a global community around DIY environmental monitoring. If you are interested in participating or helping shape the format, feel free to get in touch or respond to the [feedback link](https://docs.google.com/forms/d/e/1FAIpQLSd-lZMnjAK-ll1-eMoKwWdKpjrdHeFioPDRd5Fp-lMQW38EWg/viewform?usp=header)
 
-## Contributing {#sec-contributing}
+## Contributing 
 
 You’re very welcome to share your improvements/chapters. Just email the author (mathias.hoffmann\@zalf.de) and submit an update.
 
@@ -34,6 +34,4 @@ Please visit the Zenodo archive [DOI link](https://doi.org/10.5281/zenodo.155625
 
 ------------------------------------------------------------------------
 
-<a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png){alt="Creative Commons License" style="border-width:0"}</a> Licensed under a <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.
-
-##
+<a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)</a> Licensed under a <a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.
