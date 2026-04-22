@@ -1,5 +1,6 @@
 ---
 title: "Real World Use & Regional Hubs"
+prefer-html: true
 ---
 
 ## Philippine Hub – Reuse of Pineapple Residues
