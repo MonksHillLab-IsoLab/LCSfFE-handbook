@@ -1,9 +1,8 @@
-# Contributing {.unnumbered #sec-contributing-guide}
+# Contributing {.unnumbered #sec-contributing_guide}
 
 This page provides a detailed guide for contributors who want to add or revise content in the handbook. But first it is important to provide an overview of how the handbook is structured and how the publishing workflow works, so that contributors can understand the context for their contributions and how they will be published.
 
-## Structure of the Handbook {#sec-handbook-structure}
-
+## Structure of the Handbook {#sec-handbook_structure}
 The handbook is designed to be easier to read, share, and maintain because it is written with [Quarto](https://quarto.org/) and stored in a repository on [GitHub](https://github.com/zalf-lli/LCSfFE-handbook)<!-- todo update repo link upon transfer-->. That means one source can be rendered as both a website and a PDF simultaneously, contributors can collaborate through pull requests, and each formal release can be archived through [Zenodo](https://zenodo.org/) for long-term citation and preservation.
 
 This combination of both a website and PDF is intended to maximize accessibility and usability for users of the guide. The HTML version works well on phones and laptops, figures can be magnified upon clicking for closer inspection, and there is the potential to also include richer media such as embedded video.
@@ -19,16 +18,16 @@ This combination of both a website and PDF is intended to maximize accessibility
 
 :::
 
-## How This Guide Is Organized {#sec-guide-structure}
+## How This Guide Is Organized {#sec-guide_structure}
 
 If you want to add or revise content, the most important sections are:
 
-- @sec-quarto-basics for everyday Quarto writing patterns
-- @sec-pr-workflow for contributing through pull requests
-- @sec-publishing-action for understanding how publication works after changes are merged
-- @sec-zenodo-releases for the current release and archival workflow
+- @sec-quarto_basics for everyday Quarto writing patterns
+- @sec-pr_workflow for contributing through pull requests
+- @sec-publishing_action for understanding how publication works after changes are merged
+- @sec-zenodo_releases for the current release and archival workflow
 
-## Quarto Basics for Contributors {#sec-quarto-basics}
+## Quarto Basics for Contributors {#sec-quarto_basics}
 
 You do not need to know every Quarto feature to contribute successfully. Most edits will involve plain text, headings, images, tables, links, and occasional citations. For more advanced formatting, you can refer to the [Quarto documentation](https://quarto.org/docs/guide/) as needed.
 
@@ -39,7 +38,7 @@ You do not need to know every Quarto feature to contribute successfully. Most ed
 Most Integrated Development Environments (IDEs) and code editors such as VScode, Positron and Rstudio that support Markdown will work well for editing `.qmd` files, since Quarto is built on top of Markdown. These editors also have [in-built visual editing mode for Markdown](https://rstudio.github.io/visual-markdown-editing/), which makes writing and formatting easier for users who are used to traditional editing interfaces like Microsoft Word. You can toggle between the raw Markdown code and the visual editor as needed, which can be especially helpful for formatting complex elements like tables or lists.
 :::
 
-### Headings and Section Cross-References {#sec-section-crossrefs}
+### Headings and Section Cross-References {#sec-section_crossrefs}
 
 Use Markdown headings to structure your content. When a section may need to be referenced later, include a tag after the heading in this format `{#sec-}`.
 
@@ -85,7 +84,7 @@ See @tbl-parts-list for the required components.
 
 Keep tables focused and readable. If a table becomes wide or complex, consider whether it would work better as a figure, appendix item, or downloadable file.
 
-### Links, Citations, and File Placement {#sec-links-citations}
+### Links, Citations, and File Placement {#sec-links_citations}
 
 Use normal Markdown links for web pages:
 
@@ -102,7 +101,7 @@ Low-cost sensing approaches are becoming increasingly important in field researc
 Place new images in `assets/` unless there is a strong reason to keep them next to a chapter. If you add a large supporting dataset or supplementary file, follow the project's existing appendix and supporting-data structure instead of inventing a new folder layout.
 
 
-## Contributing Through Pull Requests {#sec-pr-workflow}
+## Contributing Through Pull Requests {#sec-pr_workflow}
 
 The preferred way to contribute substantial changes is through a pull request.
 
@@ -124,7 +123,7 @@ This handbook enables GitHub edit links in the published book, so you may see a 
 
 If you are new to GitHub, focus on making one clear change at a time. Small pull requests are easier to review and easier to merge safely.
 
-## Contributing Without Git {#sec-without-git}
+## Contributing Without Git {#sec-without_git}
 
 If you do not use Git, you can still contribute by downloading the repository to your computer, editing the relevant files locally, and then sending the changed files to one of the handbook authors so they can incorporate your revisions.
 
@@ -137,7 +136,7 @@ A practical workflow is:
 
 This approach works best for small to moderate changes. If you expect to make repeated contributions, learning the pull request workflow above will usually make collaboration easier over time.
 
-## How the Handbook is Published {#sec-publishing-action}
+## How the Handbook is Published {#sec-publishing_action}
 
 Updates to the handbook are 'published' automatically using a GitHub Actions workflow (`.github/workflows/_publish.yml`). This is a continuous deployment setup (a series of automated programmatic steps happening in the cloud on GitHub) that renders the book and updates the published website whenever changes are merged into the `main` branch.
 
@@ -159,7 +158,7 @@ If your change is merged successfully, the website and PDF should be refreshed b
 
 :::
 
-## Making Zenodo-Backed Releases {#sec-zenodo-releases}
+## Making Zenodo-Backed Releases {#sec-zenodo_releases}
 
 This handbook is also archived through Zenodo so that released versions can be cited reliably.
 
@@ -182,7 +181,7 @@ This guide documents the repository workflow as it exists now. It does not assum
 
 When citing the handbook, use the citation provided by Zenodo for the latest release instead of copying an older citation string from a previous version.
 
-## Before You Open a Pull Request {#sec-before-pr}
+## Before You Open a Pull Request {#sec-before_pr}
 
 Before submitting, quickly check the following:
 
