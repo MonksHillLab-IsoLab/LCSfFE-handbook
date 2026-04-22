@@ -40,10 +40,21 @@ jobs:
           Rscript -e 'install.packages("renv")'
           Rscript -e 'renv::restore()'
 
-      - name: Publish to GitHub Pages (and render) 
+      - name: Render website profile
+        env:
+          QUARTO_PROFILE: website
+        run: quarto render --to html
+
+      - name: Render pdf profile
+        env:
+          QUARTO_PROFILE: pdf
+        run: quarto render --to pdf --no-clean
+
+      - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
 

@@ -1,0 +1,21 @@
+format: 
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    lightbox: true
+    code-fold: true
+    code-overflow: wrap
+    
+book:
+  chapters:
+    - index.qmd
+    - hardware-solutions.qmd
+    - software-solutions.qmd
+    - real-world-use.qmd
+    - appendices.qmd
+    - references.qmd
+    - abbreviations.qmd
+    - contributing.qmd
+
+

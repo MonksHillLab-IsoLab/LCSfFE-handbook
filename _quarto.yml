@@ -1,5 +1,9 @@
 project:
   type: book
+
+profile:
+  group:
+    - [pdf, website]
   
 book:
   title: "Build-It-Yourself: Low-Cost Systems for Field Ecophysiology"
@@ -38,31 +42,9 @@ book:
       - text: "Contributing"
         href: contributing.qmd
   page-footer: "License: Creative Commons Attribution 4.0 (CC-BY 4.0)" 
-  chapters: 
-    - index.qmd
-    - hardware-solutions.qmd
-    - software-solutions.qmd
-    - real-world-use.qmd
-    - appendices.qmd
-    - references.qmd
-    - abbreviations.qmd
-    - contributing.qmd
 
 bibliography: references.bib
 number-depth: 4
-
-
-format: 
-  html:
-    theme:
-      light: flatly
-      dark: darkly
-    lightbox: true
-    code-fold: true
-    code-overflow: wrap
-  pdf: 
-    documentclass: report
-    fontsize: 11pt
 
 
 comments:
