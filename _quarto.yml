@@ -62,7 +62,9 @@ format:
     lightbox: true
     code-fold: true
     code-overflow: wrap
-  typst: default
+  pdf: 
+    documentclass: report
+    fontsize: 11pt
 
 
 comments:
