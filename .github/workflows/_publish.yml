@@ -32,8 +32,13 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Install R packages
-        run: Rscript -e 'install.packages(c("leaflet", "knitr", "rmarkdown"))'
+      - name: Install system dependencies (optional but common)
+        run: sudo apt-get update
+
+      - name: Restore R packages (renv)
+        run: |
+          Rscript -e 'install.packages("renv")'
+          Rscript -e 'renv::restore()'
 
       - name: Publish to GitHub Pages (and render) 
         uses: quarto-dev/quarto-actions/publish@v2
