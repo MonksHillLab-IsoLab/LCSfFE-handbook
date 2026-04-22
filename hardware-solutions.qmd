@@ -24,7 +24,7 @@ A comprehensive overview of all components required to build the solar charger, 
 | 6V, 2.5W Solar Panel | 1 | Amazon | 10.00 € |
 | **Sum** |  |  | **14.20 €** |
 
-: Components required for solar charger assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for solar charger assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-solar_charger_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-solar-charger-wiring}
 
@@ -72,7 +72,7 @@ A comprehensive overview of all components required to build the sensor, needed 
 | 3-wire cable, shielded, suitable for outdoor use (e.g., ⌀4 mm, \~1 m) | 1 | Amazon, Reichelt, Conrad | 0.50 € |
 | **Sum** |  |  | **2.00 €** |
 
-: Components required for PAR sensor assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for PAR sensor assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-PAR_sensor_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-par-sensor-wiring}
 
@@ -160,7 +160,7 @@ A comprehensive overview of all components required to build the automatic weath
 | 3-/4-wire cable, shielded (⌀4 mm, \~10 cm, outdoor suitable) | 1 | Amazon, Reichelt, Conrad | 0.50 € |
 | **Sum** |  |  | **44.40 €** |
 
-: Components required for weather station assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for weather station assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-aws_bom .striped .hover}
 
 ##### Wiring Diagram: {#sec-eve-offline-wiring}
 
@@ -234,7 +234,7 @@ A comprehensive overview of all components required to build the handheld measur
 | Aluminum/steel rods, wood or PVC pipe (4 m) | 1 | Hardware store | 20.00 € |
 | **Sum** |  |  | **145.50 €** |
 
-: Components required for assembly of the handheld system to measure spectral plant indices; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for assembly of the handheld system to measure spectral plant indices; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-spectral_indices_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-handheld-spectral-wiring}
 
@@ -382,7 +382,7 @@ A comprehensive overview of all components required to build the automatic measu
 | Aluminum, steel rods, wood or PVC pipe (4m) | 1 | Hardware store | 20.00 € |
 | **Total** |  |  | **144.60 €** |
 
-: Components required for assembly of the automatic system to measure spectral plant indices; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for assembly of the automatic system to measure spectral plant indices; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-automatic_spectral_indices_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-automatic-spectral-wiring}
 
@@ -457,7 +457,7 @@ A comprehensive overview of all components required to build the manual system t
 | Hard foam plate | 1 | Amazon | 5.00 € |
 | **Total** |  |  | **224.50 €** |
 
-: Components required for data logger and sensor unit assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for data logger and sensor unit assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-manual_flux_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-manual-flux-wiring}
 
@@ -569,7 +569,7 @@ A comprehensive overview of all components required to build the mesocosm system
 | Axial fan (92×92×25 mm, 12V) | 4 | Reichelt, Amazon, Conrad | 12.00 € |
 | **Total** |  |  | **802.80 €** |
 
-: Components required for system assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for system assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-mesocosm_flux_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-mesocosm-flux-wiring}
 
@@ -736,7 +736,7 @@ A comprehensive overview of all components required to build the water-stable is
 | Cable tie | \- | Amazon, Conrad, Reichelt | 1.00 € |
 | **Total** |  |  | **412.30 €** |
 
-: Components required for system assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes).
+: Components required for system assembly; includes quantity, typical suppliers, and approximate prices (no links provided due to frequent changes). {#tbl-isotope_bag_bom .striped .hover}
 
 #### Wiring Diagram: {#sec-isotope-bag-wiring}
 

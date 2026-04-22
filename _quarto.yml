@@ -35,24 +35,22 @@ book:
         href: abbreviations.qmd
       - text: "Appendices"
         href: appendices.qmd
-
+      - text: "Contributing"
+        href: contributing.qmd
   page-footer: "License: Creative Commons Attribution 4.0 (CC-BY 4.0)" 
   chapters: 
-    - index.qmd    
+    - index.qmd
     - hardware-solutions.qmd
     - software-solutions.qmd
     - real-world-use.qmd
+    - appendices.qmd
     - references.qmd
     - abbreviations.qmd
-    - appendices.qmd
-
+    - contributing.qmd
 
 bibliography: references.bib
 number-depth: 4
-glossary:
-  path: glossary.yml
-  popup: hover
-  show: true
+
 
 format: 
   html:

@@ -10,7 +10,7 @@ We are currently exploring the idea of organizing a low-cost sensor summer schoo
 
 ## Contributing 
 
-You’re very welcome to share your improvements/chapters. Just email the author (mathias.hoffmann\@zalf.de) and submit an update.
+You're very welcome to share your improvements/chapters. For detailed guidance on contributing through pull requests, see [CONTRIBUTING.md](CONTRIBUTING.md) or the [Contributing chapter](contributing.qmd) in the handbook source. Or feel free to email the author (mathias.hoffmann\@zalf.de) and regarding submitting an update.
 
 ## Whats New?
 

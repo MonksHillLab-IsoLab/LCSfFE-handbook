@@ -1,0 +1,195 @@
+# Contributing {.unnumbered #sec-contributing-guide}
+
+This page provides a detailed guide for contributors who want to add or revise content in the handbook. But first it is important to provide an overview of how the handbook is structured and how the publishing workflow works, so that contributors can understand the context for their contributions and how they will be published.
+
+## Structure of the Handbook {#sec-handbook-structure}
+
+The handbook is designed to be easier to read, share, and maintain because it is written with [Quarto](https://quarto.org/) and stored in a repository on [GitHub](https://github.com/zalf-lli/LCSfFE-handbook)<!-- todo update repo link upon transfer-->. That means one source can be rendered as both a website and a PDF simultaneously, contributors can collaborate through pull requests, and each formal release can be archived through [Zenodo](https://zenodo.org/) for long-term citation and preservation.
+
+This combination of both a website and PDF is intended to maximize accessibility and usability for users of the guide. The HTML version works well on phones and laptops, figures can be magnified upon clicking for closer inspection, and there is the potential to also include richer media such as embedded video.
+
+::: {.callout-tip}
+
+## Why This Workflow Helps
+
+- The handbook is rendered to both HTML and PDF from the same source files.
+- The website is easier to browse on mobile devices than a PDF alone.
+- Contributors can propose changes without editing the published files directly.
+- Releases can be versioned, cited, and preserved through GitHub and Zenodo.
+
+:::
+
+## How This Guide Is Organized {#sec-guide-structure}
+
+If you want to add or revise content, the most important sections are:
+
+- @sec-quarto-basics for everyday Quarto writing patterns
+- @sec-pr-workflow for contributing through pull requests
+- @sec-publishing-action for understanding how publication works after changes are merged
+- @sec-zenodo-releases for the current release and archival workflow
+
+## Quarto Basics for Contributors {#sec-quarto-basics}
+
+You do not need to know every Quarto feature to contribute successfully. Most edits will involve plain text, headings, images, tables, links, and occasional citations. For more advanced formatting, you can refer to the [Quarto documentation](https://quarto.org/docs/guide/) as needed.
+
+::: {.callout-tip}
+
+## Markdown visual editors
+
+Most Integrated Development Environments (IDEs) and code editors such as VScode, Positron and Rstudio that support Markdown will work well for editing `.qmd` files, since Quarto is built on top of Markdown. These editors also have [in-built visual editing mode for Markdown](https://rstudio.github.io/visual-markdown-editing/), which makes writing and formatting easier for users who are used to traditional editing interfaces like Microsoft Word. You can toggle between the raw Markdown code and the visual editor as needed, which can be especially helpful for formatting complex elements like tables or lists.
+:::
+
+### Headings and Section Cross-References {#sec-section-crossrefs}
+
+Use Markdown headings to structure your content. When a section may need to be referenced later, include a tag after the heading in this format `{#sec-}`.
+
+```markdown
+## Calibration Procedure {#sec-calibration}
+
+The full workflow is described in @sec-calibration.
+```
+
+Use short, descriptive labels and avoid renaming labels that are already referenced elsewhere unless you also update those references.
+
+### Images, Captions, and Figure Cross-References {#sec-figures}
+
+Store new image files in the directory `assets/`, then insert them with a caption and alt text. For cross-referenceable figures, use a label starting with `fig-`.
+
+```markdown
+![Wiring layout for the weather station](assets/weather-station.png){#fig-weather-station fig-alt="Diagram showing the weather station wiring layout"}
+
+See @fig-weather-station for the complete wiring layout.
+```
+
+The caption is what readers see in the document. The `fig-alt` text is for accessibility and should briefly describe what the image shows.
+
+Because the book already enables HTML lightbox figures, readers can click figures on the website to inspect them more closely.
+
+### Tables and Table Cross-References {#sec-tables}
+
+For simple tables, use standard Markdown tables inside a labeled div. Table labels should start with `tbl-`.
+
+```markdown
+::: {#tbl-parts-list}
+
+| Component | Quantity | Notes |
+| --------- | -------- | ----- |
+| Sensor    | 1        | Main measurement unit |
+| Cable     | 2        | Shielded if possible |
+
+Essential parts for the assembly.
+:::
+
+See @tbl-parts-list for the required components.
+```
+
+Keep tables focused and readable. If a table becomes wide or complex, consider whether it would work better as a figure, appendix item, or downloadable file.
+
+### Links, Citations, and File Placement {#sec-links-citations}
+
+Use normal Markdown links for web pages:
+
+```markdown
+[Project repository](https://github.com/zalf-lli/LCSfFE-handbook)
+```
+
+Use citation keys from `references.bib` when citing literature:
+
+```markdown
+Low-cost sensing approaches are becoming increasingly important in field research [@smith2024].
+```
+
+Place new images in `assets/` unless there is a strong reason to keep them next to a chapter. If you add a large supporting dataset or supplementary file, follow the project's existing appendix and supporting-data structure instead of inventing a new folder layout.
+
+
+## Contributing Through Pull Requests {#sec-pr-workflow}
+
+The preferred way to contribute substantial changes is through a pull request.
+
+1. Fork the repository to your own GitHub account.
+2. Create a new branch for your change.
+3. Edit or add the relevant `.qmd`, image, or supporting files.
+4. Commit your changes with a short, descriptive message.
+5. Open a pull request against the `main` branch of this repository.
+
+Maintainers can then review the proposed changes, suggest revisions if needed, and merge the contribution once it is ready.
+
+::: {.callout-important}
+
+## About the Edit Buttons
+
+This handbook enables GitHub edit links in the published book, so you may see a direct edit option on pages. That can be useful for small fixes, but larger additions or structural changes should still be submitted as a pull request so they can be reviewed properly.
+
+:::
+
+If you are new to GitHub, focus on making one clear change at a time. Small pull requests are easier to review and easier to merge safely.
+
+## Contributing Without Git {#sec-without-git}
+
+If you do not use Git, you can still contribute by downloading the repository to your computer, editing the relevant files locally, and then sending the changed files to one of the handbook authors so they can incorporate your revisions.
+
+A practical workflow is:
+
+1. Download the repository from GitHub as a ZIP file and extract it locally.
+2. Edit the relevant `.qmd`, image, or supporting files on your computer.
+3. Keep a short note describing what you changed and which files you edited.
+4. Send the edited files and your note to one of the authors for review and incorporation.
+
+This approach works best for small to moderate changes. If you expect to make repeated contributions, learning the pull request workflow above will usually make collaboration easier over time.
+
+## How the Handbook is Published {#sec-publishing-action}
+
+Updates to the handbook are 'published' automatically using a GitHub Actions workflow (`.github/workflows/_publish.yml`). This is a continuous deployment setup (a series of automated programmatic steps happening in the cloud on GitHub) that renders the book and updates the published website whenever changes are merged into the `main` branch.
+
+In the current setup:
+
+- a push to the `main` branch starts the workflow
+- the workflow checks out the repository
+- Quarto is installed, including TinyTeX for PDF rendering
+- R is set up and project packages are restored with `renv`
+- Quarto renders the book and publishes the result to the `gh-pages` branch
+
+For most contributors, this means you do not need to publish the site yourself. Once a pull request is merged into `main`, the publishing workflow handles rendering and deployment automatically.
+
+::: {.callout-tip}
+
+## In Practice
+
+If your change is merged successfully, the website and PDF should be refreshed by the automated workflow. Contributors usually work through branches and pull requests, while maintainers oversee merges and releases.
+
+:::
+
+## Making Zenodo-Backed Releases {#sec-zenodo-releases}
+
+This handbook is also archived through Zenodo so that released versions can be cited reliably.
+
+The current release process is a maintainer workflow:
+
+1. Finalize the content for the release.
+2. Update version references and `CHANGELOG.md` as needed.
+3. Create a Git tag and GitHub release for that version.
+4. Let the existing GitHub-Zenodo integration archive the release and mint the versioned Zenodo record.
+
+The project DOI in the repository points to the Zenodo archive for all versions, while Zenodo also provides version-specific records for individual releases.
+
+::: {.callout-warning}
+
+## Current Scope of This Guide
+
+This guide documents the repository workflow as it exists now. It does not assume additional release metadata files such as `.zenodo.json` or `CITATION.cff`, because those files are not currently part of this repository.
+
+:::
+
+When citing the handbook, use the citation provided by Zenodo for the latest release instead of copying an older citation string from a previous version.
+
+## Before You Open a Pull Request {#sec-before-pr}
+
+Before submitting, quickly check the following:
+
+- your headings and labels are clear
+- any new figures include captions and alt text
+- any new tables have readable captions
+- internal references still resolve correctly
+- filenames and folder placement match the existing project structure
+
+Thank you for helping this handbook stay useful, collaborative, and sustainable over time.
