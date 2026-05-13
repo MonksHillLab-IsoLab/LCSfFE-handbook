@@ -33,8 +33,21 @@ jobs:
           r-version: '4.4.2'
           use-public-rspm: true
 
-      - name: Install system dependencies (optional but common)
-        run: sudo apt-get update
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libpng-dev \
+            libgdal-dev \
+            gdal-bin \
+            libgeos-dev \
+            libproj-dev \
+            libudunits2-dev \
+            libsqlite3-dev \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            pandoc
 
       - name: Restore R packages (renv)
         run: |
