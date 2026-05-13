@@ -1,2 +1,2 @@
-- Appendices are currently numbered so that cross-referencing works but they also have there alphabetical label as well. Confirm how to proceed
-- improve use of glossary.yml within documents
+
+
