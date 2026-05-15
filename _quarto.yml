@@ -10,7 +10,7 @@ book:
   subtitle: "An Open Handbook for DIY Environmental Measurement Systems"
   date: last-modified
   search: true
-  repo-url: https://github.com/zalf-lli/LCSfFE-handbook
+  repo-url: https://github.com/MonksHillLab-IsoLab/LCSfFE-handbook
   repo-actions: [edit]
   downloads: [pdf]
   favicon: assets/mhl-logo.png
