@@ -73,7 +73,7 @@ Contributions are very welcome. Please use the dedicated [Contributing chapter](
 
 ## Citation {#sec-citation}
 
-This handbook is available under a [CC-BY 4.0 licence](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/LICENSE.md).
+This handbook is available under a [CC-BY 4.0 licence](https://github.com/MonksHillLab-IsoLab/LCSfFE-handbook/blob/main/LICENSE.md).
 
 Please cite the handbook through the project's Zenodo archive using DOI: [10.5281/zenodo.15562591](https://doi.org/10.5281/zenodo.15562591). This DOI represents all versions, and will always resolve to the latest one.
 

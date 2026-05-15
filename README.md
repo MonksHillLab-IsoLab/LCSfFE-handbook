@@ -20,9 +20,13 @@ You're very welcome to share your improvements/chapters. For detailed guidance o
 
 **Version 2.2** will add a new chapter presenting a low cost system for flush-sampling of chamber headspace air for lateron analyses at a GCMS, as well as the introduction of a new regional hub located in Germany.
 
+## Acknowledgements
+
+The web version of the guide was developed with the assistance of the Data and Modelling Infrastrcuture for Living Labs (DML) Service Working Group of the Innovation Centre for Agricultural System Transformation (IAT) at ZALF. If you would like similar support for your project, please reach out to the DML team (benjaminsamuel.black@zalf.de) or visit their [website](https://DML.github.io). 
+
 ## Citation
 
-This handbook is available under a [CC-BY 4.0 licence](https://github.com/zalf-lli/LCSfFE-handbook/blob/main/LICENSE.md).
+This handbook is available under a [CC-BY 4.0 licence](https://github.com/MonksHillLab-IsoLab/LCSfFE-handbook/blob/main/LICENSE.md).
 
 Please cite the handbook through the project's Zenodo archive using DOI: [10.5281/zenodo.15562591](https://doi.org/10.5281/zenodo.15562591). This DOI represents all versions, and will always resolve to the latest one.
 

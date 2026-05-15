@@ -4,7 +4,7 @@ This page provides a detailed guide for contributors who want to add or revise c
 
 ## Structure of the Handbook {#sec-handbook_structure}
 
-The handbook is designed to be easier to read, share, and maintain because it is written with [Quarto](https://quarto.org/) and stored in a repository on [GitHub](https://github.com/zalf-lli/LCSfFE-handbook)<!-- todo update repo link upon transfer-->. That means one source can be rendered as both a website and a PDF simultaneously, contributors can collaborate through pull requests, and each formal release can be archived through [Zenodo](https://zenodo.org/) for long-term citation and preservation.
+The handbook is designed to be easier to read, share, and maintain because it is written with [Quarto](https://quarto.org/) and stored in a repository on [GitHub](https://github.com/MonksHillLab-IsoLab/LCSfFE-handbook)<!-- todo update repo link upon transfer-->. That means one source can be rendered as both a website and a PDF simultaneously, contributors can collaborate through pull requests, and each formal release can be archived through [Zenodo](https://zenodo.org/) for long-term citation and preservation.
 
 This combination of both a website and PDF is intended to maximize accessibility and usability for users of the guide. The HTML version works well on phones and laptops, figures can be magnified upon clicking for closer inspection, and there is the potential to also include richer media such as embedded video.
 
@@ -87,7 +87,7 @@ Keep tables focused and readable. If a table becomes wide or complex, consider w
 Use normal Markdown links for web pages:
 
 ``` markdown
-[Project repository](https://github.com/zalf-lli/LCSfFE-handbook)
+[Project repository](https://github.com/MonksHillLab-IsoLab/LCSfFE-handbook)
 ```
 
 Use citation keys from `references.bib` when citing literature:
